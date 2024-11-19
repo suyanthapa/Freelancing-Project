@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +9,15 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Placeholder for the header -->
-  <div id="header"></div>
+  <!-- Include the header (navbars and modals) -->
+  <div id="header">
+    <?php include('header.php'); ?>
+  </div>
   
   <!-- Placeholder for the dashboard -->
   <div id="dashboard"></div>
- 
-  <!-- Link to the JavaScript file to load the header -->
+  <?php include('dashboard.php'); ?>
+
   <script src="js/script.js"></script>
 </body>
 </html>

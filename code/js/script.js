@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Load header.html into the #header div
-  fetch('header.html')
+  fetch('header.php')
     .then(response => response.text())
     .then(data => {
       document.getElementById('header').innerHTML = data;
@@ -48,21 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error('Error loading Header:', error));
 
-  // Load dashboard.html into the #dashboard div
-  fetch('dashboard.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('dashboard').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading Dashboard:', error));
 });
 
 
-  // Load dashboard.html into the #dashboard div
-  fetch('dashboard.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('dashboard').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading Dashboard:', error));
+  // // Load dashboard.html into the #dashboard div
+  // fetch('dashboard.php')
+  //   .then(response => response.text())
+  //   .then(data => {
+  //     document.getElementById('dashboard').innerHTML = data;
+  //   })
+  //   .catch(error => console.error('Error loading Dashboard:', error));
 

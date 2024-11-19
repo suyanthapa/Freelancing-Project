@@ -1,8 +1,8 @@
 <header-navbar>
   <nav class="nav1">
-    <li><a href="home.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="explore.html">Explore</a></li>
+    <li><a href="home.php">Home</a></li>
+    <li><a href="about.php">About</a></li>
+    <li><a href="explore.php">Explore</a></li>
   </nav>
 
   <nav class="nav2">
@@ -11,13 +11,12 @@
   </nav>
 </header-navbar>
 
-
 <!-- Login Modal -->
 <div id="loginModal" class="modal modal-overlay" style="display: none;">
   <div class="modal-content">
     <span class="close" id="closeModal">&times;</span>
     <h2>Login</h2>
-    <form>
+    <form method="POST" action="login.php">
       <input type="email" placeholder="Your Email" required>
       <input type="password" placeholder="Your Password" required>
       <button type="submit">Login</button>
@@ -28,7 +27,6 @@
 <!-- Signup Modal -->
 <div id="signupModal" class="modal modal-overlay" style="display: none;">
   <div class="modal-content">
-    <!-- <span class="close" id="closeSignupModal">&times;</span> -->
     <div class="modal-left">
       <h2>Success starts here</h2>
       <ul>
