@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
       var closeLogin = document.getElementById("closeModal"); // For login modal close button
       var closeSignup = document.getElementById("closeSignupModal"); // For signup modal close button
 
+      const signupContent = document.getElementById("signupContent");
+      const emailContent = document.getElementById("emailContent");
+      const continueEmail = document.getElementById("continueEmail");
+      const backToSignup = document.getElementById("backToSignup");
+
       // Check if elements exist before adding event listeners
       if (loginBtn) {
         loginBtn.addEventListener("click", () => {
@@ -38,24 +43,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
+      // Toggle Signup and Email Content
+      if (continueEmail) {
+        continueEmail.addEventListener("click", () => {
+          signupContent.style.display = "none";
+          emailContent.style.display = "block";
+        });
+      }
+
+      if (backToSignup) {
+        backToSignup.addEventListener("click", () => {
+          emailContent.style.display = "none";
+          signupContent.style.display = "block";
+        });
+      }
+
       // Close modals when clicking outside
       window.addEventListener("click", (event) => {
         if (event.target.classList.contains('modal-overlay')) {
-          loginModal.style.display = "none";
-          signupModal.style.display = "none";
+          if (loginModal) loginModal.style.display = "none";
+          if (signupModal) signupModal.style.display = "none";
         }
       });
     })
     .catch(error => console.error('Error loading Header:', error));
-
 });
-
-
-  // // Load dashboard.html into the #dashboard div
-  // fetch('dashboard.php')
-  //   .then(response => response.text())
-  //   .then(data => {
-  //     document.getElementById('dashboard').innerHTML = data;
-  //   })
-  //   .catch(error => console.error('Error loading Dashboard:', error));
-
