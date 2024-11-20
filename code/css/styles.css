@@ -45,15 +45,16 @@ header-navbar{
 }
 
 
-.login{
+.join{
   color: blue;
   background-color: white;
   border: 1px solid  blue ;
   padding: 10px;
   border-radius: 10px;
+  width: 70px;
   
 }
-.nav2 .login:hover{
+.nav2 .join:hover{
   color: white;
     background-color: #1E90FF;
     border-color: #1E90FF ;
@@ -154,12 +155,14 @@ header-dashboard{
   
 }
 
+
 .modal-overlay{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
  
 }
+
 
 .modal-content{
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -220,7 +223,6 @@ header-dashboard{
   background-color: #dd1f0e;
 }
 
-
 .google:hover{
    background-color:  #e13526 ;
  }
@@ -239,10 +241,82 @@ header-dashboard{
 }
 
 .emailContent{
-  
-  flex: 1;
+   flex: 1;
   padding: 2rem;
   background-color: white;
   border-radius: 10px; /* Adds 10px border radius */
+}
 
+.createAcc{
+  flex: 1;
+ padding: 2rem;
+ background-color: white;
+ border-radius: 10px; /* Adds 10px border radius */
+}
+
+  #Cususername, #CusPassword , #newUsername, #newPassword{
+    width: 90%;
+    font-size: 16px;
+   font-family: Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+   height: 30px;
+   border-radius: 2px;
+   border-color: #b6b0b0;
+
+   flex: 1; /* Input takes remaining space */
+   padding: 8px;
+   border: 1px solid #ccc;
+  }
+ 
+  #continue{
+    width: 95%;
+    height: 40px;
+    border-color:  rgb(114, 12, 77);
+    border-radius: 2px;
+    font-family: Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+
+  }
+
+  .form label{
+    font-size: 18px;
+    width: 120px; /* Fixed width for label alignment */
+  }
+ 
+  
+.form input:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.continueHead{
+  font-size: 25px;
+}
+
+#terms{
+  padding-top: 25px;
+}
+/* Back button styling */
+.back-button {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+#createh4, .continueHead{
+  font-size: 25px;
+  font-family: Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
+  height: 30px;
+}
+
+#signIn, #createHere{
+  font-family: Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
 }

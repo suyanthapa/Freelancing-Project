@@ -8,10 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
       // Get the modal elements after loading the header content
       var loginModal = document.getElementById("loginModal");
       var signupModal = document.getElementById("signupModal");
-      var loginBtn = document.getElementById("loginBtn");
+
+
+      var joinBtn = document.getElementById("joinBtn");
       var signupBtn = document.getElementById("signupBtn");
       var closeLogin = document.getElementById("closeModal"); // For login modal close button
       var closeSignup = document.getElementById("closeSignupModal"); // For signup modal close button
+
+      const createAcc = document.getElementById("createAcc");
+      const createHere= document.getElementById("createHere");
+      const backToSignupj = document.getElementById("backToSignupj");
+
+      const signIn= document.getElementById("signIn");
 
       const signupContent = document.getElementById("signupContent");
       const emailContent = document.getElementById("emailContent");
@@ -19,9 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const backToSignup = document.getElementById("backToSignup");
 
       // Check if elements exist before adding event listeners
-      if (loginBtn) {
-        loginBtn.addEventListener("click", () => {
-          loginModal.style.display = "flex";
+      if (joinBtn) {
+        joinBtn.addEventListener("click", () => {
+          // loginModal.style.display = "flex";
+          signupModal.style.display = "flex";
         });
       }
 
@@ -43,6 +52,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
+      // Create Account
+      if(createHere){
+        createHere.addEventListener("click", ()=>{
+          signupContent.style.display= "none";
+          createAcc.style.display= "block";
+        })
+      }
+
+      //Sign In
+      if(signIn){
+        signIn.addEventListener("click", ()=>{
+          createAcc.style.display= "none";
+          signupContent.style.display= "block";
+          
+        })
+      }
+
       // Toggle Signup and Email Content
       if (continueEmail) {
         continueEmail.addEventListener("click", () => {
@@ -53,7 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (backToSignup) {
         backToSignup.addEventListener("click", () => {
-          emailContent.style.display = "none";
+        emailContent.style.display = "none";
+          signupContent.style.display = "block";
+        });
+      }
+
+      if (backToSignupj) {
+        backToSignupj.addEventListener("click", () => {
+          createAcc.style.display= "none";
+     
           signupContent.style.display = "block";
         });
       }
