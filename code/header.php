@@ -2,7 +2,10 @@
   <nav class="nav1">
     <li><a href="home.php">Home</a></li>
     <li><a href="about.php">About</a></li>
-    <li><a href="explore.php">Explore</a></li>
+    <li class="dropdown">
+      <a href="#">Explore</a>
+      <?php include ('explore.php');?>
+      </li>
   </nav>
 
   <nav class="nav2">
