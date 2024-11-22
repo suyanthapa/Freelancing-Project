@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/styles.css">
+
 
 <!-- Signup Modal -->
 <div id="signupModal" class="modal modal-overlay" style="display: none;">
@@ -51,3 +53,5 @@
     </div>
   </div>
 </div>
+
+<script src="js/script.js"></script>

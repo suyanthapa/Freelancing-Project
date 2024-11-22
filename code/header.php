@@ -1,3 +1,4 @@
+
 <header-navbar>
   <nav class="nav1">
     <li><a href="home.php">Home</a></li>
@@ -12,3 +13,6 @@
 </header-navbar>
 
 <?php include('signup.php'); ?>
+<?php include('dashboard.php'); ?>
+<script src="js/script.js"></script>
+
