@@ -1,5 +1,41 @@
 <link rel="stylesheet" href="css/styles.css">
 
+<?php
+session_start();
+include("connection.php");
+include("function.php");
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+  $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
+  $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
+  $username = mysqli_real_escape_string($con, $_POST['newUsername']);
+  $password = mysqli_real_escape_string($con, $_POST['newPassword']);
+  $confirmPassword = $_POST['confirmPassword'];
+
+  if (!empty($username) && !empty($password) && !is_numeric($username)) {
+      if ($password !== $confirmPassword) {
+          echo "Passwords do not match!";
+          die;
+      }
+
+      $user_id = random_num(20);
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+      $query = "INSERT INTO users (user_id, first_name, last_name, username, password) VALUES ('$user_id',   '$firstName',  '$lastName' ,'$username', '$hashedPassword')";
+
+      if (mysqli_query($con, $query)) {
+          header("Location: about.php");
+          die;
+      } else {
+          echo "Error: " . mysqli_error($con);
+      }
+  } else {
+      echo "Please enter valid information!";
+  }
+}
+?>
+
 
 <!-- Signup Modal -->
 <div id="signupModal" class="modal modal-overlay" style="display: none;">
