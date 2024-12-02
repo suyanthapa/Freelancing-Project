@@ -1,38 +1,49 @@
  <!-- for creating new account -->
  <?php
-// session_start();
+// session_start(); 
 include_once "connection.php";
-include_once "function.php";
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+include_once "function.php"; // Include helper functions like random_num()
 
-  $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
-  $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
-  $username = mysqli_real_escape_string($con, $_POST['newUsername']);
-  $password = mysqli_real_escape_string($con, $_POST['newPassword']);
-  $confirmPassword = $_POST['confirmPassword'];
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST['formType'] === 'signup') {
+    $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
+    $username = mysqli_real_escape_string($con, $_POST['newUsername']);
+    $password = mysqli_real_escape_string($con, $_POST['newPassword']);
+    $confirmPassword = $_POST['confirmPassword'];
 
-  if (!empty($username) && !empty($password) && !is_numeric($username)) {
-      if ($password !== $confirmPassword) {
-          echo "Passwords do not match!";
-          die;
-      }
+    if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($password) && !is_numeric($username)) {
+        if (empty($confirmPassword) || $password !== $confirmPassword) {
+            echo "Passwords do not match!";
+            die;
+        }
 
-      $user_id = random_num(20);
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        // Check if the username already exists
+        $checkUserQuery = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+        $checkResult = mysqli_query($con, $checkUserQuery);
 
-      $query = "INSERT INTO users (user_id, first_name, last_name, username, password ) VALUES ('$user_id',   '$firstName',  '$lastName' ,'$username', '$hashedPassword')";
+        if ($checkResult && mysqli_num_rows($checkResult) > 0) {
+            echo "Username already exists!";
+            die;
+        }
 
-      if (mysqli_query($con, $query)) {
-          header("Location: index.php");
-          die;
-      } else {
-          echo "Error: " . mysqli_error($con);
-      }
-  } else {
-      echo "Please enter valid information!";
-  }
+        $user_id = random_num(20); // Generate a random user ID
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+
+        $query = "INSERT INTO users (user_id, first_name, last_name, username, password) 
+                  VALUES ('$user_id', '$firstName', '$lastName', '$username', '$hashedPassword')";
+
+        if (mysqli_query($con, $query)) {
+            header("Location: index.php"); // Redirect to login or home page after signup
+            die;
+        } else {
+            echo "Error: " . mysqli_error($con); // Display database error if query fails
+        }
+    } else {
+        echo "Please enter valid information!";
+    }
 }
 ?>
+
  <div class="createAcc" id="createAcc" style="display: none;">
  <button id="backToSignupj" class="back-button">← Back</button>
   
@@ -41,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+ <input type="hidden" name="formType" value="signup">
 
   <div class="createForm">
 
