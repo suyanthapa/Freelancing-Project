@@ -16,7 +16,7 @@
 </header-navbar>
 
 
-<?php include('dashboard.php'); ?>
+
 <?php include('signup.php'); ?>
 
 <script src="js/script.js"></script>

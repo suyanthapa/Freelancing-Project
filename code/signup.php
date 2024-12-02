@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/styles.css">
 
 <?php
-session_start();
+// session_start();
 include_once "connection.php";
 include_once "function.php";
 
