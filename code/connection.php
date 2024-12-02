@@ -14,7 +14,8 @@ $dbname= "db_freelance";
 //   die("failed to connect !");
 // }
 
-$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-if (!$con) {
-    die("Failed to connect!");
-}
+  $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  if (!$con) {
+      die("Failed to connect!");
+  }
+

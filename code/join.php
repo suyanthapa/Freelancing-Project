@@ -1,5 +1,38 @@
  <!-- for creating new account -->
+ <?php
+// session_start();
+include_once "connection.php";
+include_once "function.php";
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+  $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
+  $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
+  $username = mysqli_real_escape_string($con, $_POST['newUsername']);
+  $password = mysqli_real_escape_string($con, $_POST['newPassword']);
+  $confirmPassword = $_POST['confirmPassword'];
+
+  if (!empty($username) && !empty($password) && !is_numeric($username)) {
+      if ($password !== $confirmPassword) {
+          echo "Passwords do not match!";
+          die;
+      }
+
+      $user_id = random_num(20);
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+      $query = "INSERT INTO users (user_id, first_name, last_name, username, password ) VALUES ('$user_id',   '$firstName',  '$lastName' ,'$username', '$hashedPassword')";
+
+      if (mysqli_query($con, $query)) {
+          header("Location: index.php");
+          die;
+      } else {
+          echo "Error: " . mysqli_error($con);
+      }
+  } else {
+      echo "Please enter valid information!";
+  }
+}
+?>
  <div class="createAcc" id="createAcc" style="display: none;">
  <button id="backToSignupj" class="back-button">← Back</button>
   
@@ -7,7 +40,7 @@
  <p id="signIn" >Already  have an account? <a href="#">Sign in</a> </p> 
 
 
- <form action="signup.php" method="POST">
+ <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
 
   <div class="createForm">
 

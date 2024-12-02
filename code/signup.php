@@ -2,39 +2,47 @@
 
 <?php
 session_start();
-include("connection.php");
-include("function.php");
+include_once "connection.php";
+include_once "function.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-  $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
-  $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
-  $username = mysqli_real_escape_string($con, $_POST['newUsername']);
-  $password = mysqli_real_escape_string($con, $_POST['newPassword']);
-  $confirmPassword = $_POST['confirmPassword'];
+  $username = mysqli_real_escape_string($con, $_POST['username']);
+  $password = mysqli_real_escape_string($con, $_POST['password']);
 
   if (!empty($username) && !empty($password) && !is_numeric($username)) {
-      if ($password !== $confirmPassword) {
-          echo "Passwords do not match!";
-          die;
-      }
+     
+        // read from database
+     
+      // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-      $user_id = random_num(20);
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      $query = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
 
-      $query = "INSERT INTO users (user_id, first_name, last_name, username, password) VALUES ('$user_id',   '$firstName',  '$lastName' ,'$username', '$hashedPassword')";
+      $result = mysqli_query($con, $query);
 
-      if (mysqli_query($con, $query)) {
-          header("Location: about.php");
-          die;
-      } else {
-          echo "Error: " . mysqli_error($con);
-      }
+      if ($result && mysqli_num_rows($result) > 0) {
+        $user_data = mysqli_fetch_assoc($result);
+        
+        if (password_verify($password, $user_data['password'])) 
+        {
+
+            $_SESSION['user_id'] = $user_data['user_id'];
+            header("Location: about.php");
+                die;
+        } 
+        else
+         {
+            echo "Invalid password!";
+        }
+    }
+
+          
+      
   } else {
       echo "Please enter valid information!";
   }
 }
 ?>
+
 
 
 <!-- Signup Modal -->
@@ -73,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <button id="backToSignup" class="back-button">← Back</button><br>
     <h2 class="continueHead">Continue with your Email or <br>Username</h2><br><br>
 
-    <form action="emailForm">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
      <div class="form">
       <label for="username">Email or Username</label><br><br>
       <input type="text" name="username" id="Cususername"><br><br>
@@ -91,3 +99,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </div>
 
 <script src="js/script.js"></script>
+
+
