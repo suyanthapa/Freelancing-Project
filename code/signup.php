@@ -6,6 +6,7 @@ include_once "connection.php";
 include_once "function.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
   $username = mysqli_real_escape_string($con, $_POST['username']);
   $password = mysqli_real_escape_string($con, $_POST['password']);
 
