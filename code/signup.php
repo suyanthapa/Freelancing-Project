@@ -1,10 +1,21 @@
 <?php
-// session_start(); 
+
 include_once "connection.php";
 include_once "function.php"; // Include any helper functions
 
-$error_message = ""; // Initialize the error message variable
 
+
+$error_message = ""; // Initialize the error message variable\
+
+
+$_SESSION['error_msg'] = ""; 
+
+
+
+
+
+
+// Check if a login aform submission occurred
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST['formType'] === 'login') {
     $username = mysqli_real_escape_string($con, $_POST['username']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
@@ -36,10 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
         $error_message = "Please enter the username and password";
     }
 }
+
 ?>
 
 <!-- Signup Modal -->
-<div id="signupModal" class="modal modal-overlay" style="display: <?php echo !empty($error_message) ? 'flex' : 'none'; ?>;">
+<div id="signupModal" class="modal modal-overlay" style="display: <?php echo (!empty($error_message) || !empty($error_msg) ) ? 'flex' : 'none'; ?>;">
   <div class="modal-content">
     <div class="modal-left">
       <h2>Success starts here</h2>
@@ -51,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
       <img src="login-image.png" alt="" class="login-image">
     </div>
 
-    <div class="modal-right" id="signupContent" style="display: <?php echo empty($error_message) ? 'block' : 'none'; ?>;">
+    <!-- Right Modal: Show it only if no error -->
+    <div class="modal-right" id="signupContent" style="display: <?php   echo empty($error_message) ? 'block'     : 'none'; ?>;">
       <h2>Sign in to your account</h2>
       <p id="createHere">Don't have an account? <a href="#">Create here</a></p>
       <button class="social-login google">Continue with Google</button>
@@ -64,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
       </p>
     </div>
 
+    <!-- Include the signup form or error message -->
     <?php include('join.php'); ?>
 
     <!-- Login Form: Displayed when there is an error -->
