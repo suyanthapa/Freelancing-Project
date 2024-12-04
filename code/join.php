@@ -50,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
 }
 ?>
 
+
 <!-- Create Account Form: Displayed when there is an error -->
 <div class="createAcc" id="createAcc" style="display: <?php echo !empty($_SESSION['error_msg']) ? 'block' : 'none'; ?>;">
   <?php //echo $_SESSION['error_msg']." this is message" ?>
@@ -71,11 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
       <label for="username">Username</label>
       <input type="text" name="newUsername" id="newUsername"><br>
 
+     
+
       <label for="password">Password</label>
-      <input type="password" name="newPassword" id="newPassword"><br>
+      <input type="password" name="newPassword" id="newPassword" ><br>
 
       <label for="password">Confirm Password</label>
       <input type="password" name="confirmPassword" id="confirmPassword"><br>
+
+     
 
       <!-- Display error message if there's an error -->
       <?php if (!empty($_SESSION['error_msg'])): ?>
