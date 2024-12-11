@@ -3,10 +3,10 @@
 
       session_start();
 
-      include("connection.php");
-      include("function.php");
+      // include("connection.php");
+      // include("function.php");
 
-      $user_data= check_login($con);
+      // $user_data= check_login($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">
