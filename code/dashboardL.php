@@ -73,15 +73,25 @@
 
     <div class="features">
         <h2>Our Services</h2>
-        <ul >
+        <ul style="color: black;" >
                     <li id="gd">
-                        <a href="graphics.php" style="text-decoration: none;">Graphics & Design</a>
+                        <a href="graphics.php" style="text-decoration: none; color: black; ">Graphics & Design</a>
                     </li>
-                    <li id="pt">Programming & Tech</li>
-                    <li id="dm">Digital Marketing</li>
-                    <li id="va">Video & Animation</li>
-                    <li id="wt">Writing & Translation</li>
-                    <li id="ma">Music & Audio</li>
+                    <li id="pt">
+                        <a href="programming.php" style="text-decoration: none; color: black; ">Programming & Tech</a>
+                    </li>
+                    <li id="dm">
+                         <a href="digMarketing.php" style="text-decoration: none; color: black; ">Digital Marketing</a>
+                    </li>
+                    <li id="va">
+                         <a href="vAnimation.php" style="text-decoration: none; color: black; ">Video & Animation</a>
+                    </li>
+                    <li id="wt">
+                         <a href="writing.php" style="text-decoration: none; color: black; ">Writing & Translation</a>
+                    </li>
+                    <li id="ma">
+                          <a href="/mAudio.php" style="text-decoration: none; color: black; ">Music & Audio</a>
+                     </li>
          </ul>
                 
      </div>

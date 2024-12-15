@@ -152,11 +152,11 @@
             <!-- Menu Links -->
             <div class="menu">
                 <a href="graphics.php">Graphics & Design</a>
-                <a href="#">Programming & Tech</a>
-                <a href="#">Digital Marketing</a>
-                <a href="#">Video & Animation</a>
-                <a href="#">Writing & Translation</a>
-                <a href="#">Music & Audio</a>
+                <a href="programming.php">Programming & Tech</a>
+                <a href="digMarketing.php">Digital Marketing</a>
+                <a href="vAnimation.php">Video & Animation</a>
+                <a href="writing.php">Writing & Translation</a>
+                <a href="mAudio.php">Music & Audio</a>
                 <a href="#">Business</a>
                 <a href="#">Finance</a>
                 <a href="#">AI Services</a>
