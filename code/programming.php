@@ -47,7 +47,28 @@
     gap: 20px;
   }
   
+  .explore{
+    display: flex;
+    gap: 90px;
+  }
+  
+  .explore ul{
+    list-style-type: none; /* Removes bullets from the list */
+    font-family: "Macan", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+  }
+
+  .explore li{
+    color:rgb(85, 78, 78);
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+
+  .explore li:hover{
+    color:white;
+    background-color: rgb(52, 176, 166);
+    cursor: pointer;
+  }
 
 
 
@@ -57,7 +78,6 @@
 <body>
  
 <div class="searchbox">
-    
    
     <p id="searchbox-slogan"  >
     <span style="font-size:50px; font-weight: bold; "> 
@@ -66,10 +86,58 @@
 
       <span style="font-size: 20px">You think it. A programmer develops it.</span>
     </p>
-    
-   
-
+  
   </div> 
+
+  <div  class="explore">
+
+<ul class="websites">
+<?php echo '<img src="images/websites.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+
+  <h2>Websites</h2>
+  <li>Website Development</li>
+  <li>Website Maintenance</li>
+  <li>Wordpress</li>
+  <li>Shopify</li>
+  <li>Custom Websites</li>
+</ul>
+
+<ul class="appDev">
+<?php echo '<img src="images/appDev.png" alt="Search" width="260" height="150" style="border-radius: 15px;">'; ?>
+
+  <h2>Application Development</h2>
+  <li>Web Application</li>
+  <li>Desktop Application</li>
+  <li>Game Development</li>
+  <li>Chatbot Development</li>
+  <li>Browser Extensions</li>
+</ul>
+
+<ul class="softDev">
+<?php echo '<img src="images/softDev.jpg" alt="Search" width="250" height= "150" style="border-radius: 15px;">'; ?>
+
+  <h2> Software Development</h2>
+  <li>Software Development</li>
+  <li>AI Development</li>
+  <li>APIs & Integration</li>
+  <li>Scripting</li>
+  <li>Plugins Develoment</li>
+</ul>
+
+<ul class="mobileApps">
+<?php echo '<img src="images/mobileApps.jpeg" alt="Search" width="250" height="150" style="border-radius: 15px;" >'; ?>
+
+  <h2>Mobile Apps</h2>
+  <li>Mobile App Development</li>
+  <li>Cross-Platofrm Apps</li>
+  <li>Android App Development</li>
+  <li>iOS App Development</li>
+  <li>Mobile App Maintenace</li>
+</ul>
+
+
+</div>
+
    
     
 </body>

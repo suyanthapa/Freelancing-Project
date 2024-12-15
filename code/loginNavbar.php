@@ -130,19 +130,23 @@
                 <div class="search-bar">
                     <input type="text" placeholder="What service are you looking for today?">
                     <button>
-                        <?php echo '<img src="images/search.png" alt="Search" width="20" height="20">'; ?>
+                        <?php echo '<img src="images/searchh.png" alt="Search" width="20" height="20">'; ?>
                     </button>
                 </div>
 
                 <!-- Icons and User Menu -->
                 <div class="icon-links">
-                    <a href="#">
+                    <a href="#"  style="text-decoration: none; color: black;" >
                         <!-- Bell Icon -->
-                        <?php echo '<img src="images/bell.png" alt="Notifications" width="24" height="24">'; ?>
+                       <img src="images/bell.png" alt="Notifications" width="24" height="24" style="vertical-align: middle; margin-right: 8px">
+                     Notification
+                            
+
                     </a>
-                    <a href="#">
+                    <a href="#" style="text-decoration: none; color: black;" >
                         <!-- Message Icon -->
-                        <?php echo '<img src="images/message.png" alt="Messages" width="24" height="24">'; ?>
+                      <img src="images/msg.png" alt="Messages" width="24" height="24" style="vertical-align: middle; margin-right: 8px">
+                      Message
                     </a>
                     <!-- User Profile -->
                     <div class="user-icon">S</div>

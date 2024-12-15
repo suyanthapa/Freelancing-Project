@@ -46,11 +46,29 @@
     /* align-items: center; */
     gap: 20px;
   }
+
+  .explore{
+    display: flex;
+    gap: 90px;
+  }
   
+  .explore ul{
+    list-style-type: none; /* Removes bullets from the list */
+    font-family: "Macan", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+  }
 
+  .explore li{
+    color:rgb(85, 78, 78);
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
 
-
+  .explore li:hover{
+    color:white;
+    background-color: rgb(83, 88, 172);
+    cursor: pointer;
+  }
 
     </style>
 </head>
@@ -67,9 +85,57 @@
       <span style="font-size: 20px">Designs to make you stand out.</span>
     </p>
     
-   
-
   </div> 
+
+  <div  class="explore">
+
+    <ul class="brandLogo">
+
+    <?php echo '<img src="images/brandd.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+
+      <h2>Logo & Brand Identity</h2>
+      <li>Logo Design</li>
+      <li>Business Cards and Stationery</li>
+      <li>Brand Style Guides</li>
+    </ul>
+
+    <ul class="WebApp">
+    <?php echo '<img src="images/webDesign.png" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+
+      <h2>Web & App Design</h2>
+      <li>App Design</li>
+      <li>Website Design</li>
+      <li>Landing Page Design</li>
+      <li>Icon Design</li>
+      <li>UX Design</li>
+    </ul>
+
+    <ul class="art">
+    <?php echo '<img src="images/art.jpg" alt="Search" width="250" height= "150" style="border-radius: 15px;">'; ?>
+
+      <h2>Art & Illustration</h2>
+      <li>Illustration</li>
+      <li>AI Artists</li>
+      <li>Cartoon & Comics</li>
+      <li>Pattern Design</li>
+      <li>NFT Art</li>
+    </ul>
+
+    <ul class="archtitecture">
+    <?php echo '<img src="images/building.png" alt="Search" width="250" height="150" style="border-radius: 15px;" >'; ?>
+
+      <h2>Architecture & Building Design</h2>
+      <li>Architecture & Interior Design</li>
+      <li>Landscape Design</li>
+      <li>Building Engineering</li>
+      <li>Lighting Design</li>
+      <li>Building Information Modeling</li>
+    </ul>
+
+    
+  </div>
+
+  
    
     
 </body>
