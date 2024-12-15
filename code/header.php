@@ -10,8 +10,10 @@
   </nav>
 
   <nav class="nav2">
-    <li><button class="signup" id="signupBtn">Sign Up</button></li>
+    <!-- <li><button class="signup" id="signupBtn">Sign Up</button></li> -->
     <!-- <li><button class="join" id="joinBtn">Join</button></li> -->
+
+    <li><a href="signup.php"><button  >Sign Up</button></a></li>
   </nav>
 </header-navbar>
 
@@ -19,5 +21,5 @@
 
 <?php include('signup.php'); ?>
 
-<script src="js/script.js"></script>
+<!-- <script src="js/script.js"></script> -->
 

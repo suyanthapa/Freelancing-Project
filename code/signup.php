@@ -1,111 +1,114 @@
 <?php
-
-include_once "connection.php";
-include_once "function.php"; // Include any helper functions
-
-
-
-$error_message = ""; // Initialize the error message variable\
-
-
-$_SESSION['error_msg'] = ""; 
-
-
-
-
-
-
-// Check if a login aform submission occurred
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST['formType'] === 'login') {
-    $username = mysqli_real_escape_string($con, $_POST['username']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-
-    // Check if both username and password are provided and username is not numeric
-    if (!empty($username) && !empty($password) && !is_numeric($username)) {
-        // Check if the user exists in the database
-        $query = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
-        $result = mysqli_query($con, $query);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $user_data = mysqli_fetch_assoc($result);
-
-            // Verify the password
-            if (password_verify($password, $user_data['password'])) {
-                $_SESSION['user_id'] = $user_data['user_id']; // Store user ID in the session
-                header("Location: about.php"); // Redirect to another page
-                die;
-            } else {
-                // Set error message if password is incorrect
-                $error_message = "Invalid Username or Password";
-            }
-        } else {
-            // Set error message if user doesn't exist
-            $error_message = "Invalid Username or Password";
-        }
-    } else {
-        // Set error message if fields are empty or invalid
-        $error_message = "Please enter the username and password";
-    }
-}
-
+session_start(); 
 ?>
 
-<!-- Signup Modal -->
-<div id="signupModal" class="modal modal-overlay" style="display: <?php echo (!empty($error_message) || !empty($error_msg) ) ? 'flex' : 'none'; ?>;">
-  <div class="modal-content">
-    <div class="modal-left">
-      <h2>Success starts here</h2>
-      <ul>
-        <li>Over 700 categories</li>
-        <li>Quality work done faster</li>
-        <li>Access to talent and businesses across the globe</li>
-      </ul>
-      <img src="login-image.png" alt="" class="login-image">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+</head>
+
+<body> 
+<?php
+include_once "connection.php";
+include_once "function.php"; 
+$error_message = "";
+
+// Handle signup form submission
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST['formType'] === 'signup') {
+    $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
+    $username = mysqli_real_escape_string($con, $_POST['newUsername']);
+    $password = mysqli_real_escape_string($con, $_POST['newPassword']);
+    $confirmPassword = $_POST['confirmPassword'];
+
+    // Validate input fields
+    if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($password) && !is_numeric($username)) {
+      if ($password !== $confirmPassword) {
+        $error_message = "Passwords don't match";
+    }
+    
+
+        // Check if the username already exists
+        $checkUserQuery = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+        $checkResult = mysqli_query($con, $checkUserQuery);
+
+        if ($checkResult && mysqli_num_rows($checkResult) > 0) {
+          $error_message = "Username already exists!";
+        }
+
+        // If no errors, insert the new user into the database
+        if (empty($error_message)) {
+            $user_id = random_num(20); // Generate a random user ID
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash password
+
+            $query = "INSERT INTO users (user_id, first_name, last_name, username, password) 
+                      VALUES ('$user_id', '$firstName', '$lastName', '$username', '$hashedPassword')";
+
+            if (mysqli_query($con, $query)) {
+                header("Location: login.php"); // Redirect to login or home page after signup
+                die;
+            } else {
+              $error_message = "Error: " . mysqli_error($con); 
+            }
+        }
+    } else {
+        $error_message ="Please fill out all fields correctly.";
+    }
+}
+?>
+
+
+<!-- Create Account Form: Displayed when there is an error -->
+<div class="signup" >
+ 
+<a href="index.php"><button id="backToSignup" class="back-button">← Back</button></a><br>
+
+    
+  <h2>Create a new Account</h2>
+  <p id="signIn">Already have an account? <a href="login.php">Sign in</a></p> 
+
+  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+    <input type="hidden" name="formType" value="signup">
+
+    <div class="createForm">
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" id="firstName"><br>
+
+      <label for="lastName">Last Name</label>
+      <input type="text" name="lastName" id="lastName"><br>
+
+      <label for="username">Username</label>
+      <input type="text" name="newUsername" id="newUsername"><br>
+
+     
+
+      <label for="password">Password</label>
+      <input type="password" name="newPassword" id="newPassword" ><br>
+
+      <label for="password">Confirm Password</label>
+      <input type="password" name="confirmPassword" id="confirmPassword"><br>
+
+     
+
+      <!-- Display error message if there's an error -->
+      <?php if (!empty($error_message)): ?>
+  <p style="color: red; font-size: small;"><?php echo $error_message; ?></p>
+<?php endif; ?>
+
+
+      <input type="submit" value="Signup" id="signup">
+
+      <p id="terms">By joining, you agree to the Terms of Service and occasionally receive emails from us.</p>
     </div>
-
-    <!-- Right Modal: Show it only if no error -->
-    <div class="modal-right" id="signupContent" style="display: <?php   echo empty($error_message) ? 'block'     : 'none'; ?>;">
-      <h2>Sign in to your account</h2>
-      <p id="createHere">Don't have an account? <a href="#">Create here</a></p>
-      <button class="social-login google">Continue with Google</button>
-      <button class="social-login email" id="continueEmail">Continue with email/username</button>
-      <div class="or">OR</div>
-      <button class="social-login apple">Apple</button>
-      <button class="social-login facebook">Facebook</button>
-      <p class="terms">
-        By joining, you agree to the Terms of Service and occasionally receive emails from us.
-      </p>
-    </div>
-
-    <!-- Include the signup form or error message -->
-    <?php include('join.php'); ?>
-
-    <!-- Login Form: Displayed when there is an error -->
-    <div class="emailContent" id="emailContent" style="display: <?php echo !empty($error_message) ? 'block' : 'none'; ?>;">
-      <button id="backToSignup" class="back-button">← Back</button><br>
-      <h2 class="continueHead">Continue with your Email or <br>Username</h2><br><br>
-
-      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-        <input type="hidden" name="formType" value="login">
-        <div class="form">
-          <label for="username">Email or Username</label><br><br>
-          <input type="text" name="username" id="Cususername" value="<?php echo isset($username) ? $username : ''; ?>"><br><br>
-
-          <label for="password">Password</label><br><br>
-          <input type="password" name="password" id="CusPassword"><br><br>
-
-          <!-- Display error message if there's an error -->
-          <?php if (!empty($error_message)): ?>
-            <p style="color: red; font-size: small;"><?php echo $error_message; ?></p>
-          <?php endif; ?>
-
-          <input type="submit" id="continue" value="Continue">
-        </div>
-      </form>
-
-      <p id="terms">By joining, you agree to this platform's Terms of Service and to occasionally receive emails from us. Please read our Privacy Policy to learn how we use your personal data.</p>
-    </div>
-  </div>
+  </form>
 </div>
 
-<script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+
 .nav1, .nav2{
   color: wheat;
   display: flex;
@@ -36,13 +37,6 @@ header-navbar{
   gap: 20px;
 }
 
-.signup{
-  background-color: white;
-  border: 1px solid  black;
-  padding: 10px;
-  border-radius: 10px;
-  
-}
 
 
 .join{
@@ -308,7 +302,7 @@ header-dashboard{
 
 
 .back-button:hover {
-  background-color: #0056b3;
+  background-color: #19314a;
 }
 
 #createh4, .continueHead{
@@ -363,4 +357,107 @@ header-dashboard{
 /* Optional: Prevent the dropdown menu from overlapping header */
 header-navbar {
   overflow: visible; /* Ensure dropdown is not cut off */
+}
+
+/* chat *//* General Styling for the Signup Page */
+
+
+
+
+/* comment chtgpt */
+.signup {
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fcfcfb;
+}
+
+.signup h2 {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+ 
+  margin-bottom: 20px;
+}
+
+.signup #backToSignup {
+  background-color: #2c378b;
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.signup #backToSignup:hover {
+  background-color: #19314a;}
+
+.signup p#signIn {
+  text-align: center;
+  font-size: 14px;
+}
+
+.signup p#signIn a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.signup p#signIn a:hover {
+  text-decoration: underline;
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.createForm label {
+  font-size: 19px;
+  font-weight: 600;
+  color: #333;
+}
+
+.createForm input[type="text"],
+.createForm input[type="password"] {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.createForm input[type="submit"] {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.createForm input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.signup #terms {
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.createForm input[type="submit"]:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.signup p {
+  color: rgb(26, 179, 18);
+  font-size: 12px;
+  text-align: center;
 }

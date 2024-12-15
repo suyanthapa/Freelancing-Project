@@ -72,8 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
       <label for="username">Username</label>
       <input type="text" name="newUsername" id="newUsername"><br>
 
-     
-
       <label for="password">Password</label>
       <input type="password" name="newPassword" id="newPassword" ><br>
 

@@ -3,10 +3,10 @@
 
       session_start();
 
-      include("connection.php");
-      include("function.php");
+        // include("connection.php");
+        // include("function.php");
 
-      $user_data= check_login($con);
+        // $user_data= check_login($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +17,37 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- Include the header (navbars and modals) -->
-  <div id="header">
-    <?php include('header.php'); ?>
-  </div>
+   
+
+ <!-- navbar section   -->
+
+  <nav class="nav1">
+
+    <li>
+      <a href="home.php">Home</a>
+    </li>
+    <li>
+      <a href="about.php">Services</a>
+    </li>
+    <li>
+      <a href="about.php">About Us</a>
+    </li>
+    <li class="dropdown">
+      <a href="#">Explore</a>
+      <?php include ('explore.php');?>
+      </li>
+
+      <li>
+        <a  href="login.php">Login</a>
+      </li>
+       <li>
+        <a href="signup.php">Signup</a>
+     </li>
+  </nav>
+
+
+
+
   
   <!-- Placeholder for the dashboard -->
   <div id="dashboard"></div>
