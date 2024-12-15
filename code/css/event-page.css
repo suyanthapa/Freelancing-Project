@@ -1,48 +1,98 @@
-body{
+*{
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #2c0c11;
-    color: white;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial,sans-serif;
+}
+body{
+    background-color: #f4f4f9;
+}
+.top-section{
+    background-color: #115011;
+    height: 500px;
+    text-align: left;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.community-section{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    width: 90%;
-    gap: 30px;
-}
-.content{
-    flex: 1;
     padding: 20px;
 }
-.content h1{
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #f8f8f8;
+.top-section h1{
+    font-size: 4.8rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.content p{
-    font-size: 1.2em;
-    margin-bottom: 0px;
-    color: #e4e4e4
+.top-section p {
+    font-size: 1.2rem;
 }
-.image-section{
-    flex: 1;
-    position: relative;
+.events-section{
+    padding: 40px 20px;
+}
+.events-section h2{
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 10px;
     text-align: center;
-    background-color: #1a0708; /* Adds background under the image for blending */
-    background-image: url('images/kaaj-profile-removebg-preview.png');;
-    padding: 10px; /* Adds inner padding for the image container */
-    border-radius: 10px; 
 }
-.profile-image{
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+.events-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* By default, 1 column */
+    gap: 10px; /* Equivalent to 'gap-12' */
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
+.event-card {
+    max-width: 380px;
+    height: 350px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+@media(min-width:640px){
+    .events-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media(min-width:768px){
+    .events-grid{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+.card-icon {
+    margin-top: 10px;
+    width: 300px;
+    height: 200px;
+    object-fit:contain;
+}
+.calendar-icon {
+    width: 20px; 
+    height: 20px; 
+    margin-right: 3px; 
+    vertical-align: middle; /* Aligns the icon vertically with the text */
+}
+.event-content{
+    height: 104px;
+    margin-top: 30px;
+    background-color: rgb(213, 213, 213);
+}
+.event-content h3{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    margin-left: 5px;
+
+}
+.event-content p{
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+
