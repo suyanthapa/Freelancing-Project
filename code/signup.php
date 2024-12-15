@@ -11,6 +11,136 @@ session_start();
   <title>Login</title>
   <link rel="stylesheet" href="css/styles.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      display: flex;
+      justify-content: center;
+      overflow-y: auto; /* Allow scrolling */
+    }
+
+    /* Signup Container */
+    .signup {
+      width: 100%;
+      max-width: 500px; /* Slightly wider form */
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+      margin: 50px 20px; /* Allow spacing for scroll */
+      position: relative;
+    }
+
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: #white;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      background-color: #4e54c8;
+    }
+
+    .back-button:hover {
+      color:rgb(157, 161, 227);
+    }
+
+    /* Form Title */
+    .signup h2 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #signIn {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    #signIn a {
+      color: #4e54c8;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    #signIn a:hover {
+      color: #6c72e9;
+    }
+
+    /* Input Fields */
+    .createForm label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-size: 14px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .createForm input[type="text"],
+    .createForm input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .createForm input:focus {
+      border-color: #4e54c8;
+      box-shadow: 0 0 5px rgba(78, 84, 200, 0.4);
+    }
+
+    /* Submit Button */
+    #signup {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #signup:hover {
+      background: linear-gradient(135deg, #6c72e9, #a3a8f0);
+    }
+
+    /* Error Message */
+    p[style="color: red; font-size: small;"] {
+      margin-top: 10px;
+    }
+
+    /* Terms Paragraph */
+    #terms {
+      font-size: 12px;
+      color: #666;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 
 <body> 
