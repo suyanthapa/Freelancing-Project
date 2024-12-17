@@ -1,0 +1,112 @@
+.hero-section{
+    background-color: #134848;
+    text-align: justify;
+    padding: 50px;
+    height: 620px;
+    /* justify-content: left; */
+}
+.container{
+    max-width: 900px;
+   margin-left: 30px;
+   color:whitesmoke;
+}
+.container h1{
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+}
+.container h2{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.container p{
+margin-bottom: 15px;
+}
+.search-container{
+    display: flex;    
+    align-items: left;
+    /* gap: 20px; */
+    margin-bottom: 40px;
+    margin-right: 730px;
+  }
+
+  .searchinput{
+   
+    border-radius: 10px;
+    height: 60px;
+    width: 500px;
+  }
+  .searchinput::placeholder {
+    font-size: 1.2rem; 
+    color: #888; 
+  }
+
+  .search{
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    border: none;
+  
+  }
+  .searchicon{
+    width:18px;
+    height: 25px;
+    border-radius: 20px;
+  }
+
+  .search:hover{
+    background-color: #19a463;
+  }
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  text-align: justify;
+}
+.title h2{
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.service-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 5px;
+  justify-content: center;
+    align-items: center;
+    padding:1.8rem 5rem;
+}
+.service-card{
+  max-width: 200px;
+  height: 210px;
+  background-position: center;
+  padding: 10px;
+  text-align: center;
+  color:white;
+  border-radius: 6px;
+  transition: transform 0.2 ease;
+  overflow: hidden;
+}
+@media(min-width:640px){
+  .service-container{
+      grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media(min-width:768px){
+  .service-container{
+      grid-template-columns: repeat(4, 1fr);
+  }
+}
+.service-card h3{
+  font-size: 1.2rem;
+  align-items: center;
+  margin-top: 80px;
+}
+.service-card:hover{
+  zoom: 1.1;
+  transform: translateY(-5px);
+}
+.ready{
+  margin: 40px 20px;
+  background-color: #134848;
+  padding: 2rem 5rem;
+}

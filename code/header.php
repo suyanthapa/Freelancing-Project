@@ -1,25 +1,28 @@
-
-<header-navbar>
-  <nav class="nav1">
-    <li><a href="home.php">Home</a></li>
-    <li><a href="about.php">About</a></li>
-    <li class="dropdown">
+<link rel="stylesheet" href="css/header.css">
+<header class="header-navbar">
+    <nav class="navbar">
+      <div class="logo">Kaaj</div>
+      <ul class="nav-links">
+        <li>
+          <a href="index.php">Home</a>
+        </li>
+        <li class="dropdown">
       <a href="#">Explore</a>
       <?php include ('explore.php');?>
       </li>
-  </nav>
+      <li>
+        <a href="about.php">About Us</a>
+      </li>
+      </ul>
+      <div class="authentication">
+        <li>
+            <a href="login.php">Login</a>
+        </li>
+        <li>
+            <a href="signup.php">Sign Up</a>
+        </li>
 
-  <nav class="nav2">
-    <!-- <li><button class="signup" id="signupBtn">Sign Up</button></li> -->
-    <!-- <li><button class="join" id="joinBtn">Join</button></li> -->
+      </div>
+    </nav>
 
-    <li><a href="signup.php"><button  >Sign Up</button></a></li>
-  </nav>
-</header-navbar>
-
-
-
-<?php include('signup.php'); ?>
-
-<!-- <script src="js/script.js"></script> -->
-
+  </header>

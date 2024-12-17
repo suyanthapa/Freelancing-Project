@@ -47,11 +47,6 @@
     gap: 20px;
   }
   
-
-
-
-
-
     </style>
 </head>
 <body>
