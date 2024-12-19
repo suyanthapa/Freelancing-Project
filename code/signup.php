@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 ?>
-
+<!--  -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -148,6 +148,7 @@ session_start();
 include_once "connection.php";
 include_once "function.php"; 
 $error_message = "";
+$profile = "Seller";
 
 // Handle signup form submission
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST['formType'] === 'signup') {
@@ -177,8 +178,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
             $user_id = random_num(20); // Generate a random user ID
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash password
 
-            $query = "INSERT INTO users (user_id, first_name, last_name, username, password) 
-                      VALUES ('$user_id', '$firstName', '$lastName', '$username', '$hashedPassword')";
+            $query = "INSERT INTO users (user_id, first_name, last_name, username, password, profile) 
+                      VALUES ('$user_id', '$firstName', '$lastName', '$username', '$hashedPassword' ,  '$profile')";
 
             if (mysqli_query($con, $query)) {
                 header("Location: login.php"); // Redirect to login or home page after signup

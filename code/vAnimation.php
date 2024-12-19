@@ -46,6 +46,15 @@
     /* align-items: center; */
     gap: 20px;
   }
+  #expHeading {
+    font-family: "Arial", "Helvetica Neue", sans-serif; /* Clean font family */
+    margin-top: 25px;
+    margin-left: 39px;
+    font-size: 30px; 
+    font-weight: bold; /* Make it bold */
+    color: #333333; /* Dark gray color for text */
+}
+
   
 
 

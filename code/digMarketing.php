@@ -69,6 +69,15 @@
     background-color: rgb(152, 37, 50);
     cursor: pointer;
   }
+  #expHeading {
+    font-family: "Arial", "Helvetica Neue", sans-serif; /* Clean font family */
+    margin-top: 25px;
+    margin-left: 39px;
+    font-size: 30px; 
+    font-weight: bold; /* Make it bold */
+    color: #333333; /* Dark gray color for text */
+}
+
 
 
     </style>
@@ -87,7 +96,7 @@
     </p>
     
   </div> 
-   
+  <h2 id="expHeading">Explore Digital Marketing</h2>
   <div  class="explore">
 
 <ul class="search">

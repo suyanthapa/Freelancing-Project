@@ -10,7 +10,7 @@
     <!-- Page-Specific Scoped CSS -->
     <style>
   .searchbox {
-           margin-top: 150px;
+             margin-top: 150px;
             border: 1px solid rgb(1, 47, 1);
             background-color:rgb(7, 35, 58);
             width: 90%;
@@ -69,6 +69,16 @@
     background-color: rgb(83, 88, 172);
     cursor: pointer;
   }
+  #expHeading {
+    font-family: "Arial", "Helvetica Neue", sans-serif; /* Clean font family */
+    margin-top: 25px;
+    margin-left: 39px;
+    font-size: 30px; 
+    font-weight: bold; /* Make it bold */
+    color: #333333; /* Dark gray color for text */
+    
+}
+
 
     </style>
 </head>
@@ -86,9 +96,9 @@
     </p>
     
   </div> 
-
+  <h2 id="expHeading">Explore Graphics & Design</h2>
+ 
   <div  class="explore">
-
     <ul class="brandLogo">
 
     <?php echo '<img src="images/brandd.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>

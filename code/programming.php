@@ -70,6 +70,14 @@
     cursor: pointer;
   }
 
+  #expHeading {
+    font-family: "Arial", "Helvetica Neue", sans-serif; /* Clean font family */
+    margin-top: 25px;
+    margin-left: 39px;
+    font-size: 30px; 
+    font-weight: bold; /* Make it bold */
+    color: #333333; /* Dark gray color for text */
+}
 
 
 
@@ -88,7 +96,7 @@
     </p>
   
   </div> 
-
+  <h2 id="expHeading">Explore  Programming & Tech</h2>
   <div  class="explore">
 
 <ul class="websites">

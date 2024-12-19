@@ -149,7 +149,9 @@
                       Message
                     </a>
                     <!-- User Profile -->
-                    <div class="user-icon">S</div>
+                    <div class="user-icon">
+                    <a href="profile.php">S</a></div>
+                    
                 </div>
             </nav>
             
