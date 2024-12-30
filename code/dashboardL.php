@@ -9,10 +9,69 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Page-Specific Scoped CSS -->
     <style>
- 
+        /* Container styling */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+    background-color:rgb(155, 158, 214); /* Primary color */
+}
+.hero-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+    
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.get-started-button {
+    width: 50%;
+    height: 60px;
+    padding: 10px 20px;
+    background-color:rgb(52, 67, 165);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.get-started-button:hover {
+    background-color:rgb(21, 30, 90);}
+
+/* Image styling */
+.hero-image {
+    flex: 1;
+    max-width: 50%;
+}
+
+.hero-image img {
+    margin-top: 100px;
+    width: 100%;
+    border-radius: 19px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
      
         .features{
-            margin-top: 150px;
+            margin-top: 10px;
             font-family: Arial, sans-serif;
             font-size: 1.2rem;
         }
@@ -69,10 +128,26 @@
     </style>
 </head>
 <body>
- 
+        
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>About Kaaj</h1>
+        <p>
+            Kaaj is your all-in-one freelancing platform designed to connect skilled professionals with clients across the globe. 
+            Manage your projects seamlessly, track earnings in real-time, and build your career with confidence. 
+            Whether you're starting fresh or expanding your portfolio, Kaaj provides the tools and opportunities you need to succeed.
+        </p>
+
+        <button class="get-started-button">Get started</button>
+    </div>
+    <div class="hero-image">
+        <img src="images/hero.jpeg" alt="Professional working at a desk" />
+    </div>
+</div>
+
 
     <div class="features">
-        <h2>Our Services</h2>
+        <h2>Our Services :</h2>
         <ul style="color: black;" >
                     <li id="gd">
                         <a href="graphics.php" style="text-decoration: none; color: black; ">Graphics & Design</a>

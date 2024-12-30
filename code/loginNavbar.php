@@ -123,7 +123,7 @@
             <nav>
                 <!-- Logo -->
                 <div class="logo" >
-                    <a href="dashboardL.php" style=" text-decoration: none;">fiverr</a>
+                    <a href="dashboardL.php" style=" text-decoration: none;">Kaaj</a>
                 </div>
 
                 <!-- Search Bar -->

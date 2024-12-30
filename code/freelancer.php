@@ -7,6 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = $_POST['description'] ?? '';
     $education = $_POST['education'] ?? '';
     $skills = $_POST['skills'] ?? '';
+    $occupation = $_POST['occupation'] ?? '';
+    $certification = $_POST['certification'] ?? '';
+    $certifiedFrom = $_POST['certifiedFrom'] ?? '';
+    $personalwebsite = $_POST['personal-website'] ?? '';
+    $experienceLevel = $_POST['experienceLevel'] ?? '';
+
+   header("Location: dashboardL.php");
+   die;
 }
 ?>
 <!DOCTYPE html>
@@ -42,8 +50,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #4caf50;
+            color:rgb(33, 27, 147);
         }
+
+        .form-intro {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f4f6f8; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.form-intro h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4e54c8; /* Primary color */
+    margin-bottom: 10px;
+}
+
+.form-intro p {
+    font-size: 16px;
+    color: #333; /* Neutral text color */
+    line-height: 1.6; /* Spacing between lines */
+    margin: 10px 0;
+}
+
+.form-intro p em {
+    font-size: 14px;
+    color: #555; /* Slightly lighter color for emphasis */
+}
 
         /* Form Container */
         .content-container {
@@ -147,9 +183,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="logo">Kaaj</div>
     </div>
 
+    <div class="form-intro">
+    <h1>Build Your Professional Profile</h1>
+    <p>
+        Create a detailed profile to showcase your skills, experience, and certifications. 
+        This will help potential clients learn more about you and connect with you for projects.
+    </p>
+</div>
+
     <div class="content-container">
         <h1>Personal Info</h1>
-        <form action="" method="post">
+        <!-- <form action="" method="post"> -->
+
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+
             <!-- Personal Info Section -->
             <div class="form-group">
                 <label for="fullName">Full Name</label>
@@ -199,7 +246,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
           
             
-            <button type="submit" name="action" value="continue">Save and Continue</button>
+           <button type="submit" name="action" value="continue">Save and Continue</button>
             </div>
         </form>
 
