@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
                       VALUES ('$user_id', '$firstName', '$lastName', '$username', '$hashedPassword', '$profile')";
 
             if (mysqli_query($con, $query)) {
-                header("Location: login.php"); // Redirect to login page after successful signup
+                header("Location: freelancer.php"); // Redirect to login page after successful signup
                 die;
             } else {
                 $error_message = "Error: " . mysqli_error($con);
@@ -206,8 +206,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
                 <input type="password" name="confirmPassword" id="confirmPassword" required><br>
 
                 <div class="user-type-buttons">
-                    <button type="button" onclick="document.getElementById('userType').value='users'">Sign Up as User</button>
-                    <button type="button" onclick="document.getElementById('userType').value='freelancer'">Sign Up as Freelancer</button>
+                    <button type="button" onclick="document.getElementById('userType').value='users'">As User</button>
+                    <button type="button" onclick="document.getElementById('userType').value='freelancer'">As Freelancer</button>
                 </div>
                 <input type="hidden" name="userType" id="userType" value="users">
 
@@ -215,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
                     <p style="color: red; font-size: small;"><?php echo $error_message; ?></p>
                 <?php endif; ?>
 
-                <input type="submit" value="Signup" id="signup">
+                <input type="submit" value="Signup as User" id="signup">
                 <p id="terms">By joining, you agree to the Terms of Service and occasionally receive emails from us.</p>
             </div>
         </form>
