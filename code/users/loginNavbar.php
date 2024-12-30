@@ -123,14 +123,14 @@
             <nav>
                 <!-- Logo -->
                 <div class="logo" >
-                    <a href="dashboardL.php" style=" text-decoration: none;">Kaaj</a>
+                    <a href="dashboardU.php" style=" text-decoration: none;">Kaaj</a>
                 </div>
 
                 <!-- Search Bar -->
                 <div class="search-bar">
                     <input type="text" placeholder="What service are you looking for today?">
                     <button>
-                        <?php echo '<img src="images/searchh.png" alt="Search" width="20" height="20">'; ?>
+                        <?php echo '<img src="../images/searchh.png" alt="Search" width="20" height="20">'; ?>
                     </button>
                 </div>
 
@@ -138,14 +138,14 @@
                 <div class="icon-links">
                     <a href="#"  style="text-decoration: none; color: black;" >
                         <!-- Bell Icon -->
-                       <img src="images/bell.png" alt="Notifications" width="24" height="24" style="vertical-align: middle; margin-right: 8px">
+                       <img src="../images/bell.png" alt="Notifications" width="24" height="24" style="vertical-align: middle; margin-right: 8px">
                      Notification
                             
 
                     </a>
                     <a href="#" style="text-decoration: none; color: black;" >
                         <!-- Message Icon -->
-                      <img src="images/msg.png" alt="Messages" width="24" height="24" style="vertical-align: middle; margin-right: 8px">
+                      <img src="../images/msg.png" alt="Messages" width="24" height="24" style="vertical-align: middle; margin-right: 8px">
                       Message
                     </a>
                     <!-- User Profile -->

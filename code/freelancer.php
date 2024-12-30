@@ -250,10 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
         </form>
 
-        <!-- Back Button (reloading the same form) -->
-        <form action="" method="post">
-            <button type="submit" name="action" value="back" class="back-button">← Reset the Form</button>
-        </form>
+        
     </div>
 </body>
 

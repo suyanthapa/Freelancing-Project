@@ -13,26 +13,42 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
 
     // Check if both username and password are provided and username is not numeric
     if (!empty($username) && !empty($password) && !is_numeric($username)) {
+        
+        // Query the `freelancer` table first
+        $queryFreelancer = "SELECT * FROM freelancer WHERE username = '$username' LIMIT 1";
+        $resultFreelancer = mysqli_query($con, $queryFreelancer);
 
-        // Check if the user exists in the `freelancers` table
-        $query = "SELECT * FROM freelancer WHERE username = '$username' LIMIT 1";
-        $result = mysqli_query($con, $query);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $user_data = mysqli_fetch_assoc($result);
+        if ($resultFreelancer && mysqli_num_rows($resultFreelancer) > 0) {
+            $user_data = mysqli_fetch_assoc($resultFreelancer);
 
             // Verify the password
             if (password_verify($password, $user_data['password'])) {
                 $_SESSION['user_id'] = $user_data['user_id']; // Store user ID in the session
-                header("Location: dashboardL.php"); // Redirect to another page
+                header("Location: dashboardL.php"); // Redirect to freelancer dashboard
                 die;
-            } else {    
-                // Set error message if password is incorrect
+            } else {
                 $error_message = "Invalid Username or Password";
             }
         } else {
-            // Set error message if user doesn't exist
-            $error_message = "Invalid Username or Password";
+            // If no match in `freelancer`, query the `user` table
+            $queryUser = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+            $resultUser = mysqli_query($con, $queryUser);
+
+            if ($resultUser && mysqli_num_rows($resultUser) > 0) {
+                $user_data = mysqli_fetch_assoc($resultUser);
+
+                // Verify the password
+                if (password_verify($password, $user_data['password'])) {
+                    $_SESSION['user_id'] = $user_data['user_id']; // Store user ID in the session
+                    header("Location: dashboardU.php"); // Redirect to user dashboard
+                    die;
+                } else {
+                    $error_message = "Invalid Username or Password";
+                }
+            } else {
+                // Set error message if user doesn't exist in either table
+                $error_message = "Invalid Username or Password";
+            }
         }
     } else {
         // Set error message if fields are empty or invalid

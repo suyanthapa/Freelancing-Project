@@ -101,7 +101,7 @@
 
 <ul class="search">
 
-<?php echo '<img src="images/search.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+<?php echo '<img src="../images/search.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
 
   <h2>Search</h2>
   <li>Search Engine Optimization (SEO)</li>
@@ -112,7 +112,7 @@
 </ul>
 
 <ul class="social">
-<?php echo '<img src="images/social.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+<?php echo '<img src="../images/social.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
 
   <h2>Social</h2>
   <li>Paid Social Media</li>
@@ -123,7 +123,7 @@
 </ul>
 
 <ul class="art">
-<?php echo '<img src="images/methods.png" alt="Search" width="250" height= "150" style="border-radius: 15px;">'; ?>
+<?php echo '<img src="../images/methods.png" alt="Search" width="250" height= "150" style="border-radius: 15px;">'; ?>
 
   <h2>Methods & Techniques</h2>
   <li>Video Markeiting</li>
@@ -134,7 +134,7 @@
 </ul>
 
 <ul class="archtitecture">
-<?php echo '<img src="images/analytics.jpeg" alt="Search" width="250" height="150" style="border-radius: 15px;" >'; ?>
+<?php echo '<img src="../images/analytics.jpeg" alt="Search" width="250" height="150" style="border-radius: 15px;" >'; ?>
 
   <h2>Analytics & Strategy</h2>
   <li>Brand Strategy</li>

@@ -42,7 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
                       VALUES ('$user_id', '$firstName', '$lastName', '$username', '$hashedPassword', '$profile')";
 
             if (mysqli_query($con, $query)) {
-                header("Location: freelancer.php"); // Redirect to login page after successful signup
+                // Redirect based on user type
+                if ($userType === 'freelancer') {
+                    header("Location: freelancer.php");
+                } else {
+                    header("Location: login.php");
+                }
                 die;
             } else {
                 $error_message = "Error: " . mysqli_error($con);
@@ -166,17 +171,37 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
         }
 
         .user-type-buttons button {
-            margin: 5px;
-            padding: 10px;
-            background: #ddd;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
 
-        .user-type-buttons button:hover {
-            background: #bbb;
-        }
+/* Red Button */
+.user-type-buttons .red-button {
+    background: #ff4d4d; /* Red color */
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.user-type-buttons .red-button:hover {
+    background: #e60000; /* Darker red on hover */
+}
+
+/* Blue Button */
+.user-type-buttons .blue-button {
+    background: #4d79ff; /* Blue color */
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.user-type-buttons .blue-button:hover {
+    background: #0039e6; /* Darker blue on hover */
+}
+
     </style>
 </head>
 
@@ -206,16 +231,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['formType']) && $_POST[
                 <input type="password" name="confirmPassword" id="confirmPassword" required><br>
 
                 <div class="user-type-buttons">
-                    <button type="button" onclick="document.getElementById('userType').value='users'">As User</button>
-                    <button type="button" onclick="document.getElementById('userType').value='freelancer'">As Freelancer</button>
+                    <button type="submit" name="userType" value="users" class="red-button">Signup As User</button>
+                    <button type="submit" name="userType" value="freelancer" class="blue-button">Signup As Freelancer</button>
                 </div>
-                <input type="hidden" name="userType" id="userType" value="users">
+
 
                 <?php if (!empty($error_message)): ?>
                     <p style="color: red; font-size: small;"><?php echo $error_message; ?></p>
                 <?php endif; ?>
 
-                <input type="submit" value="Signup as User" id="signup">
                 <p id="terms">By joining, you agree to the Terms of Service and occasionally receive emails from us.</p>
             </div>
         </form>

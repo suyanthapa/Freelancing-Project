@@ -10,9 +10,9 @@
     <!-- Page-Specific Scoped CSS -->
     <style>
   .searchbox {
-             margin-top: 150px;
+           margin-top: 150px;
             border: 1px solid rgb(1, 47, 1);
-            background-color:rgb(7, 35, 58);
+            background-color:rgb(152, 37, 50);
             width: 90%;
             height: 220px;
             border-radius: 20px;
@@ -46,7 +46,7 @@
     /* align-items: center; */
     gap: 20px;
   }
-
+  
   .explore{
     display: flex;
     gap: 90px;
@@ -66,7 +66,7 @@
 
   .explore li:hover{
     color:white;
-    background-color: rgb(83, 88, 172);
+    background-color: rgb(152, 37, 50);
     cursor: pointer;
   }
   #expHeading {
@@ -76,8 +76,8 @@
     font-size: 30px; 
     font-weight: bold; /* Make it bold */
     color: #333333; /* Dark gray color for text */
-    
 }
+
 
 
     </style>
@@ -89,64 +89,64 @@
    
     <p id="searchbox-slogan"  >
     <span style="font-size:50px; font-weight: bold; "> 
-       Graphics & Design 
+       Digital Marketing
     </span> <br>
 
-      <span style="font-size: 20px">Designs to make you stand out.</span>
+      <span style="font-size: 20px">Build your brand. Grow your business.</span>
     </p>
     
   </div> 
-  <h2 id="expHeading">Explore Graphics & Design</h2>
- 
+  <h2 id="expHeading">Explore Digital Marketing</h2>
   <div  class="explore">
-    <ul class="brandLogo">
 
-    <?php echo '<img src="images/brandd.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+<ul class="search">
 
-      <h2>Logo & Brand Identity</h2>
-      <li>Logo Design</li>
-      <li>Business Cards and Stationery</li>
-      <li>Brand Style Guides</li>
-    </ul>
+<?php echo '<img src="../images/search.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
 
-    <ul class="WebApp">
-    <?php echo '<img src="images/webDesign.png" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
+  <h2>Search</h2>
+  <li>Search Engine Optimization (SEO)</li>
+  <li>Search Engine Marketing (SEM)</li>
+  <li>Local SEO</li>
+  <li>E-Commerce SEO</li>
+  <li>Video SEO</li>
+</ul>
 
-      <h2>Web & App Design</h2>
-      <li>App Design</li>
-      <li>Website Design</li>
-      <li>Landing Page Design</li>
-      <li>Icon Design</li>
-      <li>UX Design</li>
-    </ul>
+<ul class="social">
+<?php echo '<img src="../images/social.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">'; ?>
 
-    <ul class="art">
-    <?php echo '<img src="images/art.jpg" alt="Search" width="250" height= "150" style="border-radius: 15px;">'; ?>
+  <h2>Social</h2>
+  <li>Paid Social Media</li>
+  <li>Social Media Marketing</li>
+  <li>Social Commerce</li>
+  <li>Influencer Marketing</li>
+  <li>Community Management</li>
+</ul>
 
-      <h2>Art & Illustration</h2>
-      <li>Illustration</li>
-      <li>AI Artists</li>
-      <li>Cartoon & Comics</li>
-      <li>Pattern Design</li>
-      <li>NFT Art</li>
-    </ul>
+<ul class="art">
+<?php echo '<img src="../images/methods.png" alt="Search" width="250" height= "150" style="border-radius: 15px;">'; ?>
 
-    <ul class="archtitecture">
-    <?php echo '<img src="images/building.png" alt="Search" width="250" height="150" style="border-radius: 15px;" >'; ?>
+  <h2>Methods & Techniques</h2>
+  <li>Video Markeiting</li>
+  <li>E-Commerce Marketing</li>
+  <li>Email Marketing</li>
+  <li>Email Automations</li>
+  <li>Guest Posting</li>
+</ul>
 
-      <h2>Architecture & Building Design</h2>
-      <li>Architecture & Interior Design</li>
-      <li>Landscape Design</li>
-      <li>Building Engineering</li>
-      <li>Lighting Design</li>
-      <li>Building Information Modeling</li>
-    </ul>
+<ul class="archtitecture">
+<?php echo '<img src="../images/analytics.jpeg" alt="Search" width="250" height="150" style="border-radius: 15px;" >'; ?>
 
-    
-  </div>
+  <h2>Analytics & Strategy</h2>
+  <li>Brand Strategy</li>
+  <li>Digital Marketing Strategy</li>
+  <li>UGC Strategy</li>
+  <li>Marketing Concepts & Ideation</li>
+  <li>Marketing Advice</li>
+</ul>
 
-  
-   
+
+</div>
+
     
 </body>
 </html>

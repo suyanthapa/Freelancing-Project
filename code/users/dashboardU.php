@@ -1,4 +1,5 @@
 <?php include('loginNavbar.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,7 +142,7 @@
         <button class="get-started-button">Get started</button>
     </div>
     <div class="hero-image">
-        <img src="images/hero.jpeg" alt="Professional working at a desk" />
+        <img src="../images/hero.jpeg" alt="Professional working at a desk" />
     </div>
 </div>
 
