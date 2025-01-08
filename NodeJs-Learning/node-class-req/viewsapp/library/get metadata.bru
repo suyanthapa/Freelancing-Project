@@ -1,0 +1,21 @@
+meta {
+  name: get metadata
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:9000/books/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+   "author" : "Suyan Thapa",
+    "title": "NodeJS Advance",
+    "publishedYear" : "2002",
+    "genre" : "education",
+    "rating" : 4
+  }
+}

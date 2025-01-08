@@ -1,0 +1,22 @@
+meta {
+  name: Get user details
+  type: http
+  seq: 2
+}
+
+get {
+  url: http:localhost:9000
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "suyan Doe",
+    "email": "johndoe@example.com",
+    "address": "123 Main Street, Springfield, USA",
+    "phone": "+1234567890",
+    "password": "SecurePassword123"
+  }
+  
+}

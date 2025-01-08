@@ -1,0 +1,17 @@
+meta {
+  name: suyan req
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:9000/?first_num=-10&last_num=-2&operation=division
+  body: none
+  auth: none
+}
+
+params:query {
+  first_num: -10
+  last_num: -2
+  operation: division
+}
