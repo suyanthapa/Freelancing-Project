@@ -1,0 +1,134 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.signup {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    margin: 50px 20px;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #4e54c8;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: rgb(157, 161, 227);
+}
+
+.signup h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#signIn {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#signIn a {
+    color: #4e54c8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.createForm label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.createForm input[type="text"],
+.createForm input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.createForm input:focus {
+    border-color: #4e54c8;
+}
+
+#signup {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#signup:hover {
+    background: linear-gradient(135deg, #6c72e9, #a3a8f0);
+}
+
+.user-type-buttons button {
+margin: 5px;
+padding: 10px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+font-size: 16px;
+font-weight: bold;
+}
+
+/* Red Button */
+.user-type-buttons .red-button {
+background: #ff4d4d; /* Red color */
+color: #fff;
+transition: background-color 0.3s;
+}
+
+.user-type-buttons .red-button:hover {
+background: #e60000; /* Darker red on hover */
+}
+
+/* Blue Button */
+.user-type-buttons .blue-button {
+background: #4d79ff; /* Blue color */
+color: #fff;
+transition: background-color 0.3s;
+}
+
+.user-type-buttons .blue-button:hover {
+background: #0039e6; /* Darker blue on hover */
+}
+

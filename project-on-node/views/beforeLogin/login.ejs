@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-box box">
+      <a href="dashboard"><button id="backToIndex" class="back-button">← Back</button></a><br>
+      <h2 class="continueHead">Continue with your Email or <br>Username</h2><br><br>
+
+      <form action="/login" method="POST">
+        <input type="hidden" name="formType" value="login">
+        <div class="form">
+          <label for="username">Username</label><br><br>
+          <input type="text" name="username" id="Cususername" ><br><br>
+          <label for="password">Password</label><br><br>
+          <input type="password" name="password" id="CusPassword"><br><br>
+
+          <%= message ? message : '' %></div>
+
+          <input type="submit" name="login" id="login" value="Login">
+        </div>
+      </form>
+      <p id="terms">By joining, you agree to this platform's Terms of Service and to occasionally receive emails from us. Please read our Privacy Policy to learn how we use your personal data.</p>
+    </div>
+  </div>
+</body>
+</html>
