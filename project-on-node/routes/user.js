@@ -18,7 +18,9 @@ heroRouter.route("/signup").get(authController.signup).post(authController.handl
 // Handle login routes
 heroRouter.route("/login").get(authController.login).post(authController.handleLogin)
 
-
+heroRouter.get("/", function(req,res){
+  res.redirect("/dashboard")
+})
 
 
 export default heroRouter

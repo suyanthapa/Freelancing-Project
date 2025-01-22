@@ -32,7 +32,7 @@ connectToDB()
     app.set('views', path.join(__dirname, 'views'));
 
     // Use the userRouter for routes
-    app.use(heroRouter)
+    app.use("/",heroRouter)
     app.use(userRouter);
 
     const port = process.env.PORT || 4000;
