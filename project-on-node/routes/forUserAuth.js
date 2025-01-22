@@ -17,5 +17,9 @@ userRouter.get("/userDashboard", async function (req,res) {
 userRouter.get("/graphic", (userAuthController.graphic))
 
 
+//render Account setting
+userRouter.get("/accountSetting", (userAuthController.accountSetting))
+
+
 
 export default userRouter
