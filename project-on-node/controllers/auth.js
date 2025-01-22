@@ -2,8 +2,6 @@ import { catchAsync } from "../helpers/catchAsync.js";
 import { createJWT, findGroupByName, findUserbyemail } from "../services/user.js";
 import User from '../models/user.js';
 import bcrypt from 'bcrypt'
-import { sendRecoveryEmail } from "./forgot-pw.js";
-import Group from "../models/group.js";
 import generateUserId from "../services/createRandom.js";
 
 const signup = catchAsync( async function (req,res) {
@@ -96,14 +94,12 @@ const handleLogin = catchAsync(async function (req, res) {
     if (user.profile === 'freelancer') {
       return res.redirect('/signup'); // Freelancer dashboard
     } else {
-      return res.redirect('/signup'); // User dashboard
+      return res.redirect('userDashboard'); // User dashboard
     }
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
   }
-  
-
   })
 
   const newPassword = catchAsync( async function (req,res) {

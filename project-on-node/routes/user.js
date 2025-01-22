@@ -6,17 +6,19 @@ import authController from '../controllers/auth.js'
 
 
 
-const userRouter = Router();
+const heroRouter = Router();
 
 //render the dashboard
-userRouter.get("/dashboard", async function (req,res) {
+heroRouter.get("/dashboard", async function (req,res) {
   return res.render('beforeLogin/dashboard', {message: ""});
 }  )
 //handle signup
-userRouter.route("/signup").get(authController.signup).post(authController.handleSignup)
+heroRouter.route("/signup").get(authController.signup).post(authController.handleSignup)
 
 // Handle login routes
-userRouter.route("/login").get(authController.login).post(authController.handleLogin)
+heroRouter.route("/login").get(authController.login).post(authController.handleLogin)
 
 
-export default userRouter
+
+
+export default heroRouter

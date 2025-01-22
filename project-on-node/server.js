@@ -2,8 +2,10 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import connectToDB from './connect.js';
-import userRouter from './routes/user.js';
+
 import sessionMiddleware from './middlewares/session.js';  // Import sessionMiddleware
+import heroRouter from './routes/user.js';
+import userRouter from './routes/forUserAuth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,6 +32,7 @@ connectToDB()
     app.set('views', path.join(__dirname, 'views'));
 
     // Use the userRouter for routes
+    app.use(heroRouter)
     app.use(userRouter);
 
     const port = process.env.PORT || 4000;
