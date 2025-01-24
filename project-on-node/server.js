@@ -6,6 +6,7 @@ import connectToDB from './connect.js';
 import sessionMiddleware from './middlewares/session.js';  // Import sessionMiddleware
 import heroRouter from './routes/user.js';
 import userRouter from './routes/forUserAuth.js';
+import cookieParser from 'cookie-parser';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +21,7 @@ connectToDB()
 
     // Use session middleware here
     app.use(sessionMiddleware);  // This will apply the session middleware globally
-
+    app.use(cookieParser())
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
 
@@ -34,7 +35,7 @@ connectToDB()
     // Use the userRouter for routes
     app.use("/",heroRouter)
     app.use(userRouter);
-
+    
     const port = process.env.PORT || 4000;
     app.listen(port, function () {
       console.log('Server running on PORT no', port);

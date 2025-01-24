@@ -3,26 +3,29 @@ import { createJWT, findGroupByName, findUserbyemail } from "../services/user.js
 import User from '../models/user.js';
 import bcrypt from 'bcrypt'
 import generateUserId from "../services/createRandom.js";
+import jwt from 'jsonwebtoken'
+import { sendRecoveryEmail } from "../services/forgot-password.js";
+
 
 const signup = catchAsync( async function (req,res) {
   res.render('beforeLogin/signup', { message: "" }); 
 })
 const handleSignup = catchAsync( async  function (req,res) {
 
-  const { firstName, lastName, newUsername, newPassword, confirmPassword, userType } = req.body;
- 
+  const { firstName, lastName, email, newUsername, newPassword, confirmPassword, userType } = req.body;
+  console.log(req.body)
   let table = userType === 'freelancer' ? 'freelancer' : 'users';
   let profile = userType === 'freelancer' ? 'freelancer' : 'user';
 
     // Validate inputs
-    if (!firstName || !lastName || !newUsername || !newPassword || !confirmPassword) {
+    if (!firstName || !email ||!lastName || !newUsername || !newPassword || !confirmPassword) {
       return res.render('beforeLogin/signup', { message: 'All fields are required.' });
   } else if (newPassword !== confirmPassword) {
     return res.render('beforeLogin/signup', { message: 'Password donot match' });
   }
 
   // Check if username exists
-  const existingUser = await User.findOne({ username: newUsername })
+  const existingUser = await User.findOne({ username: newUsername , email : email})
 
       if (existingUser) {
         return res.render('beforeLogin/signup', { message: 'Username already exists.' });
@@ -38,6 +41,7 @@ const handleSignup = catchAsync( async  function (req,res) {
           first_name: firstName,
           last_name: lastName,
           username: newUsername,
+          email : email,
           password: hashedPassword,
           profile: profile,
       });
@@ -48,11 +52,13 @@ const handleSignup = catchAsync( async  function (req,res) {
        return res.redirect('login');       
     })
 
+//render login
 const login = catchAsync ( async function  (req, res) {
   res.render('beforeLogin/login',  { message: '' }); // Render the login page with no errors
   
 })
 
+// handle login
 const handleLogin = catchAsync(async function (req, res) {
 
   const { password, username } = req.body;
@@ -87,14 +93,18 @@ const handleLogin = catchAsync(async function (req, res) {
       return res.render('beforeLogin/login', { message }); // Pass message to the view
     }
   
-    // Store the user ID in the session
-    req.session.user_id = user.user_id;
+    const token= jwt.sign({_id: user._id,
+     profile: user.profile 
+    },process.env.Secret_key)
   
+    res.cookie("uid", token,{httpOnly: true, secure: true});
+
+    
     // Redirect to the appropriate dashboard
     if (user.profile === 'freelancer') {
       return res.redirect('/signup'); // Freelancer dashboard
     } else {
-      return res.redirect('userDashboard'); // User dashboard
+      return res.redirect('/userDashboard'); // User dashboard
     }
   } catch (err) {
     console.error(err);
@@ -102,41 +112,59 @@ const handleLogin = catchAsync(async function (req, res) {
   }
   })
 
-  const newPassword = catchAsync( async function (req,res) {
+// account setting
+const accountSetting = catchAsync( async function (req,res) {
+  const loggedInUser = req.user;  // Logged-in user (admin)
+        const userId = loggedInUser._id;  // Get logged-in user's ID
+        const user = await  User.findById(userId);
 
-    const { email, otp , NewPassword} = req.body;
+ res.render('userLogin/accountSetting', {user, message: "" }); 
+})
 
-    const existingUser = await findUserbyemail(email);
-    if(!existingUser){
-      throw new Error ("User not found with this email" );
-    }
+//render change password
+const changePassword = catchAsync( async function (req,res) {
+  
+  res.render('userLogin/changePassword', { message: "" }); 
+})
 
-    if (!existingUser.otp || !existingUser.otpExpiresAt) {
-      throw new Error("OTP not found. Please request a new OTP.");
-   }
-
-   if (new Date() > existingUser.otpExpiresAt) {
-    throw new Error("OTP has expired. Please request a new OTP.");
-    }
-
-    const otpValid = await bcrypt.compare(otp,existingUser.otp);
-    if(!otpValid){
-      throw new Error("OTP isnot valid")
+//forgot password
+  const forgotPassword = catchAsync(async function (req,res) {
+  
+   const {email} = req.body;
+    const existingUser = await findUserbyemail(email)
+  
+    if (!existingUser) {
+      throw new Error("User not found.");
     }
   
-    //Hashing new password
-    const newHashedPassword= await bcrypt.hash(NewPassword,10);
-    await User.findOneAndUpdate(
-      { email },
-      {
-          otp: null, 
-          otpExpiresAt: null,
-          password: newHashedPassword
-      }
-  );
-    return res.json("Updated New Password !!!")
-  })
+      // Call the function to send the recovery email
+      const {token,emailInfo} = await sendRecoveryEmail(email);
+
+       // Hash the OTP and save it to the database with expiration
+       const hashedToken = await bcrypt.hash(token,10);
+       
+       const expiryOTP = new Date(Date.now() + 10 * 60 * 1000); // Valid for 10 minutes
+      
+  
+       // Update 
+       await User.findOneAndUpdate(
+        { email },
+        {
+            otp: hashedToken, // Save the hashed OTP
+            otpExpiresAt: expiryOTP
+        }
+    );
+  
+      // Respond to the client once the email is sent successfully
+      return res.status(200).json({
+          message: "Recovery email sent successfully.",
+          emailInfo,
+      });  
+    })
+
+ 
+  
 
 
-const authController = { signup,handleSignup,handleLogin ,login }
+const authController = { signup,handleSignup,handleLogin ,login, accountSetting, changePassword,forgotPassword }
 export default authController

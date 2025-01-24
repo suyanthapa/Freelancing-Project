@@ -7,13 +7,11 @@ const graphic = catchAsync( async function (req,res) {
   res.render('userLogin/graphic', { message: "" }); 
 })
 
-// account setting
-const accountSetting = catchAsync( async function (req,res) {
-  res.render('userLogin/accountSetting', { message: "" }); 
-})
 
 
 
+ 
 
-const userAuthController = { graphic, accountSetting}
+
+const userAuthController = { graphic}
 export default userAuthController
