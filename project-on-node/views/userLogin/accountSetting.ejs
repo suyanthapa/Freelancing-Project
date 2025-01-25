@@ -16,6 +16,7 @@
        
         <li><a href="accountSetting" class="active">Account Details</a></li>
         <li><a href="changePassword">Change Password</a></li>
+        <li><a href="postJob">Post a Job</a></li>
         <li><a href="logout">Logout</a></li>
       </ul>
       
@@ -31,14 +32,10 @@
         <label for="last-name">Last name : <%= user.last_name %></label>
         
 
-        <label for="website">Website</label>
-        <input type="url" id="website" placeholder="https://example.com">
+        <label for="profile"> Profile :  <%= user.profile %></label>
+    
 
-        <label for="facebook">Facebook</label>
-        <input type="url" id="facebook" placeholder="https://facebook.com">
-
-        <label for="twitter">Twitter</label>
-        <input type="url" id="twitter" placeholder="https://twitter.com">
+     
       </form>
     </div>
   </div>

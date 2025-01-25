@@ -27,8 +27,13 @@ heroRouter.get("/", function(req,res){
 //render Account setting
 heroRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
 
-//forgot password
-heroRouter.route("/changePassword", restrictToLoggedinUserOnly).get(authController.changePassword).post(authController.forgotPassword)
+
+// Forgot password
+heroRouter
+  .route("/changePassword")
+  .get(restrictToLoggedinUserOnly, authController.changePassword)
+  .post(restrictToLoggedinUserOnly, authController.forgotPassword);
+
 
 //for logout
 heroRouter.get("/logout",function( req,res){

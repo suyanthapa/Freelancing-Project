@@ -123,38 +123,44 @@ const accountSetting = catchAsync( async function (req,res) {
 
 //render change password
 const changePassword = catchAsync( async function (req,res) {
-  
-  res.render('userLogin/changePassword', { message: "" }); 
+  const loggedInUser = req.user;  // Logged-in user (admin)
+        const userId = loggedInUser._id;  // Get logged-in user's ID
+        const user = await  User.findById(userId);
+
+  res.render('userLogin/changePassword', {user, message: "" }); 
 })
 
 //forgot password
   const forgotPassword = catchAsync(async function (req,res) {
   
-   const {email} = req.body;
+   const {email, firstName, newPassword , confirmNewPassword} = req.body;
+   console.log(newPassword)
+   console.log(email)
     const existingUser = await findUserbyemail(email)
   
+   
     if (!existingUser) {
       throw new Error("User not found.");
     }
-  
-      // Call the function to send the recovery email
-      const {token,emailInfo} = await sendRecoveryEmail(email);
+    if(newPassword != confirmNewPassword){
+    
+      return res.render('userLogin/changePassword', { user: existingUser, message: 'Passwords do not match.' });
 
-       // Hash the OTP and save it to the database with expiration
-       const hashedToken = await bcrypt.hash(token,10);
-       
-       const expiryOTP = new Date(Date.now() + 10 * 60 * 1000); // Valid for 10 minutes
-      
-  
+    }
+    
+    const hashedPassword = bcrypt.hashSync(newPassword, 10);
        // Update 
-       await User.findOneAndUpdate(
+     const data =  await User.findOneAndUpdate(
         { email },
         {
-            otp: hashedToken, // Save the hashed OTP
-            otpExpiresAt: expiryOTP
+          first_name:firstName ,
+            password: hashedPassword, 
+            
         }
     );
-  
+    console.log(data)
+    return res.redirect('changePassword'); // Redirect user to login page after password reset.
+
       // Respond to the client once the email is sent successfully
       return res.status(200).json({
           message: "Recovery email sent successfully.",
