@@ -1,8 +1,7 @@
-const { default: mongoose } = require("mongoose");
+import { model, Schema } from "mongoose"
 
 
-
-const jobSchema = new mongoose.Schema({
+const jobSchema = new Schema({
   jobTitle: { type: String, required: true },
   hourlyRate: { type: Number, required: true },
   rating: { type: Number, required: true },
@@ -10,8 +9,6 @@ const jobSchema = new mongoose.Schema({
   skills: { type: [String], required: true },
   profileImage: { type: String, default: '/images/default-image.jpg' }, // Default image path
 });
-
-module.exports = mongoose.model('Job', jobSchema);
 
 
 const Job = model( "Job", jobSchema);

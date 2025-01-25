@@ -13,29 +13,20 @@
         <img src="profile.jpg" alt="Profile Picture">
       </div>
       <ul>
-       
         <li><a href="accountSetting" class="active">Account Details</a></li>
         <li><a href="changePassword">Change Password</a></li>
-        <li><a href="postJob">Post a Job</a></li>
+        <li><a href="addJob">Post a Job</a></li>
         <li><a href="logout">Logout</a></li>
       </ul>
-      
     </div>
+
     <div class="main-content">
       <h1>Account Settings</h1>
       <form>
-        <label for="email">Email address : <%= user.email %></label>
-       
+        <label for="email">Email address: <%= user.email %></label>
         <label for="first-name">First name: <%= user.first_name %></label>
-       
-
-        <label for="last-name">Last name : <%= user.last_name %></label>
-        
-
-        <label for="profile"> Profile :  <%= user.profile %></label>
-    
-
-     
+        <label for="last-name">Last name: <%= user.last_name %></label>
+        <label for="profile">Profile: <%= user.profile %></label>
       </form>
     </div>
   </div>

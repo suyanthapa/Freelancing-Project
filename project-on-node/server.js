@@ -7,6 +7,7 @@ import sessionMiddleware from './middlewares/session.js';  // Import sessionMidd
 import heroRouter from './routes/user.js';
 import userRouter from './routes/forUserAuth.js';
 import cookieParser from 'cookie-parser';
+import jobRouter from './routes/addJob.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +36,7 @@ connectToDB()
     // Use the userRouter for routes
     app.use("/",heroRouter)
     app.use(userRouter);
+    app.use(jobRouter);
     
     const port = process.env.PORT || 4000;
     app.listen(port, function () {
