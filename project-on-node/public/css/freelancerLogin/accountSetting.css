@@ -1,0 +1,124 @@
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f9f9f9;
+  height: 100vh;
+}
+
+/* Container for the sidebar and main content */
+.container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 250px;
+  background-color: #007BFF;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar .profile-pic img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  background-color: #0056b3;
+}
+
+/* Main content area */
+.main-content {
+  padding: 20px;
+  flex-grow: 1;
+  background-color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-left: 20px;
+  width: calc(100% - 270px); /* Adjusted width to accommodate sidebar */
+}
+
+/* Header styles */
+.main-content h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+  }
+}

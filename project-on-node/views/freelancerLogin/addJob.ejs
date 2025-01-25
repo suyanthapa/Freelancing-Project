@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Job</title>
-  <link rel="stylesheet" href="css/userLogin/addJob.css">
+  <link rel="stylesheet" href="css/freelancerLogin/addJob.css">
 </head>
 <body>
   <div class="container">
@@ -23,23 +23,43 @@
     <div class="main-content">
       <h1>Add a Job</h1>
       <form action="/addJob" method="POST" enctype="multipart/form-data">
+        <!-- Dropdown for job title selection -->
         <label for="jobTitle">Job Title:</label>
-        <input type="text" id="jobTitle" name="jobTitle" required>
+        <select id="jobTitle" name="jobTitle" required>
+          <option value="">Select a Job Title</option>
+          <option value="Graphics & Design">Graphics & Design</option>
+          <option value="Programming & Tech">Programming & Tech</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+          <option value="Video & Animation">Video & Animation</option>
+          <option value="Writing & Translation">Writing & Translation</option>
+          <option value="Music & Audio">Music & Audio</option>
+          <option value="Business">Business</option>
+          <option value="Finance">Finance</option>
+          <option value="AI Services">AI Services</option>
+        </select>
 
+
+
+    <label for="customLabel">  Job Description :</label>
+    <input type="text" id="customLabel" name="customLabel" placeholder="Describe the job further">
+        
+      
         <label for="hourlyRate">Hourly Rate ($):</label>
         <input type="number" id="hourlyRate" name="hourlyRate" step="0.01" required>
-
+      
         <label for="skills">Skills (comma separated):</label>
         <input type="text" id="skills" name="skills" required>
-
-       
-
+      
         <label for="profileImage">Profile Image (Optional):</label>
         <input type="file" id="profileImage" name="profileImage" accept="image/*">
-
+      
         <button type="submit">Add Job</button>
       </form>
+      
     </div>
   </div>
+
+
+  
 </body>
 </html>

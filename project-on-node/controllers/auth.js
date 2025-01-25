@@ -25,10 +25,10 @@ const handleSignup = catchAsync( async  function (req,res) {
   }
 
   // Check if username exists
-  const existingUser = await User.findOne({ username: newUsername , email : email})
+  const existingUser = await User.findOne({ email : email})
 
       if (existingUser) {
-        return res.render('beforeLogin/signup', { message: 'Username already exists.' });
+        return res.render('beforeLogin/signup', { message: 'Email  already exists.' });
       }
 
       // Hash the password
@@ -102,7 +102,7 @@ const handleLogin = catchAsync(async function (req, res) {
     
     // Redirect to the appropriate dashboard
     if (user.profile === 'freelancer') {
-      return res.redirect('/signup'); // Freelancer dashboard
+      return res.redirect('/freelancerDashboard'); // Freelancer dashboard
     } else {
       return res.redirect('/userDashboard'); // User dashboard
     }
@@ -117,17 +117,31 @@ const accountSetting = catchAsync( async function (req,res) {
   const loggedInUser = req.user;  // Logged-in user (admin)
         const userId = loggedInUser._id;  // Get logged-in user's ID
         const user = await  User.findById(userId);
+      
+        if(user.profile === "freelancer"){
+          res.render('userLogin/accountSetting', {user, message: "" }); 
+        }
+        else{
+          res.render('freelancerLogin/accountSetting', {user, message: "" }); 
+        }
 
- res.render('userLogin/accountSetting', {user, message: "" }); 
+
 })
+
+
 
 //render change password
 const changePassword = catchAsync( async function (req,res) {
   const loggedInUser = req.user;  // Logged-in user (admin)
         const userId = loggedInUser._id;  // Get logged-in user's ID
         const user = await  User.findById(userId);
-
-  res.render('userLogin/changePassword', {user, message: "" }); 
+        if(user.profile === "freelancer"){
+          res.render('userLogin/changePassword', {user, message: "" }); 
+        }
+        else{
+          res.render('freelancerLogin/changePassword', {user, message: "" }); 
+        }
+ 
 })
 
 //forgot password
