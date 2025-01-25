@@ -1,5 +1,10 @@
 import multer from 'multer';
 import Job from '../models/job.js';
+import { catchAsync } from '../helpers/catchAsync.js';
+
+
+
+
 
 // Get all jobs
 const getJobs = async (req, res) => {
@@ -25,15 +30,23 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
+
 // Controller to render the add job page (GET)
 async function renderAddJobPage(req, res) {
-  res.render('addJob'); // Renders the job creation form (addJob.ejs)
+  res.render('userLogin/addJob'); // Render the job creation form
 }
 
 // Controller to handle the form submission (POST)
-async function submitJob(req, res) {
+const submitJob = async function (req, res) {
   const { jobTitle, hourlyRate, rating, jobsCompleted, skills } = req.body; // Get job details from the form submission
+
+
+
   const profileImage = req.file; // Handle uploaded profile image
+
+
+  console.log(`Jobs listed are : `, { jobTitle, hourlyRate, rating, jobsCompleted, skills, profileImage });
 
   try {
     // Create a new job with the provided details
@@ -49,7 +62,7 @@ async function submitJob(req, res) {
     await newJob.save(); // Save the new job to the database
 
     // Redirect to a job listing page or confirmation page after adding the job
-    res.redirect('/jobs'); // Assuming '/jobs' is the route where jobs are listed
+    res.redirect('/userDashboard'); // Assuming '/jobs' is the route where jobs are listed
   } catch (error) {
     console.error('Error creating job:', error);
     res.status(500).send('Error adding job');

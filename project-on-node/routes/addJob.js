@@ -6,19 +6,31 @@ import authController from '../controllers/auth.js'
 import userAuthController from "../controllers/userAuth.js";
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
 import jobController from "../controllers/job.js";
+import multer from "multer";
 
 
+// Multer configuration for handling file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Specify where to save the uploaded files
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Ensure unique filenames for each upload
+  }
+});
+const upload = multer({ storage: storage });
 const jobRouter = Router();
 
 // Route to fetch and display jobs
 jobRouter.get('/show', jobController.getJobs);
 
 
+// Use route() to handle both GET and POST requests for '/addJob'
+jobRouter.route('/addJob')
+  .get(jobController.renderAddJobPage)  // Handle GET request to render the add job page
+  .post(upload.single('profileImage'), jobController.submitJob);  // Handle POST request to save the job
 
-// Route to render the add job form (GET)
-jobRouter.get('/addJob', (req, res) => {
-  res.render('userLogin/addJob'); // Renders the form
-});
+ 
 
 
 export default jobRouter
