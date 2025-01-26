@@ -9,6 +9,10 @@ const userSchema = new Schema ({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   profile: { type: String, required: true },
+  profileImage: {
+    type: String, // Store the image path (could be a URL or file path)
+    default: '/profile/default-profile.jpg'
+  },
   otp:{
     type:String,
   },

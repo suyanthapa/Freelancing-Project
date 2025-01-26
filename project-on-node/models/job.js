@@ -10,7 +10,6 @@ const jobSchema = new Schema({
   profileImage: { type: String, default: '/images/default-image.jpg' }, // Default image path
 });
 
-
 const Job = model( "Job", jobSchema);
 
 export default Job;

@@ -15,8 +15,9 @@
         <a href="dashboard"><button id="backToSignup" class="back-button">← Back</button></a><br>
         <h2>Create a new Account</h2>
         <p id="signIn">Already have an account? <a href="login">Sign in</a></p>
-
-        <form action="/signup" method="POST">
+        
+      <form action="/signup" method="POST" enctype="multipart/form-data">
+            
             <input type="hidden" name="formType" value="signup">
 
             <div class="createForm">
@@ -25,6 +26,9 @@
 
                 <label for="lastName">Last Name</label>
                 <input type="text" name="lastName" id="lastName" required><br>
+
+                <label for="profileImage">Profile Image (Optional):</label>
+                <input type="file" id="profileImage" name="profileImage" accept="image/*">
 
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required><br>

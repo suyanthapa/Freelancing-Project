@@ -5,20 +5,6 @@ import { catchAsync } from '../helpers/catchAsync.js';
 
 
 
-
-// Get all jobs
-const getJobs = async (req, res) => {
-  try {
-    const jobs = await Job.find(); // Fetch all jobs from MongoDB
-    res.render('show', { jobs });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error fetching jobs');
-  }
-};
-
-
-
 // Multer configuration for handling file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -28,9 +14,9 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname); // Ensure unique filenames for each upload
   }
 });
+
+
 const upload = multer({ storage: storage });
-
-
 
 // Controller to render the add job page (GET)
 async function renderAddJobPage(req, res) {
@@ -47,8 +33,7 @@ const submitJob = async function (req, res) {
     const newJob = new Job({
       jobTitle,
       hourlyRate,
-    
-      
+         
       skills: skills.split(','), // Convert comma-separated skills into an array
       profileImage: profileImage ? '/uploads/' + profileImage.filename : '/images/default-image.jpg', // Save image path
       customLabel : customLabel
@@ -65,6 +50,5 @@ const submitJob = async function (req, res) {
 }
 
 
-
-const jobController = {getJobs, submitJob, renderAddJobPage};
+const jobController = {submitJob, renderAddJobPage};
 export default jobController

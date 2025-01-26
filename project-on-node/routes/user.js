@@ -1,21 +1,33 @@
 import { Router } from "express";
-
-import validate from "../middlewares/validate.js"
-import authValidation from '../validation/user.js';
-import authController from '../controllers/auth.js'
-import userAuthController from "../controllers/userAuth.js";
-
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
-
+import authController  from '../controllers/auth.js'
+import multer from "multer";
 
 const heroRouter = Router();
+
+
 
 //render the dashboard
 heroRouter.get("/dashboard", async function (req,res) {
   return res.render('beforeLogin/dashboard', {message: ""});
 }  )
-//handle signup
-heroRouter.route("/signup").get(authController.signup).post(authController.handleSignup)
+
+// Multer configuration for handling file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'profile/'); // Specify where to save the uploaded files
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Ensure unique filenames for each upload
+  }
+});
+const upload = multer({ storage: storage });
+
+// Signup route
+heroRouter.route("/signup")
+  .get(authController.signup) // Handle GET request for signup page
+  .post(upload.single('profileImage'), authController.handleSignup); // Handle POST request with multer middleware
+
 
 // Handle login routes
 heroRouter.route("/login").get(authController.login).post(authController.handleLogin)

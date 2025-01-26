@@ -21,9 +21,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const jobRouter = Router();
 
-// Route to fetch and display jobs
-jobRouter.get('/show', jobController.getJobs);
-
 
 // Use route() to handle both GET and POST requests for '/addJob'
 jobRouter.route('/addJob')

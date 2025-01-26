@@ -5,7 +5,10 @@ import bcrypt from 'bcrypt'
 import generateUserId from "../services/createRandom.js";
 import jwt from 'jsonwebtoken'
 import { sendRecoveryEmail } from "../services/forgot-password.js";
+import multer from "multer";
 
+
+// export const uploadMiddleware = upload.single('profileImage');  
 
 const signup = catchAsync( async function (req,res) {
   res.render('beforeLogin/signup', { message: "" }); 
@@ -13,7 +16,9 @@ const signup = catchAsync( async function (req,res) {
 const handleSignup = catchAsync( async  function (req,res) {
 
   const { firstName, lastName, email, newUsername, newPassword, confirmPassword, userType } = req.body;
-  console.log(req.body)
+  const profileImage = req.file; // Handle uploaded profile image
+
+
   let table = userType === 'freelancer' ? 'freelancer' : 'users';
   let profile = userType === 'freelancer' ? 'freelancer' : 'user';
 
@@ -34,6 +39,7 @@ const handleSignup = catchAsync( async  function (req,res) {
       // Hash the password
       const hashedPassword = bcrypt.hashSync(newPassword, 10);
 
+     
       // Create new user object
       const userId = generateUserId();
       const newUser = new User({
@@ -44,6 +50,8 @@ const handleSignup = catchAsync( async  function (req,res) {
           email : email,
           password: hashedPassword,
           profile: profile,
+          profileImage: profileImage ? '/profile/' + profileImage.filename : '/images/default-image.jpg', // Save image path
+
       });
 
       newUser.save();
@@ -119,15 +127,12 @@ const accountSetting = catchAsync( async function (req,res) {
         const user = await  User.findById(userId);
       
         if(user.profile === "freelancer"){
-          res.render('userLogin/accountSetting', {user, message: "" }); 
-        }
-        else{
           res.render('freelancerLogin/accountSetting', {user, message: "" }); 
         }
-
-
+        else{
+          res.render('userLogin/accountSetting', {user, message: "" }); 
+        }
 })
-
 
 
 //render change password
@@ -136,10 +141,10 @@ const changePassword = catchAsync( async function (req,res) {
         const userId = loggedInUser._id;  // Get logged-in user's ID
         const user = await  User.findById(userId);
         if(user.profile === "freelancer"){
-          res.render('userLogin/changePassword', {user, message: "" }); 
+          res.render('freelancerLogin/changePassword', {user, message: "" }); 
         }
         else{
-          res.render('freelancerLogin/changePassword', {user, message: "" }); 
+          res.render('userLogin/changePassword', {user, message: "" }); 
         }
  
 })

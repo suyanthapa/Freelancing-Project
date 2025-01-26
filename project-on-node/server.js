@@ -21,6 +21,11 @@ connectToDB()
 
     app = express();
 
+    // Serve static files from the "public" folder
+    app.use('/uploads', express.static('uploads'));
+    // app.use('/profile', express.static(path.join(__dirname, 'profile')));
+    app.use('/profile', express.static('profile'));
+    
     // Use session middleware here
     app.use(sessionMiddleware);  // This will apply the session middleware globally
     app.use(cookieParser())

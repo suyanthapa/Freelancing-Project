@@ -19,8 +19,21 @@
 <!-- Freelancer Cards Section -->
 <div class="freelancer-container">
     <h2 id="expHeading">Hire Graphic Designer</h2>
-    <!-- You can use JavaScript to populate the freelancer list dynamically if needed -->
-    <!-- Example static list of freelancer cards can go here -->
+   
+    <% if (jobs.length > 0) { %>
+        <% jobs.forEach(job => { %>
+          <div class="freelancer-card">
+            <img src="<%= job.profileImage %>" alt="Profile Image" class="profile-image">
+            <h3> <%= job.jobTitle %></h3>
+            <p>Hourly Rate: $<%= job.hourlyRate %></p>
+            <p>Skills: <%= job.skills.join(', ') %></p>
+            <a href="/job/<%= job._id %>" class="view-details">View Details</a>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <p>No jobs available at the moment.</p>
+      <% } %>
+
 </div>
 
 <h2 id="expHeading">Explore Graphics & Design</h2>
