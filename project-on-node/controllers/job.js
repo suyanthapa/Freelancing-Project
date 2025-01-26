@@ -1,6 +1,7 @@
 import multer from 'multer';
 import Job from '../models/job.js';
 import { catchAsync } from '../helpers/catchAsync.js';
+import User from '../models/user.js';
 
 
 
@@ -20,17 +21,31 @@ const upload = multer({ storage: storage });
 
 // Controller to render the add job page (GET)
 async function renderAddJobPage(req, res) {
-  res.render('freelancerLogin/addJob'); // Render the job creation form
+  const loggedInUser = req.user;  // Logged-in user (admin)
+  const userId = loggedInUser._id;  // Get logged-in user's ID
+  const user = await  User.findById(userId);
+
+  if(user.profile === "freelancer"){
+    res.render('freelancerLogin/addJob', {user, message: "" }); 
+  }
+  else{
+    res.render('beforeLogin/login', {user, message: "" }); 
+  }
 }
 
 // Controller to handle the form submission (POST)
 const submitJob = async function (req, res) {
+  const loggedInUser = req.user;  // Logged-in user (admin)
+  const userId = loggedInUser._id;  // Get logged-in user's ID
+  const user = await  User.findById(userId);
+
   const { jobTitle, hourlyRate, skills, customLabel } = req.body;
  const profileImage = req.file; // Handle uploaded profile image
 
  try {
     // Create a new job with the provided details
     const newJob = new Job({
+      userId : user._id,
       jobTitle,
       hourlyRate,
          

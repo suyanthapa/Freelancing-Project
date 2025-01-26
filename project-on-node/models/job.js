@@ -2,6 +2,7 @@ import { model, Schema } from "mongoose"
 
 
 const jobSchema = new Schema({
+  userId :  { type: String, required: true },
   jobTitle: { type: String, required: true },
   hourlyRate: { type: Number, required: true },
  

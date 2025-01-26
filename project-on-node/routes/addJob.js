@@ -22,12 +22,12 @@ const upload = multer({ storage: storage });
 const jobRouter = Router();
 
 
+
 // Use route() to handle both GET and POST requests for '/addJob'
 jobRouter.route('/addJob')
-  .get(jobController.renderAddJobPage)  // Handle GET request to render the add job page
-  .post(upload.single('profileImage'), jobController.submitJob);  // Handle POST request to save the job
+  .get(restrictToLoggedinUserOnly, jobController.renderAddJobPage)  // Restrict access and render the add job page
+  .post(restrictToLoggedinUserOnly, upload.single('profileImage'), jobController.submitJob);  // Restrict access and handle job submission
 
- 
 
 
 export default jobRouter
