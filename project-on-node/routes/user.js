@@ -36,8 +36,7 @@ heroRouter.get("/", function(req,res){
   res.redirect("/dashboard")
 })
 
-//render Account setting
-heroRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
+
 
 
 // Forgot password

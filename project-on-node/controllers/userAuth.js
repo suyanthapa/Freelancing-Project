@@ -5,10 +5,9 @@ import Job from "../models/job.js";
 
 
 //graphic feature
-const graphic = catchAsync( async function (req,res) {
-  res.render('userLogin/graphic', { message: "" }); 
+const fgraphic = catchAsync( async function (req,res) {
+  res.render('freelancerLogin/f-graphic', { message: "" }); 
 })
-
 
 
 
@@ -16,8 +15,8 @@ const graphic = catchAsync( async function (req,res) {
 const getGraphicDesignJobs = async (req, res) => {
 
   try {
-    const jobs = await Job.find({jobTitle: "Graphics & Design"}); // Fetch all jobs (or apply filters if needed)
-    console.log(" jooooooooooooooooooooobbbbbbb:"+ jobs)
+      const jobs = await Job.find({jobTitle: "Graphics & Design"}); // Fetch all jobs (or apply filters if needed)
+
     const jobsWithProfiles = await Promise.all(jobs.map(async (job) => {
       const freelancer = await User.findById(job.userId); // Fetch freelancer based on userId
       const profileImage = freelancer ? freelancer.profileImage : null; // Get freelancer's profileImage or null if not found
@@ -32,8 +31,33 @@ const getGraphicDesignJobs = async (req, res) => {
   }
 };
 
- 
+const viewDetails = catchAsync(async function (req, res) {
+  try {
+    const jobId = req.params.id; // Get job ID from URL params
+    const job = await Job.findById(jobId); // Fetch the job by ID
+
+    if (!job) {
+      return res.status(404).send("Job not found");
+    }
+
+    // Fetch freelancer details
+    const freelancer = await User.findById(job.userId);
+
+    if (!freelancer) {
+      return res.status(404).send("Freelancer not found");
+    }
+
+    res.render('userLogin/viewDetails', {
+      job,
+      freelancer,
+      message: "", // Optional if needed
+    }); // Pass job and freelancer data to the viewDetails.ejs
+  } catch (err) {
+    console.error("Error fetching job details:", err);
+    res.status(500).send("Error retrieving job details");
+  }
+});
 
 
-const userAuthController = { graphic, getGraphicDesignJobs}
+ const userAuthController = { fgraphic, getGraphicDesignJobs, viewDetails}
 export default userAuthController

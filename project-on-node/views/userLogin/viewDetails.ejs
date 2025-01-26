@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details</title>
+
+  <link rel="stylesheet" href="/css/userLogin/navbar.css">
+  <link rel="stylesheet" href="/css/userLogin/viewDetails.css">
+</head>
+
+<body>
+  <!-- Navbar section -->
+  <%- include('navbar') %> 
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> >
+    <a href="/graphic" >Graphics & Design</a> >
+    <span>Job Details</span>
+  </div>
+
+  <!-- Job Details Section -->
+  <div class="job-details-container">
+    <h1 style="font-weight: bold; font-size: 30px; color: #38429d;"><%= job.jobTitle %></h1>
+    <div class="freelancer-details">
+      <img src="<%= freelancer.profileImage %>" alt="Freelancer Profile" class="profile-image">
+      <h2>Posted by: <%= freelancer.name %></h2>
+      <p>Email: <%= freelancer.email %></p>
+      <p>Location: <%= freelancer.location || 'N/A' %></p>
+    </div>
+
+    <div class="job-description">
+      <p>
+        <span style="font-weight: bold; font-size: 18px; color: #38429d;">Job Description:</span> <%= job.customLabel %>
+      </p>
+      
+      
+      
+    </div>
+
+    <div class="job-details">
+      <h2>Job Details</h2>
+      <p>
+        <span style="font-weight: bold; font-size: 18px; color: #38429d;">Hourly Rate:</span> $<%= job.hourlyRate %>
+      </p>
+      <p>
+        <span style="font-weight: bold; font-size: 18px; color: #38429d;">Skills :</span>  <%= job.skills.join(', ') %>
+      </p>
+    
+    
+    </div>
+
+    <div class="action-buttons">
+      <a href="/graphic" class="btn">Back to Listings</a>
+      <a href="/apply/<%= job._id %>" class="btn btn-primary">Apply Now</a>
+    </div>
+  </div>
+</body>
+</html>

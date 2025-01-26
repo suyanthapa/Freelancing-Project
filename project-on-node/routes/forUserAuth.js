@@ -16,15 +16,16 @@ const userRouter = Router();
 userRouter.get("/userDashboard", restrictToLoggedinUserOnly, async function (req,res) {
   return res.render('userLogin/uDashboard', {message: ""});
 }  )
+//render Account setting
+userRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
 
 //render graphics feature
 userRouter
   .get("/graphic", restrictToLoggedinUserOnly, userAuthController.getGraphicDesignJobs)
   .post("/graphic", restrictToLoggedinUserOnly, userAuthController.getGraphicDesignJobs);
 
+//render viewDetails for job
+userRouter.get("/job/:id", restrictToLoggedinUserOnly, userAuthController.viewDetails);
 
-//change password
-
-
-
+  
 export default userRouter

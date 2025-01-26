@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+ 
+
   <link rel="stylesheet" href="css/userLogin/graphic.css">
 </head>
 <body>
@@ -30,7 +32,10 @@
           <h3> <%= job.jobTitle %></h3>
           <p>Hourly Rate: $<%= job.hourlyRate %></p>
           <p>Skills: <%= job.skills.join(', ') %></p>
+
           <a href="/job/<%= job._id %>" class="view-details">View Details</a>
+          <!-- <a href="viewDetails" class="view-details">View Details</a> -->
+
         </div>
       <% }); %>
   <% } else { %>
