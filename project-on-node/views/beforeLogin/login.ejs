@@ -3,31 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Kaaj - Login</title>
   <link rel="stylesheet" href="css/beforeLogin/login.css">
+  <!-- Include Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Add a Favicon -->
+  <link rel="icon" href="path/to/your/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
   <div class="container">
+    
     <div class="form-box box">
-      <a href="dashboard"><button id="backToIndex" class="back-button">← Back</button></a><br>
-      <h2 class="continueHead">Continue with your Email or <br>Username</h2><br><br>
+ <!-- Back Button Section -->
+ <a href="dashboard"><button id="backToIndex" class="back-button">← Back</button></a><br>
+      
+     
+      <!-- Logo and Branding Section -->
+      <div class="logo-section">
+        <img src="platform-images/kaaj-logo.png" alt="Kaaj Logo" class="kaaj-logo">      
+      </div>
 
+
+      <h2 class="continueHead">Continue with your Email or Username</h2><br><br>
+
+      <!-- Login Form Section -->
       <form action="/login" method="POST">
         <input type="hidden" name="formType" value="login">
         <div class="form">
           <label for="username">Username</label><br><br>
-          <input type="text" name="username" id="Cususername" ><br><br>
+          <input type="text" name="username" id="Cususername" class="input-field" placeholder="Enter your username"><br><br>
+
           <label for="password">Password</label><br><br>
-          <input type="password" name="password" id="CusPassword"><br><br>
+          <input type="password" name="password" id="CusPassword" class="input-field" placeholder="Enter your password"><br><br>
 
-          <%= message ? message : '' %></div>
-
-          <input type="submit" name="login" id="login" value="Login">
+          <%= message ? message : '' %>
         </div>
+
+        <input type="submit" name="login" id="login" value="Login" class="submit-btn">
       </form>
-      <p id="terms">By joining, you agree to this platform's Terms of Service and to occasionally receive emails from us. Please read our Privacy Policy to learn how we use your personal data.</p>
+
+      <div class="terms-section">
+        <p id="terms">By joining, you agree to this platform's <a href="/terms">Terms of Service</a> and to occasionally receive emails from us. Please read our <a href="/privacy">Privacy Policy</a> to learn how we use your personal data.</p>
+      </div>
+
+      <!-- Social Media or Alternative Sign-In Options -->
+      <div class="social-login">
+        <p>Or sign in with</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><img src="path/to/google-icon.png" alt="Google" /></a>
+          <a href="#" class="social-icon"><img src="path/to/facebook-icon.png" alt="Facebook" /></a>
+          <a href="#" class="social-icon"><img src="path/to/github-icon.png" alt="GitHub" /></a>
+        </div>
+      </div>
+
     </div>
   </div>
+
 </body>
 </html>
