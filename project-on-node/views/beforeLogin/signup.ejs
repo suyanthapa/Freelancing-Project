@@ -1,61 +1,75 @@
-
+</html>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="css/beforeLogin/signup.css">
-   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaaj - Login</title>
+  <link rel="stylesheet" href="css/beforeLogin/signup.css">
+  <!-- Include Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Add a Favicon -->
+  <link rel="icon" href="path/to/your/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <div class="signup">
-        <a href="dashboard"><button id="backToSignup" class="back-button">← Back</button></a><br>
-        <h2>Create a new Account</h2>
-        <p id="signIn">Already have an account? <a href="login">Sign in</a></p>
+  <div class="container">
+    
+    <div class="form-box box">
+ <!-- Back Button Section -->
+ <a href="dashboard"><button id="backToIndex" class="back-button">← Back</button></a><br>
+      
+     
+      <!-- Logo and Branding Section -->
+      <div class="logo-section">
+        <img src="platform-images/kaaj-logo.png" alt="Kaaj Logo" class="kaaj-logo">      
+      </div>
+
+
+      <h2 class="continueHead">Create a new Account</h2><br><br>
+      <p id="signIn">Already have an account? <a href="login">Sign in</a></p>
+
+      <!-- Login Form Section -->
+      <form action="/signup" method="POST"   enctype="multipart/form-data">
+        <input type="hidden" name="formType" value="login">
+        <div class="form">
+          <label for="firstName">First Name</label>
+          <input type="text" name="firstName" id="firstName" required>
+
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" required>
+
+          <label for="profileImage">Profile Image (Optional):</label>
+          <input type="file" id="profileImage" name="profileImage" accept="image/*">
+
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required>
+
+          <label for="username">Username</label>
+          <input type="text" name="newUsername" id="newUsername" required>
+
+          <label for="password">Password</label>
+          <input type="password" name="newPassword" id="newPassword" required>
+
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" required>
+
+
+          <%= message ? message : '' %>
+        </div>
+        <button type="submit" name="userType" value="users" class="red-button">Signup As User</button>
+        <button type="submit" name="userType" value="freelancer" class="blue-button">Signup As Freelancer</button>
         
-      <form action="/signup" method="POST" enctype="multipart/form-data">
-            
-            <input type="hidden" name="formType" value="signup">
+      </form>
 
-            <div class="createForm">
-                <label for="firstName">First Name</label>
-                <input type="text" name="firstName" id="firstName" required><br>
+      <div class="terms-section">
+        <p id="terms">By joining, you agree to this platform's <a href="/terms">Terms of Service</a> and to occasionally receive emails from us. Please read our <a href="/privacy">Privacy Policy</a> to learn how we use your personal data.</p>
+      </div>
 
-                <label for="lastName">Last Name</label>
-                <input type="text" name="lastName" id="lastName" required><br>
+     
 
-                <label for="profileImage">Profile Image (Optional):</label>
-                <input type="file" id="profileImage" name="profileImage" accept="image/*">
-
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required><br>
-
-                
-
-                <label for="username">Username</label>
-                <input type="text" name="newUsername" id="newUsername" required><br>
-
-                <label for="password">Password</label>
-                <input type="password" name="newPassword" id="newPassword" required><br>
-
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" required><br>
-
-                <div class="user-type-buttons">
-                    <button type="submit" name="userType" value="users" class="red-button">Signup As User</button>
-                    <button type="submit" name="userType" value="freelancer" class="blue-button">Signup As Freelancer</button>
-                </div>
-
-
-                <%= message ? message : '' %></div>
-
-                <p id="terms">By joining, you agree to the Terms of Service and occasionally receive emails from us.</p>
-            </div>
-        </form>
     </div>
-</body>
+  </div>
 
+</body>
 </html>
