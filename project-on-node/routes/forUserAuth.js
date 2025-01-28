@@ -47,5 +47,19 @@ userRouter
   userRouter
   .get("/hire/:jobId", restrictToLoggedinUserOnly, userAuthController.hireFreelancer)
   .post("/hire/:jobId", restrictToLoggedinUserOnly, userAuthController.hireFreelancer);
-  
+
+  //render success
+
+// userRouter.get("/hired-freelancer", restrictToLoggedinUserOnly, async function (req,res) {
+//   return res.render('userLogin/hired-freelancer', {message: ""});
+// }  )
+
+
+
+  //render Video & Animation feature
+  userRouter
+  .get("/hired-freelancer", restrictToLoggedinUserOnly, userAuthController.hireMessage)
+  .post("/hired-freelancer", restrictToLoggedinUserOnly, userAuthController.hireMessage);
+
+
 export default userRouter

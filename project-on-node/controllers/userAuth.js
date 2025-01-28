@@ -120,7 +120,7 @@ const viewDetails = catchAsync(async function (req, res) {
 const hireFreelancer = async (req, res) => {
   try {
     const { jobId } = req.params; // Job ID from URL
-//logged in user
+    //logged in user
     const loggedInUser = req.user;  // Logged-in user (admin)
     const userId = loggedInUser._id;  // Get logged-in user's ID
     const user = await  User.findById(userId);
@@ -145,15 +145,48 @@ const hireFreelancer = async (req, res) => {
     job.hiredBy = user._id; // Assuming you store the client/user who hired
     await job.save();
 
+     // Set cookies with minimal data
+       res.cookie('freelancerId', freelancer._id, { httpOnly: true, maxAge: 1000 * 60 * 5 }); // 5-minute expiry
+       res.cookie('jobId', job._id, { httpOnly: true, maxAge: 1000 * 60 * 5 }); // 5-minute expiry
+
      // Redirect to the success page with query parameters
-     res.render(`userLogin/success`);
+     res.redirect("/hired-freelancer")
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred while hiring the freelancer.');
   }
 };
 
+const hireMessage = async (req, res) => {
+  try {
+    const { freelancerId, jobId } = req.cookies;
+
+    if (!freelancerId || !jobId) {
+      return res.status(400).send('Missing required data to proceed.');
+    }
+
+    // Fetch the freelancer and job details from the database
+    const freelancer = await User.findById(freelancerId);
+    const job = await Job.findById(jobId);
+
+    if (!freelancer || !job) {
+      return res.status(404).send('Freelancer or Job not found.');
+    }
+
+    // Render the hired-freelancer page with fetched data
+    res.render('userLogin/hired-freelancer', {
+      freelancer,
+      job,
+      message: '', // Add any additional messages if necessary
+    });
+  } catch (error) {
+    console.error('Error fetching freelancer or job details:', error);
+    res.status(500).send('An error occurred while processing your request.');
+  }
+};
 
 
- const userAuthController = { fgraphic, getGraphicDesignJobs,getprogrammingTechJobs, getDigitalMarketingJobs,getvideoAnimationJobs,viewDetails, hireFreelancer}
+
+
+ const userAuthController = { fgraphic, getGraphicDesignJobs,getprogrammingTechJobs, getDigitalMarketingJobs,getvideoAnimationJobs,viewDetails, hireFreelancer, hireMessage}
 export default userAuthController
