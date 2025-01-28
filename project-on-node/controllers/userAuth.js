@@ -2,6 +2,7 @@ import { catchAsync } from "../helpers/catchAsync.js";
 import { createJWT, findGroupByName, findUserbyemail } from "../services/user.js";
 import User from '../models/user.js';
 import Job from "../models/job.js";
+import Hired from "../models/hired.js";
 
 
 //graphic feature
@@ -132,8 +133,6 @@ const hireFreelancer = async (req, res) => {
       return res.status(404).render("error", { message: "Job not found!" });
     }
 
-    
-
     const freelancer = await User.findById(job.userId);
     console.log(freelancer)
     if (!freelancer) {
@@ -145,9 +144,16 @@ const hireFreelancer = async (req, res) => {
     job.hiredBy = user._id; // Assuming you store the client/user who hired
     await job.save();
 
-     // Set cookies with minimal data
-       res.cookie('freelancerId', freelancer._id, { httpOnly: true, maxAge: 1000 * 60 * 5 }); // 5-minute expiry
-       res.cookie('jobId', job._id, { httpOnly: true, maxAge: 1000 * 60 * 5 }); // 5-minute expiry
+     // Create a new Hired record
+    const hired = new Hired({
+      freelancer: freelancer._id,
+      paymentAmount: job.hourlyRate,
+      job: job._id,
+      hiredBy: user._id,
+      paymentStatus: 'Pending', // Or use your own status
+      message: 'Freelancer hired successfully'
+    });
+     await hired.save();  // Save the new record
 
      // Redirect to the success page with query parameters
      res.redirect("/hired-freelancer")
@@ -159,32 +165,33 @@ const hireFreelancer = async (req, res) => {
 
 const hireMessage = async (req, res) => {
   try {
-    const { freelancerId, jobId } = req.cookies;
-
-    if (!freelancerId || !jobId) {
-      return res.status(400).send('Missing required data to proceed.');
+console.log(" Helllo worlds")
+   // Get the latest hired record for the logged-in user
+   const loggedInUser = req.user;
+   const latestHired = await Hired.findOne({ hiredBy: loggedInUser._id })
+                                  .sort({ createdAt: -1 }) // Sort by createdAt in descending order to get the latest hire
+                                  .populate('freelancer') // Populate freelancer details
+                                  .populate('job'); // Populate job details
+   if (!latestHired) {
+      return res.status(404).send('No recent hire found.');
     }
+ 
 
-    // Fetch the freelancer and job details from the database
-    const freelancer = await User.findById(freelancerId);
-    const job = await Job.findById(jobId);
+    const { freelancer, job } = latestHired; // Extract freelancer and job from the populated hire record
+    const freelancerObj = await User.findById(freelancer);
+    const jobObj = await User.findById(job)
 
-    if (!freelancer || !job) {
-      return res.status(404).send('Freelancer or Job not found.');
-    }
-
-    // Render the hired-freelancer page with fetched data
     res.render('userLogin/hired-freelancer', {
-      freelancer,
-      job,
-      message: '', // Add any additional messages if necessary
+      freelancer: freelancerObj ,
+      job ,
+      message: latestHired.message,
+      paymentStatus: latestHired.paymentStatus,
     });
   } catch (error) {
     console.error('Error fetching freelancer or job details:', error);
     res.status(500).send('An error occurred while processing your request.');
   }
 };
-
 
 
 

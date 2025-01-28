@@ -94,6 +94,8 @@
       <form action="/hire/<%= job._id %>" method="POST">
         <!-- Hidden input for additional data -->
         <input type="hidden" name="jobId" value="<%= job._id %>">
+        $<%= job.hourlyRate %>
+        <input type="hidden" name ="paymentAmount " value="$<%= job.hourlyRate %>">
         <input type="hidden" name="freelancerId" value="<%= freelancer._id %>">
         <button type="submit" class="btn btn-primary">Confirm Hire</button>
       </form>

@@ -16,6 +16,9 @@
     <!-- Freelancer and Job Details -->
     <div class="freelancer-box">
       <h2>Freelancer Details</h2>
+     
+        <img class="freelancer-profile-image" src="<%= freelancer.profileImage %>" alt="Freelancer Profile Image" />
+
       <p><strong>Name:</strong> <%= freelancer.username %></p>
       <p><strong>Email:</strong> <%= freelancer.email %></p>
       <p><strong>Job Title:</strong> <%= job.jobTitle %></p>
@@ -24,7 +27,7 @@
     <!-- Payment Section -->
     <div class="payment-box">
       <h2>Payment</h2>
-      <p><strong>Total Amount:</strong> $<%= job.paymentAmount %></p>
+      <p><strong>Total Amount:</strong> $<%= job.hourlyRate %></p>
       <p><em>Please complete payment to proceed with the job.</em></p>
       <button class="btn-pay">Proceed to Payment</button>
     </div>
