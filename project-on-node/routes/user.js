@@ -17,6 +17,12 @@ heroRouter.get("/aboutUs", async function (req,res) {
   return res.render('beforeLogin/aboutUs', {message: ""});
 }  )
 
+//render the dashboard
+heroRouter.get("/event", async function (req,res) {
+  return res.render('beforeLogin/event', {message: ""});
+}  )
+
+
 
 // Multer configuration for handling file uploads
 const storage = multer.diskStorage({
