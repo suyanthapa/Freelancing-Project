@@ -27,5 +27,25 @@ userRouter
 //render viewDetails for job
 userRouter.get("/job/:id", restrictToLoggedinUserOnly, userAuthController.viewDetails);
 
+//render programming and tech feature
+userRouter
+  .get("/programmingTech", restrictToLoggedinUserOnly, userAuthController.getprogrammingTechJobs)
+  .post("/programmingTech", restrictToLoggedinUserOnly, userAuthController.getprogrammingTechJobs);
+  
+//render Digital Marketing feature
+userRouter
+  .get("/digitalMarketing", restrictToLoggedinUserOnly, userAuthController.getDigitalMarketingJobs)
+  .post("/digitalMarketing", restrictToLoggedinUserOnly, userAuthController.getDigitalMarketingJobs);
+  
+  //render Video & Animation feature
+userRouter
+.get("/videoAnimation", restrictToLoggedinUserOnly, userAuthController.getvideoAnimationJobs)
+.post("/videoAnimation", restrictToLoggedinUserOnly, userAuthController.getvideoAnimationJobs);
+
+
+  //render Video & Animation feature
+  userRouter
+  .get("/hire/:jobId", restrictToLoggedinUserOnly, userAuthController.hireFreelancer)
+  .post("/hire/:jobId", restrictToLoggedinUserOnly, userAuthController.hireFreelancer);
   
 export default userRouter
