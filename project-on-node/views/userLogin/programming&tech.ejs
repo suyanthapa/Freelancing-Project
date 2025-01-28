@@ -1,0 +1,90 @@
+<%- include('navbar') %> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming & Tech</title>
+    <link rel="stylesheet" href="css/userLogin/programming&Tech.css">
+</head>
+<body>
+
+<div class="searchbox">
+    <p id="searchbox-slogan">
+        <span style="font-size:50px; font-weight: bold;">
+            Programming & Tech
+        </span> <br>
+        <span style="font-size: 20px">You think it. A programmer develops it.</span>
+    </p>
+</div> 
+
+<!-- Freelancer Cards Section (Positioned immediately after search box) -->
+<div class="freelancer-container">
+    <h2 id="expHeading">Hire Programming & Tech Experts</h2>
+   
+    <% if (jobs.length > 0) { %>
+      <% jobs.forEach(job => { %>
+        <div class="freelancer-card">
+         
+          <!-- Show profile image or fallback image -->
+          <img src="<%= job.profilePicture %>" alt="Profile Image" class="profile-image">
+          <h3> <%= job.jobTitle %></h3>
+          <p>Hourly Rate: $<%= job.hourlyRate %></p>
+          <p>Skills: <%= job.skills.join(', ') %></p>
+
+          <a href="/job/<%= job._id %>" class="view-details">View Details</a>
+        </div>
+      <% }); %>
+    <% } else { %>
+      <p>No jobs available at the moment.</p>
+    <% } %>
+</div>
+
+<h2 id="expHeading">Explore Programming & Tech</h2>
+
+<div class="explore">
+
+    <ul class="websites">
+        <img src="/images/websites.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">
+        <h2>Websites</h2>
+        <li>Website Development</li>
+        <li>Website Maintenance</li>
+        <li>Wordpress</li>
+        <li>Shopify</li>
+        <li>Custom Websites</li>
+    </ul>
+
+    <ul class="appDev">
+        <img src="/images/appDev.png" alt="Search" width="260" height="150" style="border-radius: 15px;">
+        <h2>Application Development</h2>
+        <li>Web Application</li>
+        <li>Desktop Application</li>
+        <li>Game Development</li>
+        <li>Chatbot Development</li>
+        <li>Browser Extensions</li>
+    </ul>
+
+    <ul class="softDev">
+        <img src="/images/softDev.jpg" alt="Search" width="250" height="150" style="border-radius: 15px;">
+        <h2>Software Development</h2>
+        <li>Software Development</li>
+        <li>AI Development</li>
+        <li>APIs & Integration</li>
+        <li>Scripting</li>
+        <li>Plugins Development</li>
+    </ul>
+
+    <ul class="mobileApps">
+        <img src="/images/mobileApps.jpeg" alt="Search" width="250" height="150" style="border-radius: 15px;">
+        <h2>Mobile Apps</h2>
+        <li>Mobile App Development</li>
+        <li>Cross-Platform Apps</li>
+        <li>Android App Development</li>
+        <li>iOS App Development</li>
+        <li>Mobile App Maintenance</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

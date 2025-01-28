@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hire Freelancer</title>
+
+  <link rel="stylesheet" href="/css/userLogin/hire.css">
+</head>
+<style>
+  .hire-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .hire-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .freelancer-summary, .job-summary {
+    margin-bottom: 20px;
+  }
+
+  .freelancer-summary img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .freelancer-summary p, .job-summary p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  .action-buttons {
+    margin-top: 20px;
+  }
+
+  .action-buttons .btn {
+    background-color: #38429d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .action-buttons .btn:hover {
+    background-color: #2d3589;
+  }
+
+  .action-buttons .btn-primary {
+    background-color: #28a745;
+    margin-right: 10px;
+  }
+
+  .action-buttons .btn-primary:hover {
+    background-color: #218838;
+  }
+
+</style>
+<body>
+
+  <div class="hire-container">
+    <h1>Hire <%= freelancer.username %></h1>
+    
+    <!-- Freelancer Summary -->
+    <div class="freelancer-summary">
+      <img src="<%= freelancer.profileImage %>" alt="Freelancer Profile" class="profile-image">
+      <h2><%= freelancer.username %></h2>
+      <p>Email: <%= freelancer.email %></p>
+      <p>Hourly Rate: $<%= job.hourlyRate %></p>
+      <p>Skills: <%= job.skills.join(', ') %></p>
+    </div>
+
+    <!-- Job Summary -->
+    <div class="job-summary">
+      <h2>Job Details</h2>
+      <p><strong>Title:</strong> <%= job.jobTitle %></p>
+      <p><strong>Description:</strong> <%= job.customLabel %></p>
+    </div>
+
+    <!-- Action Section -->
+    <div class="action-buttons">
+      <form action="/hire/<%= job._id %>" method="POST">
+        <!-- Hidden input for additional data -->
+        <input type="hidden" name="jobId" value="<%= job._id %>">
+        <input type="hidden" name="freelancerId" value="<%= freelancer._id %>">
+        <button type="submit" class="btn btn-primary">Confirm Hire</button>
+      </form>
+      <a href="/graphic" class="btn">Cancel</a>
+    </div>
+  </div>
+
+</body>
+</html>

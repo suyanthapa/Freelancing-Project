@@ -1,0 +1,58 @@
+.hire-container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hire-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .freelancer-summary, .job-summary {
+    margin-bottom: 20px;
+  }
+  
+  .freelancer-summary img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .freelancer-summary p, .job-summary p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .action-buttons {
+    margin-top: 20px;
+  }
+  
+  .action-buttons .btn {
+    background-color: #38429d;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .action-buttons .btn:hover {
+    background-color: #2d3589;
+  }
+  
+  .action-buttons .btn-primary {
+    background-color: #28a745;
+    margin-right: 10px;
+  }
+  
+  .action-buttons .btn-primary:hover {
+    background-color: #218838;
+  }

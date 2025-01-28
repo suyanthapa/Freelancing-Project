@@ -25,7 +25,7 @@
     <h1 style="font-weight: bold; font-size: 30px; color: #38429d;"><%= job.jobTitle %></h1>
     <div class="freelancer-details">
       <img src="<%= freelancer.profileImage %>" alt="Freelancer Profile" class="profile-image">
-      <h2>Posted by: <%= freelancer.name %></h2>
+      <h2>Posted by: <%= freelancer.username %></h2>
       <p>Email: <%= freelancer.email %></p>
       <p>Location: <%= freelancer.location || 'N/A' %></p>
     </div>
@@ -53,7 +53,9 @@
 
     <div class="action-buttons">
       <a href="/graphic" class="btn">Back to Listings</a>
-      <a href="/apply/<%= job._id %>" class="btn btn-primary">Apply Now</a>
+      <form action="/hire/<%= job._id %>" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-primary">Hire Now</button>
+      </form>
     </div>
   </div>
 </body>
