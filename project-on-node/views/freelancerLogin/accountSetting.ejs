@@ -1,3 +1,4 @@
+<!-- Freelancer Account Settings -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,37 +45,44 @@
       </div>
 
       <!-- Professional Info Section -->
-      <div class="info-section hidden" id="professional-info">
+      <div class="info-section" id="professional-info">
         <h1>Professional Info</h1>
-        <div class="info-list">
-          <label for="skills">Skills:</label>
-          <span><input type="text" id="skills" value="Blockchain, React, Node.js" disabled data-original-value="Blockchain, React, Node.js"></span>
-      
-          <label for="education">Education:</label>
-          <span><input type="text" id="education" value="Bachelor’s in Computer Science" disabled data-original-value="Bachelor’s in Computer Science"></span>
-      
-          <label for="certifications">Certifications & Training:</label>
-          <span><input type="text" id="certifications" value="Certified Blockchain Developer" disabled data-original-value="Certified Blockchain Developer"></span>
-      
-          <label for="portfolio">Portfolio:</label>
-          <span><input type="text" id="portfolio" value="My Portfolio" disabled data-original-value="My Portfolio"></span>
-      
-          <label for="website">Website:</label>
-          <span><input type="text" id="website" value="www.example.com" disabled data-original-value="www.example.com"></span>
-      
-          <label for="linkedin">LinkedIn/Profile Links:</label>
-          <span><input type="text" id="linkedin" value="linkedin.com/in/username" disabled data-original-value="linkedin.com/in/username"></span>
-        </div>
-      
-        <!-- Edit, Save, and Cancel Buttons -->
-        <button id="editBtn">Edit</button>
-        <button id="saveBtn" class="hidden">Save</button>
-        <button id="cancelBtn" class="hidden">Cancel</button>
+
+        <% if (professionalInfo) { %>
+          <!-- Display professional info if it exists -->
+          <div class="info-list">
+            <label for="skills">Skills:</label>
+            <span><input type="text" id="skills" value="<%= professionalInfo.skills %>" disabled></span>
+        
+            <label for="education">Education:</label>
+            <span><input type="text" id="education" value="<%= professionalInfo.education %>" disabled></span>
+        
+            <label for="certifications">Certifications & Training:</label>
+            <span><input type="text" id="certifications" value="<%= professionalInfo.certifications %>" disabled></span>
+        
+            <label for="portfolio">Portfolio:</label>
+            <span><input type="text" id="portfolio" value="<%= professionalInfo.portfolio %>" disabled></span>
+        
+            <label for="website">Website:</label>
+            <span><input type="text" id="website" value="<%= professionalInfo.website %>" disabled></span>
+        
+            <label for="linkedin">LinkedIn/Profile Links:</label>
+            <span><input type="text" id="linkedin" value="<%= professionalInfo.linkedin %>" disabled></span>
+          </div>
+
+          <!-- Edit, Save, and Cancel Buttons -->
+          <button id="editBtn">Edit</button>
+          <button id="saveBtn" class="hidden">Save</button>
+          <button id="cancelBtn" class="hidden">Cancel</button>
+        <% } else if (showSetupMessage) { %>
+          <!-- Show message to set up professional info -->
+          <p>You haven’t set up your professional info yet. <a href="/setProfessionalInfo">Click here to set it up</a></p>
+        <% } %>
       </div>
 
     </div>
   </div>
-  
+
   <script src="js/tabs.js"></script>
   <script src="js/editProfessionalInfo.js"></script>
 

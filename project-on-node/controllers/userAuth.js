@@ -3,6 +3,7 @@ import { createJWT, findGroupByName, findUserbyemail } from "../services/user.js
 import User from '../models/user.js';
 import Job from "../models/job.js";
 import Hired from "../models/hired.js";
+import ProfessionalInfo from "../models/professionalInfo.js";
 
 
 //graphic feature
@@ -91,6 +92,8 @@ const getvideoAnimationJobs = async (req, res) => {
     res.status(500).send('Error retrieving jobs');
   }
 };
+
+
 const viewDetails = catchAsync(async function (req, res) {
   try {
     const jobId = req.params.id; // Get job ID from URL params

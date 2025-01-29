@@ -17,7 +17,19 @@ freelancerRouter.get("/freelancerDashboard", restrictToLoggedinUserOnly, async f
 }  )
 
 //render Account setting
-freelancerRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
+// freelancerRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
+
+freelancerRouter
+  .get("/accountSetting", restrictToLoggedinUserOnly, (authController.accountSetting))
+  .post("/accountSetting", restrictToLoggedinUserOnly, (authController.editProfessionalInfo))
+
+  // In freelancerRouter.js
+
+// GET and POST routes for setting professional info
+freelancerRouter.route("/setProfessionalInfo")
+  .get(restrictToLoggedinUserOnly, authController.getSetProfessionalInfo)  // Render the form
+  .post(restrictToLoggedinUserOnly, authController.postSetProfessionalInfo); // Handle form submission
+
 
 //render graphics feature
 freelancerRouter.get("/f-graphic",restrictToLoggedinUserOnly, (userAuthController.fgraphic))
