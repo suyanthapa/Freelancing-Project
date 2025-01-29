@@ -12,6 +12,7 @@ const freelancerRouter = Router();
 
 //render user dashboard
 freelancerRouter.get("/freelancerDashboard", restrictToLoggedinUserOnly, async function (req,res) {
+
   return res.render('freelancerLogin/fDashboard', {message: ""});
 }  )
 

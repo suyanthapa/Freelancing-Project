@@ -82,7 +82,7 @@ const handleLogin = catchAsync(async function (req, res) {
   
     // Check if the user exists in the freelancer collection
     let user = await User.findOne({ username, profile: 'freelancer' });
-  
+    
     // If not a freelancer, check the `users` collection
     if (!user) {
       user = await User.findOne({ username, profile: 'user' });
@@ -106,11 +106,12 @@ const handleLogin = catchAsync(async function (req, res) {
     },process.env.Secret_key)
   
     res.cookie("uid", token,{httpOnly: true, secure: true});
-
+    // user._id.toString()
     
     // Redirect to the appropriate dashboard
     if (user.profile === 'freelancer') {
-      return res.redirect('/freelancerDashboard');
+      res.redirect('/freelancerDashboard');
+      // return res.redirect('/freelancerDashboard');
       
     } else {
       return res.redirect('/userDashboard'); // User dashboard

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Settings</title>
   <link rel="stylesheet" href="css/freelancerLogin/accountSetting.css">
- 
 </head>
 <body>
 
@@ -48,21 +47,36 @@
       <div class="info-section hidden" id="professional-info">
         <h1>Professional Info</h1>
         <div class="info-list">
-        
-          <div><label>Skills:</label> 
-            <span><input type="text" name="" id=""></span></div>
-          <div><label>Education:</label> <span>Bachelor’s in Computer Science</span></div>
-          <div><label> Certifications & Training:</label> <span>Bachelor’s in Computer Science</span></div>
-          <div><label> Portfolio:</label> <span>Bachelor’s in Computer Science</span></div>
-          <div><label> Website :</label> <span>Bachelor’s in Computer Science</span></div>
-          <div><label> LinkedIn/Profile Links :</label> <span>Bachelor’s in Computer Science</span></div>
-     
-         
+          <label for="skills">Skills:</label>
+          <span><input type="text" id="skills" value="Blockchain, React, Node.js" disabled data-original-value="Blockchain, React, Node.js"></span>
+      
+          <label for="education">Education:</label>
+          <span><input type="text" id="education" value="Bachelor’s in Computer Science" disabled data-original-value="Bachelor’s in Computer Science"></span>
+      
+          <label for="certifications">Certifications & Training:</label>
+          <span><input type="text" id="certifications" value="Certified Blockchain Developer" disabled data-original-value="Certified Blockchain Developer"></span>
+      
+          <label for="portfolio">Portfolio:</label>
+          <span><input type="text" id="portfolio" value="My Portfolio" disabled data-original-value="My Portfolio"></span>
+      
+          <label for="website">Website:</label>
+          <span><input type="text" id="website" value="www.example.com" disabled data-original-value="www.example.com"></span>
+      
+          <label for="linkedin">LinkedIn/Profile Links:</label>
+          <span><input type="text" id="linkedin" value="linkedin.com/in/username" disabled data-original-value="linkedin.com/in/username"></span>
         </div>
+      
+        <!-- Edit, Save, and Cancel Buttons -->
+        <button id="editBtn">Edit</button>
+        <button id="saveBtn" class="hidden">Save</button>
+        <button id="cancelBtn" class="hidden">Cancel</button>
       </div>
 
     </div>
   </div>
-  <script  src="js/tabs.js"></script>
+  
+  <script src="js/tabs.js"></script>
+  <script src="js/editProfessionalInfo.js"></script>
+
 </body>
 </html>

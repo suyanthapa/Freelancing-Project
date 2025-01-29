@@ -150,6 +150,19 @@ body {
   color: #222;
 }
 
+/* Style input fields in Professional Info section */
+#professional-info .info-list label {
+  margin-bottom: 8px; /* Adjusting spacing to match Basic Info */
+}
+
+#professional-info .info-list input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #555;
+  width: 100%;
+  margin-bottom: 10px; /* Space between input fields */
+}
 
 /* Tab Navigation */
 .tab-container {
