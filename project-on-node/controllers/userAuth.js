@@ -14,6 +14,7 @@ const fgraphic = catchAsync( async function (req,res) {
 const getGraphicDesignJobs = async (req, res) => {
 
   try {
+   
       const jobs = await Job.find({jobTitle: "Graphics & Design"}); // Fetch all jobs (or apply filters if needed)
 
     const jobsWithProfiles = await Promise.all(jobs.map(async (job) => {
@@ -94,7 +95,7 @@ const viewDetails = catchAsync(async function (req, res) {
   try {
     const jobId = req.params.id; // Get job ID from URL params
     const job = await Job.findById(jobId); // Fetch the job by ID
-
+    
     if (!job) {
       return res.status(404).send("Job not found");
     }

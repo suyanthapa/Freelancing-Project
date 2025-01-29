@@ -110,7 +110,8 @@ const handleLogin = catchAsync(async function (req, res) {
     
     // Redirect to the appropriate dashboard
     if (user.profile === 'freelancer') {
-      return res.redirect('/freelancerDashboard'); // Freelancer dashboard
+      return res.redirect('/freelancerDashboard');
+      
     } else {
       return res.redirect('/userDashboard'); // User dashboard
     }

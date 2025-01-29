@@ -4,34 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Settings</title>
-  <link rel="stylesheet" href="css/userLogin/accountSetting.css">
+  <link rel="stylesheet" href="css/freelancerLogin/accountSetting.css">
+ 
 </head>
 <body>
+
   <div class="container">
+    <!-- Sidebar -->
     <div class="sidebar">
       <div class="profile-pic">
         <img src="<%= user.profileImage %>" alt="Profile Picture">
-        
       </div>
       <ul>
         <li><a href="accountSetting" class="active">Account Details</a></li>
         <li><a href="changePassword">Change Password</a></li>
         <li><a href="addJob">Post a Job</a></li>
         <li><a href="logout">Logout</a></li>
-        
-       
       </ul>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
-      <h1>Account Settings</h1>
-      <form>
-        <label for="email">Email address: <%= user.email %></label>
-        <label for="first-name">First name: <%= user.first_name %></label>
-        <label for="last-name">Last name: <%= user.last_name %></label>
-        <label for="profile">Profile: <%= user.profile %></label>
-      </form>
+      
+      <!-- Tab Navigation -->
+      <div class="tab-container">
+        <button class="tab-btn active" onclick="showSection('basic')">Basic Info</button>
+        <button class="tab-btn" onclick="showSection('professional')">Professional Info</button>
+      </div>
+
+      <!-- Basic Info Section -->
+      <div class="info-section" id="basic-info">
+        <h1>Basic Info</h1>
+        <div class="info-list">
+          <div><label>First Name:</label><br> <span><%= user.first_name %></span></div>
+          <div><label>Last Name:</label><br> <span><%= user.last_name %></span></div>
+          <div><label>Email Address:</label><br> <span><%= user.email %></span></div>
+          <div><label>Gender:</label><br> <span>Male</span></div>
+          <div><label>Profile:</label><br> <span><%= user.profile %></span></div>
+        </div>
+      </div>
+
+      <!-- Professional Info Section -->
+      <div class="info-section hidden" id="professional-info">
+        <h1>Professional Info</h1>
+        <div class="info-list">
+        
+          <div><label>Skills:</label> 
+            <span><input type="text" name="" id=""></span></div>
+          <div><label>Education:</label> <span>Bachelor’s in Computer Science</span></div>
+          <div><label> Certifications & Training:</label> <span>Bachelor’s in Computer Science</span></div>
+          <div><label> Portfolio:</label> <span>Bachelor’s in Computer Science</span></div>
+          <div><label> Website :</label> <span>Bachelor’s in Computer Science</span></div>
+          <div><label> LinkedIn/Profile Links :</label> <span>Bachelor’s in Computer Science</span></div>
+     
+         
+        </div>
+      </div>
+
     </div>
   </div>
+  <script  src="js/tabs.js"></script>
 </body>
 </html>

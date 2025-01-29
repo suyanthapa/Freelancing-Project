@@ -15,6 +15,9 @@ freelancerRouter.get("/freelancerDashboard", restrictToLoggedinUserOnly, async f
   return res.render('freelancerLogin/fDashboard', {message: ""});
 }  )
 
+//render Account setting
+freelancerRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
+
 //render graphics feature
 freelancerRouter.get("/f-graphic",restrictToLoggedinUserOnly, (userAuthController.fgraphic))
 
