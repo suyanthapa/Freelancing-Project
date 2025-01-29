@@ -8,17 +8,17 @@
 </head>
 <body>
     <%- include('navbar') %> 
-  <div class="container">
-    <!-- MetaMask description section with logo on left -->
-    <div class="meta-description">
-      <div class="logo-container">
-        <img src="/images/metamask.jpg" alt="MetaMask Logo" class="metamask-logo">
-      </div>
-      <div class="text-container">
-        <h2>MetaMask</h2>
-        <p>MetaMask is a crypto wallet and gateway to blockchain apps. Connect your wallet and make secure payments directly to recipients.</p>
-      </div>
-    </div>
+    <div class="container">
+        <!-- Header section with MetaMask logo and description -->
+        <div class="header">
+          <div class="logo-container">
+            <img src="/images/metamask.jpg" alt="MetaMask Logo" class="metamask-logo">
+            <h2>MetaMask</h2>
+          </div>
+          <p class="note">
+            Make sure you agree with our <a href="#">Terms & Conditions</a> before proceeding with any transaction.
+          </p>
+        </div>
 
     <!-- Payment form section -->
     <div class="payment-box">
@@ -28,7 +28,7 @@
         <input type="text" id="recipient" name="recipient" required>
 
         <label for="amount">Amount (ETH):</label>
-        <input type="number" id="amount" name="amount" required>
+        <input type="number" id="amount" name="amount"  value="<%= job.hourlyRate %>" readonly >
 
         <button type="submit" id="pay-button">Pay</button>
       </form>

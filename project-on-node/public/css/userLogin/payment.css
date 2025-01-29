@@ -18,7 +18,9 @@ body {
 /* Container for the layout */
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   max-width: 1200px;
   background-color: #ffffff;
@@ -27,47 +29,51 @@ body {
   overflow: hidden;
 }
 
-/* MetaMask description box */
-.meta-description {
-  flex: 1;
-  background-color: #f5a623;
+/* Header with MetaMask logo and description */
+.header {
+  width: 100%;
+  background-color: #f5a623; /* Highlighted background */
   color: white;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
+  text-align: center;
 }
 
 .logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .metamask-logo {
-  width: 80px; /* Adjust the size of the logo */
+  width: 50px;
   height: auto;
-  margin-right: 20px; /* Space between the logo and text */
+  margin-right: 10px;
 }
 
-.text-container {
-  text-align: left;
-}
-
-.meta-description h2 {
+.header h2 {
   font-size: 24px;
-  margin-bottom: 15px;
+  margin: 0;
 }
 
-.meta-description p {
-  font-size: 16px;
-  line-height: 1.5;
+.note {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.note a {
+  color: white;
+  text-decoration: underline;
+}
+
+.note a:hover {
+  color: #ffdd57; /* Highlighted link on hover */
 }
 
 /* Payment form box */
 .payment-box {
-  flex: 1;
   padding: 30px;
+  width: 100%;
 }
 
 .payment-box h2 {

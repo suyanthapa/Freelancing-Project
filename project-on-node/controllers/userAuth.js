@@ -193,8 +193,6 @@ console.log(" Helllo worlds")
   }
 };
 
-
-
 ////
 const paymentPage = async (req, res) => {
   const { jobId, freelancerId } = req.query;
