@@ -9,6 +9,7 @@ import userRouter from './routes/forUserAuth.js';
 import cookieParser from 'cookie-parser';
 import jobRouter from './routes/addJob.js';
 import freelancerRouter from './routes/forFreelancerAuth.js';
+import paymentRouter from './routes/payment.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,6 +44,7 @@ connectToDB()
     app.use("/",heroRouter)
     app.use(userRouter);
     app.use(jobRouter);
+    app.use(paymentRouter);
     app.use(freelancerRouter)
     const port = process.env.PORT || 4000;
     app.listen(port, function () {

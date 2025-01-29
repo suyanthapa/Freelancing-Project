@@ -195,5 +195,17 @@ console.log(" Helllo worlds")
 
 
 
- const userAuthController = { fgraphic, getGraphicDesignJobs,getprogrammingTechJobs, getDigitalMarketingJobs,getvideoAnimationJobs,viewDetails, hireFreelancer, hireMessage}
+////
+const paymentPage = async (req, res) => {
+  const { jobId, freelancerId } = req.query;
+
+  // Fetch job and freelancer details from DB (Replace with your actual DB query)
+  const job = await Job.findById(jobId);
+  const freelancer = await User.findById(freelancerId);
+
+  res.render("userLogin/payment", { job, freelancer });
+}
+
+
+ const userAuthController = { fgraphic, getGraphicDesignJobs,getprogrammingTechJobs, getDigitalMarketingJobs,getvideoAnimationJobs,viewDetails, hireFreelancer, hireMessage, paymentPage}
 export default userAuthController

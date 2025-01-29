@@ -24,7 +24,7 @@ body {
   justify-content: space-around;
   align-items: flex-start;
   margin: 20px;
-  margin-top: 150px;
+  margin-top: 40px;
   padding: 20px;
   background: #fff;
   border-radius: 12px;
@@ -82,4 +82,23 @@ em {
   .freelancer-box, .payment-box, .conversation-box {
     flex: 1 1 100%;
   }
+}
+/* CSS for Success Message */
+.success-message {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 150px;
+}
+
+.success-message h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  font-size: 16px;
+  color: #272e6c;
 }
