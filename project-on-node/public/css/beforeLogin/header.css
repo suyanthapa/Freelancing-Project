@@ -5,7 +5,7 @@ top: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #256b6b;
+    background-color:rgb(188, 76, 112);
     color: whitesmoke;
     height: 50px;
 }
@@ -34,7 +34,9 @@ top: 8px;
     transition: color 0.3s ease;
 }
 .nav-links a:hover {
-    color: #84ffe4;
+    color:rgb(38, 41, 97);
+    font-weight: bold;
+    
   }
   .authentication {
     width: auto;
@@ -47,13 +49,15 @@ top: 8px;
     list-style: none;
      align-items: center;
      padding: 10px;
-}
+     
+  }
 .authentication a{
     color: whitesmoke;
     transition: color 0.3s ease;
 }
 .authentication a:hover{
-    color:rgb(134, 246, 196);
+  font-weight: bold;
+    color:rgb(38, 41, 97);
 }
 /* General Dropdown Styling */
 .dropdown {
