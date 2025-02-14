@@ -4,35 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Settings</title>
-  <link rel="stylesheet" href="css/userLogin/accountSetting.css">
+  <link rel="stylesheet" href="css/userLogin/hiredHistory.css">
 </head>
 <body>
   <div class="container">
     <div class="sidebar">
       <div class="profile-pic">
         <img src="<%= user.profileImage %>" alt="Profile Picture">
-        
       </div>
       <ul>
-        <li><a href="accountSetting" class="active">Account Details</a></li>
-        <li><a href="/hiredHistory">Hired History </a></li>
+       
+        <li><a href="accountSetting" >Account Details</a></li>
+        <li><a href="hiredHistory" class="active">Hired History </a></li>
         <li><a href="changePassword">Change Password</a></li>
-        
         <li><a href="logout">Logout</a></li>
       </ul>
+      
     </div>
-
     <div class="main-content">
       <a href="userDashboard"><button id="backToIndex" class="back-button">← Back</button></a><br>
-      <h1>Account Settings</h1>
-      <form>
-        <label for="email">Email Address: <%= user.email %></label>
-        <label for="first-name">First name: <%= user.first_name %></label>
-        <label for="last-name">Last name: <%= user.last_name %></label>
-        <label for="profile">Profile: <%= user.profile %></label>
-  
-      </form>
-    </div>
+      <h1>Hired History </h1>
+    
+      <div class="hired-list">
+        <% hiredFreelancers.forEach(function(freelancer) { %>
+          <div class="hired-item">
+            <span>You have hired  <%= freelancerUsername%> </span>
+          </div>
+        <% }); %>
+      </div>
+      
+      </div>
   </div>
 </body>
 </html>

@@ -93,6 +93,19 @@ const getvideoAnimationJobs = async (req, res) => {
   }
 };
 
+const hiredHistory= catchAsync ( async function (req,res) {
+  const loggedInUser = req.user;  // Logged-in user (admin)
+  const userId = loggedInUser._id;  // Get logged-in user's ID
+  const user = await  User.findById(userId);
+  
+const hired = await Hired.findOne({ hiredBy : user._id})
+
+const freelancer = await User.findById(hired.freelancer)
+const freelancerUsername = freelancer.username;
+  // const hire = await Hired.findOne({client : loggedInUser._id })
+  res.render('userLogin/hiredHistory', { user ,hired ,freelancerUsername, message: "" }); 
+  
+})
 
 const viewDetails = catchAsync(async function (req, res) {
   try {
@@ -209,5 +222,5 @@ const paymentPage = async (req, res) => {
 }
 
 
- const userAuthController = { fgraphic, getGraphicDesignJobs,getprogrammingTechJobs, getDigitalMarketingJobs,getvideoAnimationJobs,viewDetails, hireFreelancer, hireMessage, paymentPage}
+ const userAuthController = { fgraphic, getGraphicDesignJobs,getprogrammingTechJobs, getDigitalMarketingJobs,getvideoAnimationJobs,viewDetails, hireFreelancer, hireMessage, paymentPage, hiredHistory}
 export default userAuthController

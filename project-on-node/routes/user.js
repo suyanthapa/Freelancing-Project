@@ -2,6 +2,7 @@ import { Router } from "express";
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
 import authController  from '../controllers/auth.js'
 import multer from "multer";
+import userAuthController from "../controllers/userAuth.js";
 
 const heroRouter = Router();
 
@@ -49,6 +50,10 @@ heroRouter.get("/", function(req,res){
 })
 
 
+// hired history
+heroRouter
+  .route("/hiredHistory")
+  .get(restrictToLoggedinUserOnly, userAuthController.hiredHistory);
 
 
 // Forgot password

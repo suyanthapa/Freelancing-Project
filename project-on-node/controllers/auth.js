@@ -128,7 +128,7 @@ const accountSetting = catchAsync(async function (req, res) {
   const loggedInUser = req.user; // Logged-in user (admin)
   const userId = loggedInUser._id; // Get logged-in user's ID
   const user = await User.findById(userId);
-
+ 
   // Find the user's professional info in the database
   const professionalInfo = await ProfessionalInfo.findOne({ userId: userId });
 
