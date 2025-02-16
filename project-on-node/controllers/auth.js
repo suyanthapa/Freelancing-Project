@@ -30,6 +30,12 @@ const handleSignup = catchAsync( async  function (req,res) {
     return res.render('beforeLogin/signup', { message: 'Password donot match' });
   }
 
+  // Check if email already exists
+  const existingEmail = await User.findOne({ email });
+  if (existingEmail) {
+    return res.render('beforeLogin/signup', { message: 'Email already exists.' });
+  }
+
   // Check if username exists
   const existingUser = await User.findOne({ email : email})
 
@@ -55,7 +61,7 @@ const handleSignup = catchAsync( async  function (req,res) {
 
       });
 
-      newUser.save();
+     await newUser.save();
     
      // Redirect to login page
        return res.redirect('login');       

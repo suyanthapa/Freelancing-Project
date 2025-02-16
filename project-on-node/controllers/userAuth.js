@@ -36,7 +36,7 @@ const getGraphicDesignJobs = async (req, res) => {
 const getprogrammingTechJobs = async (req, res) => {
 
   try {
-      const jobs = await Job.find({jobTitle: "Digital Marketing"});
+      const jobs = await Job.find({jobTitle: "Programming & Tech"});
 
     const jobsWithProfiles = await Promise.all(jobs.map(async (job) => {
       const freelancer = await User.findById(job.userId); // Fetch freelancer based on userId
@@ -44,7 +44,7 @@ const getprogrammingTechJobs = async (req, res) => {
       job.profilePicture = profileImage; // Attach profileImage to job object
       return job; // Return modified job
     }));
-    
+    console.log(jobsWithProfiles)
     res.render('userLogin/programming&Tech', { jobs : jobsWithProfiles }); // Pass the jobs to the graphic.ejs template
   } catch (err) {
     console.error('Error fetching graphic design jobs:', err);
@@ -93,19 +93,43 @@ const getvideoAnimationJobs = async (req, res) => {
   }
 };
 
-const hiredHistory= catchAsync ( async function (req,res) {
-  const loggedInUser = req.user;  // Logged-in user (admin)
-  const userId = loggedInUser._id;  // Get logged-in user's ID
-  const user = await  User.findById(userId);
+// const hiredHistory= catchAsync ( async function (req,res) {
+//   const loggedInUser = req.user;  // Logged-in user (admin)
+//   const userId = loggedInUser._id;  // Get logged-in user's ID
+//   const user = await  User.findById(userId);
   
-const hired = await Hired.findOne({ hiredBy : user._id})
+// const hired = await Hired.findOne({ hiredBy : user._id})
 
-const freelancer = await User.findById(hired.freelancer)
-const freelancerUsername = freelancer.username;
-  // const hire = await Hired.findOne({client : loggedInUser._id })
-  res.render('userLogin/hiredHistory', { user ,hired ,freelancerUsername, message: "" }); 
+// const freelancer = await User.findById(hired.freelancer)
+// const freelancerUsername = freelancer.username;
+//   // const hire = await Hired.findOne({client : loggedInUser._id })
+//   res.render('userLogin/hiredHistory', { user ,hired ,freelancerUsername, message: "" }); 
   
-})
+// })
+
+const hiredHistory = catchAsync(async function (req, res) {
+  const loggedInUser = req.user; // Logged-in user (client)
+  const userId = loggedInUser._id; // Get logged-in user's ID
+  const user = await User.findById(userId);
+
+  // Get all hired records for this user
+  const hiredRecords = await Hired.find({ hiredBy: user._id });
+
+  // Fetch freelancer details for each hire
+  const hiredFreelancers = await Promise.all(
+    hiredRecords.map(async (hired) => {
+      return await User.findById(hired.freelancer).select("email username first_name last_name createdAt");
+    })
+  );
+  
+
+  res.render("userLogin/hiredHistory", {
+    user,
+    hiredFreelancers,
+    message: "",
+  });
+});
+
 
 const viewDetails = catchAsync(async function (req, res) {
   try {
