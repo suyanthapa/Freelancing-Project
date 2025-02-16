@@ -131,9 +131,11 @@ const handleLogin = catchAsync(async function (req, res) {
 
 // account setting
 const accountSetting = catchAsync(async function (req, res) {
+
   const loggedInUser = req.user; // Logged-in user (admin)
   const userId = loggedInUser._id; // Get logged-in user's ID
   const user = await User.findById(userId);
+
  
   // Find the user's professional info in the database
   const professionalInfo = await ProfessionalInfo.findOne({ userId: userId });
@@ -154,42 +156,75 @@ const accountSetting = catchAsync(async function (req, res) {
   }
 });
 
+// const editProfessionalInfo = async (req, res) => {
+//   console.log('Received data:', req.body); // Log the incoming data
+
+
+//   const loggedInUser = req.user;  // Get logged-in user
+//   const userId = loggedInUser._id;  // Get logged-in user's ID
+//   const { skills, education, certifications, portfolio,website,linkedIn } = req.body;
+
+//   // Check if professional info already exists for this user
+//   let professionalInfo = await ProfessionalInfo.findOne({ userId });
+
+//   if (!professionalInfo) {
+//     // If no professional info exists, create a new record
+//     professionalInfo = new ProfessionalInfo({
+//       userId,
+//       skills,
+//       education,
+//       certifications,
+//       portfolio,
+//       website,
+//       linkedIn
+//     });
+//   } else {
+//     // If professional info exists, update it
+//     professionalInfo.skills = skills;
+//     professionalInfo.language = language;
+//     professionalInfo.education = education;
+//     professionalInfo.certifications = certifications;
+//     professionalInfo.portfolio = portfolio;
+//     professionalInfo.website = website;
+//     professionalInfo.linkedIn = linkedIn;
+//   }
+
+//   // Save the professional info
+//   await professionalInfo.save();
+
+//   // Redirect to account setting page after saving
+//   res.redirect('/accountSetting');
+// };
+
+
+// ----new content
 const editProfessionalInfo = async (req, res) => {
-  const loggedInUser = req.user;  // Get logged-in user
-  const userId = loggedInUser._id;  // Get logged-in user's ID
-  const { skills, education, certifications, portfolio, website, linkedin } = req.body;
+  try {
+    console.log('Received data:', req.body); // Debugging  
 
-  // Check if professional info already exists for this user
-  let professionalInfo = await ProfessionalInfo.findOne({ userId });
+    const loggedInUser = req.user;  
+    if (!loggedInUser) {
+      return res.status(401).json({ success: false, message: "User not authenticated" });
+    }
 
-  if (!professionalInfo) {
-    // If no professional info exists, create a new record
-    professionalInfo = new ProfessionalInfo({
-      userId,
-      skills,
-      education,
-      certifications,
-      portfolio,
-      website,
-      linkedin
-    });
-  } else {
-    // If professional info exists, update it
-    professionalInfo.skills = skills;
-    professionalInfo.education = education;
-    professionalInfo.certifications = certifications;
-    professionalInfo.portfolio = portfolio;
-    professionalInfo.website = website;
-    professionalInfo.linkedin = linkedin;
+    const userId = loggedInUser._id;
+    const { skills,language, education, certifications, portfolio, website, linkedIn } = req.body;
+
+    // Update or insert professional info in one step
+    const updatedProfessionalInfo = await ProfessionalInfo.findOneAndUpdate(
+      { userId }, // Search by userId
+      { $set: { skills,language, education, certifications, portfolio, website, linkedIn } }, // Update fields
+      { new: true, upsert: true } // Return updated document, create if doesn't exist
+    );
+
+    console.log('Updated professional info:', updatedProfessionalInfo); // Debugging  
+
+    return res.json({ success: true, message: "Professional info updated successfully!", data: updatedProfessionalInfo });
+  } catch (error) {
+    console.error("Error saving professional info:", error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
-
-  // Save the professional info
-  await professionalInfo.save();
-
-  // Redirect to account setting page after saving
-  res.redirect('/accountSetting');
 };
-
 
 
 //render change password
@@ -246,16 +281,17 @@ const changePassword = catchAsync( async function (req,res) {
 
  
 // GET handler to render the professional info setup page
- const getSetProfessionalInfo = async (req, res) => {
+const getSetProfessionalInfo = async (req, res) => {
   const loggedInUser = req.user;  // Get logged-in user
   res.render('freelancerLogin/setProfessionalInfo', { user: loggedInUser, message: "" });
 };
+
 
 // POST handler to save professional info to the database
  const postSetProfessionalInfo = async (req, res) => {
   const loggedInUser = req.user;  // Get logged-in user
   const userId = loggedInUser._id;  // Get logged-in user's ID
-  const { skills, education, certifications, portfolio, website, linkedin } = req.body;
+  const { skills,language, education, certifications, portfolio, website, linkedIn } = req.body;
 console.log(req.body)
   try {
     // Check if professional info already exists for this user
@@ -266,15 +302,17 @@ console.log(req.body)
       professionalInfo = new ProfessionalInfo({
         userId : userId.toString(),
         skills : skills,
+        language : language,
         education : education,
         certifications : certifications,
         portfolio : portfolio,
         website : website,
-        linkedIn : linkedin
+        linkedIn : linkedIn
       });
     } else {
       // If professional info exists, update it
       professionalInfo.skills = skills;
+      professionalInfo.language = language;
       professionalInfo.education = education;
       professionalInfo.certifications = certifications;
       professionalInfo.portfolio = portfolio;

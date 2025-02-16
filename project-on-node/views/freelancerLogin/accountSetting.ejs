@@ -41,6 +41,7 @@
           <div><label>Email Address:</label><br> <span><%= user.email %></span></div>
           <div><label>Gender:</label><br> <span>Male</span></div>
           <div><label>Profile:</label><br> <span><%= user.profile %></span></div>
+          
         </div>
       </div>
 
@@ -50,10 +51,15 @@
 
         <% if (professionalInfo) { %>
           <!-- Display professional info if it exists -->
+          <form id="professionalInfoForm" action="/accountSetting" method="POST">
           <div class="info-list">
+           
             <label for="skills">Skills:</label>
             <span><input type="text" id="skills" value="<%= professionalInfo.skills %>" disabled></span>
-        
+
+            <label for="language">Language:</label>
+            <span><input type="text" id="language" value="<%= professionalInfo.language %>" disabled></span>
+             
             <label for="education">Education:</label>
             <span><input type="text" id="education" value="<%= professionalInfo.education %>" disabled></span>
         
@@ -66,14 +72,17 @@
             <label for="website">Website:</label>
             <span><input type="text" id="website" value="<%= professionalInfo.website %>" disabled></span>
         
-            <label for="linkedin">LinkedIn/Profile Links:</label>
-            <span><input type="text" id="linkedin" value="<%= professionalInfo.linkedin %>" disabled></span>
+            <label for="linkedIn">LinkedIn/Profile Links:</label>
+            <span><input type="text" id="linkedIn" value="<%= professionalInfo.linkedIn %>" disabled></span>
           </div>
 
           <!-- Edit, Save, and Cancel Buttons -->
-          <button id="editBtn">Edit</button>
-          <button id="saveBtn" class="hidden">Save</button>
-          <button id="cancelBtn" class="hidden">Cancel</button>
+          <button type="button" id="editBtn">Edit</button>
+          <button type="submit" id="saveBtn" class="hidden">Save</button>
+          <button type="button" id="cancelBtn" class="hidden">Cancel</button>
+
+        </form>
+          
         <% } else if (showSetupMessage) { %>
           <!-- Show message to set up professional info -->
           <p>You haven’t set up your professional info yet. <a href="/setProfessionalInfo">Click here to set it up</a></p>
