@@ -3,6 +3,7 @@ import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
 import authController  from '../controllers/auth.js'
 import multer from "multer";
 import userAuthController from "../controllers/userAuth.js";
+import freelancerController from "../controllers/freelancer.js";
 
 const heroRouter = Router();
 
@@ -59,8 +60,8 @@ heroRouter
 // Forgot password
 heroRouter
   .route("/changePassword")
-  .get(restrictToLoggedinUserOnly, authController.changePassword)
-  .post(restrictToLoggedinUserOnly, authController.forgotPassword);
+  .get(restrictToLoggedinUserOnly, freelancerController.changePassword)
+  .post(restrictToLoggedinUserOnly, freelancerController.forgotPassword);
 
 
 //for logout

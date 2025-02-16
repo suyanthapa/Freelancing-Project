@@ -5,6 +5,8 @@ import authValidation from '../validation/user.js';
 import authController from '../controllers/auth.js'
 import userAuthController from "../controllers/userAuth.js";
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
+import freelancerController from "../controllers/freelancer.js";
+
 
 
 const freelancerRouter = Router();
@@ -20,15 +22,15 @@ freelancerRouter.get("/freelancerDashboard", restrictToLoggedinUserOnly, async f
 // freelancerRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
 
 freelancerRouter
-  .get("/accountSetting", restrictToLoggedinUserOnly, (authController.accountSetting))
-  .post("/accountSetting", restrictToLoggedinUserOnly, (authController.editProfessionalInfo))
+  .get("/accountSetting", restrictToLoggedinUserOnly, (freelancerController.accountSetting))
+  .post("/accountSetting", restrictToLoggedinUserOnly, (freelancerController.editProfessionalInfo))
 
   // In freelancerRouter.js
 
 // GET and POST routes for setting professional info
 freelancerRouter.route("/setProfessionalInfo")
-  .get(restrictToLoggedinUserOnly, authController.getSetProfessionalInfo)  // Render the form
-  .post(restrictToLoggedinUserOnly, authController.postSetProfessionalInfo); // Handle form submission
+  .get(restrictToLoggedinUserOnly, freelancerController.getSetProfessionalInfo)  // Render the form
+  .post(restrictToLoggedinUserOnly, freelancerController.postSetProfessionalInfo); // Handle form submission
 
 
 //render graphics feature

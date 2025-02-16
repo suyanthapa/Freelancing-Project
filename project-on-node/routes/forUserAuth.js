@@ -7,6 +7,7 @@ import userAuthController from "../controllers/userAuth.js";
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
 import jobController from "../controllers/job.js";
 import multer from "multer";
+import freelancerController from "../controllers/freelancer.js";
 
 
 
@@ -17,7 +18,7 @@ userRouter.get("/userDashboard", restrictToLoggedinUserOnly, async function (req
   return res.render('userLogin/uDashboard', {message: ""});
 }  )
 //render Account setting
-userRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(authController.accountSetting))
+userRouter.get("/accountSetting",restrictToLoggedinUserOnly ,(freelancerController.accountSetting))
 
 //render graphics feature
 userRouter
