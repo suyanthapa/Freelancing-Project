@@ -21,7 +21,7 @@ body {
 /* Sidebar styling */
 .sidebar {
   width: 250px;
-  background-color: #007BFF;
+  background-color: rgb(38, 41, 97);
   color: white;
   padding: 20px;
   display: flex;
@@ -58,7 +58,7 @@ body {
 
 .sidebar ul li a.active,
 .sidebar ul li a:hover {
-  background-color: #0056b3;
+  background-color:rgb(188, 76, 112);
 }
 
 /* Main content area */

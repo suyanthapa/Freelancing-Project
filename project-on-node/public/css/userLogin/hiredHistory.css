@@ -21,7 +21,7 @@ body {
 /* Sidebar styling */
 .sidebar {
   width: 250px;
-  background-color: #007BFF;
+  background-color: rgb(38, 41, 97);
   color: white;
   padding: 20px;
   display: flex;
@@ -58,7 +58,7 @@ body {
 
 .sidebar ul li a.active,
 .sidebar ul li a:hover {
-  background-color: #0056b3;
+  background-color: rgb(188, 76, 112);
 }
 
 /* Main content area */
@@ -116,4 +116,144 @@ body {
     width: 100%;
     margin-left: 0;
   }
+}
+
+.hidden { display: none; }
+    
+/* Style for the View Details link */
+.view-details-btn {
+  color:  rgb(79, 85, 201);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Hover effect for View Details link */
+.view-details-btn:hover {
+  color:rgb(188, 76, 112);/* Darker shade when hovered */
+}
+
+/* Freelancer & Job Details Section */
+.details-section {
+  background: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  font-family: 'Arial', sans-serif;
+}
+
+.details-section h2 {
+  font-size: 24px;
+  color: #1f2d5a; /* Dark blue */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.details-section p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.details-section strong {
+  font-weight: bold;
+  color: #1f2d5a; /* Dark blue */
+}
+
+.details-section .highlight {
+  font-weight: bold;
+  color: #1f2d5a;
+}
+
+.details-section .job-description {
+  font-weight: bold;
+  color: #1f2d5a;
+  font-size: 18px;
+}
+
+.details-section .profile-pic {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.details-section .profile-pic img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 3px solid #1f2d5a;
+}
+
+.details-section .user-info {
+  font-size: 16px;
+  color: #333;
+}
+
+.details-section .job-details h3 {
+  font-size: 20px;
+  color: #1f2d5a;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.details-section .back-list-button {
+  background: #1f2d5a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.details-section .back-list-button:hover {
+  background: #15204a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .details-section {
+    padding: 20px;
+  }
+
+  .details-section h2 {
+    font-size: 22px;
+  }
+
+  .details-section p {
+    font-size: 14px;
+  }
+
+  .details-section .back-list-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+#freelancerImage {
+  width: 150px; /* Adjust size as needed */
+  height: 150px;
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover; /* Ensures the image is cropped properly */
+  display: block;
+  margin: 10px auto; /* Centers the image */
+  border: 3px solid #ddd; /* Adds a subtle border */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect */
+#freelancerImage:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
 }

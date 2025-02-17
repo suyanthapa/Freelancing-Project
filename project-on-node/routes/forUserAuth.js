@@ -56,6 +56,7 @@ userRouter
   .post("/hired-freelancer", restrictToLoggedinUserOnly, userAuthController.hireMessage);
 
 
+
 // route for payment after hiring a freelancer
 // userRouter
 //   .get("/payment/:jobId", restrictToLoggedinUserOnly, userAuthController.initiatePayment)

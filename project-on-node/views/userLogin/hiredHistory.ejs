@@ -3,42 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Settings</title>
+  <title>Hired History</title>
   <link rel="stylesheet" href="css/userLogin/hiredHistory.css">
+  <style>
+    .hidden { display: none; }
+  </style>
 </head>
 <body>
   <div class="container">
+    <!-- Sidebar -->
     <div class="sidebar">
       <div class="profile-pic">
         <img src="<%= user.profileImage %>" alt="Profile Picture">
       </div>
       <ul>
-       
-        <li><a href="accountSetting" >Account Details</a></li>
-        <li><a href="hiredHistory" class="active">Hired History </a></li>
+        <li><a href="accountSetting">Account Details</a></li>
+        <li><a href="hiredHistory" class="active">Hired History</a></li>
         <li><a href="changePassword">Change Password</a></li>
         <li><a href="logout">Logout</a></li>
       </ul>
-      
     </div>
+
+    <!-- Main Content -->
     <div class="main-content">
       <a href="userDashboard"><button id="backToIndex" class="back-button">← Back</button></a><br>
-      <h1>Hired History </h1>
-    
-      <div class="hired-list">
+      <h1>Hired History</h1>
+
+      <!-- List of Hired Freelancers (Initially Visible) -->
+      <div class="hired-list" id="hiredList">
         <% hiredFreelancers.forEach(function(freelancer) { %>
           <div class="hired-item">
-            <span>You have hired <%= freelancer.username  %> 
-              <span style="color:rgb(188, 76, 112);">(<%= freelancer.email  %> )</span> on
-              <span><%= freelancer.createdAt  %>  </span>
-            
+            <span>You have hired "<%= freelancer.username %>" 
+              <span style="color:rgb(222, 96, 136);">(<%= freelancer.email %>)</span> on
+              <span><%= freelancer.hiredAt.toISOString().split('T')[0] %> </span><br>
+              <span>
+                <button class="view-details-btn" 
+                        data-id="<%= freelancer._id %>"
+                        data-username="<%= freelancer.username %>"
+                        data-email="<%= freelancer.email %>"
+                        data-skills="<%= freelancer.skills %>"
+                        data-freelancerImage="<%= freelancer.profileImage %>"
+                        data-job-title="<%= freelancer.jobTitle %>"
+                        data-job-description="<%= freelancer.jobDescription %>">
+                  View Details
+                </button>
+              </span>
             </span>
           </div>
         <% }); %>
+        
       </div>
-      
-      
+
+      <!-- Freelancer & Job Details Section (Initially Hidden) -->
+      <div class="details-section hidden" id="detailsSection">
+        <h2>Freelancer Details</h2>
+        <img id="freelancerImage" src="" alt="Freelancer Image">
+
+        <p><strong>Name:</strong> <span id="freelancerName"></span></p>
+        <p><strong>Email:</strong> <span id="freelancerEmail"></span></p>
+        <p><strong>Skills:</strong> <span id="freelancerSkills"></span></p>
+
+        <h2>Job Details</h2>
+        <p><strong>Job Title:</strong> <span id="jobTitle"> </span></p>
+        <p><strong>Description:</strong> <span id="jobDescription"></span></p>
+
+        <button id="backToListBtn" class="back-list-button">← Back to Hired List</button>
       </div>
+    </div>
   </div>
+
+  <script>
+    // Handle the View Details button click
+    document.querySelectorAll(".view-details-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        // Hide the hired list and show the details section
+        document.getElementById("hiredList").classList.add("hidden");
+        document.getElementById("detailsSection").classList.remove("hidden");
+
+        // Populate the details section with freelancer and job information
+        document.getElementById("freelancerName").innerText = this.dataset.username;
+        document.getElementById("freelancerEmail").innerText = this.dataset.email;
+        document.getElementById("freelancerSkills").innerText = this.dataset.skills;
+        document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
+        document.getElementById("jobDescription").innerText = this.dataset.jobDescription;
+        document.getElementById("freelancerImage").src = this.dataset.freelancerimage;
+
+      });
+    });
+
+    // Handle the Back to Hired List button click
+    document.getElementById("backToListBtn").addEventListener("click", function() {
+      // Show the hired list and hide the details section
+      document.getElementById("hiredList").classList.remove("hidden");
+      document.getElementById("detailsSection").classList.add("hidden");
+    });
+  </script>
 </body>
 </html>

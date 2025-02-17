@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const hiredSchema = new mongoose.Schema({
   freelancer: { 
-    type: String, 
+    type: mongoose.Schema.Types.ObjectId, ref: "user",
      required: true
     },
 

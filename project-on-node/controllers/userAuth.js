@@ -112,16 +112,32 @@ const hiredHistory = catchAsync(async function (req, res) {
   const userId = loggedInUser._id; // Get logged-in user's ID
   const user = await User.findById(userId);
 
-  // Get all hired records for this user
-  const hiredRecords = await Hired.find({ hiredBy: user._id });
-
-  // Fetch freelancer details for each hire
-  const hiredFreelancers = await Promise.all(
-    hiredRecords.map(async (hired) => {
-      return await User.findById(hired.freelancer).select("email username first_name last_name createdAt");
+  // Get all hired records and populate freelancer and job details
+  const hiredRecords = await Hired.find({ hiredBy: user._id })
+    .populate({
+      path: "freelancer",
+      select: "email username first_name last_name createdAt skills profileImage",
     })
-  );
-  
+    .populate({
+      path: "job",
+      select: "jobTitle customLabel",
+    })
+    .lean(); // Convert Mongoose documents to plain objects
+
+  // **Restructure the response to flatten freelancer fields**
+  const hiredFreelancers = hiredRecords.map(record => ({
+    _id: record._id, 
+    hiredAt: record.hiredAt,
+    freelancerId: record.freelancer._id, 
+    username: record.freelancer.username,
+    email: record.freelancer.email,
+    skills: record.freelancer.skills,
+    profileImage: record.freelancer.profileImage,
+    jobTitle: record.job?.jobTitle || "No title", // Handle missing job data
+    jobDescription: record.job?.customLabel || "No description"
+  }));
+
+  console.log(hiredFreelancers);
 
   res.render("userLogin/hiredHistory", {
     user,
@@ -129,6 +145,7 @@ const hiredHistory = catchAsync(async function (req, res) {
     message: "",
   });
 });
+
 
 
 const viewDetails = catchAsync(async function (req, res) {
@@ -206,7 +223,7 @@ const hireFreelancer = async (req, res) => {
 
 const hireMessage = async (req, res) => {
   try {
-console.log(" Helllo worlds")
+
    // Get the latest hired record for the logged-in user
    const loggedInUser = req.user;
    const latestHired = await Hired.findOne({ hiredBy: loggedInUser._id })
