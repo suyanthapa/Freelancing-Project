@@ -5,7 +5,7 @@
       justify-content: center;
       gap: 20px;
       padding: 40px;
-      background-color:rgb(155, 158, 214); /* Primary color */
+      background-color:rgb(38, 41, 97);
   }
   .hero-content {
       flex: 1;
@@ -13,9 +13,9 @@
   }
   
   .hero-content h1 {
-      font-size: 50px;
+      font-size: 55px;
       font-weight: bold;
-      color: black;
+      color: rgb(243, 149, 179);
       margin-bottom: 20px;
       
   }
@@ -23,7 +23,7 @@
   .hero-content p {
       font-size: 18px;
       line-height: 1.6;
-      color: black;
+      color: rgb(236, 217, 217);
       margin-bottom: 20px;
   }
   
@@ -31,7 +31,7 @@
       width: 50%;
       height: 60px;
       padding: 10px 20px;
-      background-color:rgb(52, 67, 165);
+      background-color: rgb(177, 24, 72);
       color: #fff;
       font-size: 16px;
       font-weight: bold;
@@ -42,7 +42,8 @@
   }
   
   .get-started-button:hover {
-      background-color:rgb(21, 30, 90);}
+      background-color:rgb(188, 76, 112);
+  }
   
   /* Image styling */
   .hero-image {

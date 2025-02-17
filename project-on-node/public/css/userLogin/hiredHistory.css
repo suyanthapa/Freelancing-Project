@@ -74,7 +74,7 @@ body {
 
 /* Header styles */
 .main-content h1 {
-  font-size: 24px;
+  font-size: 40px;
   margin-bottom: 20px;
   color: #333;
 }
@@ -209,17 +209,18 @@ body {
   background: #1f2d5a;
   color: white;
   border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 6px 8px;  /* Reduced padding */
+  font-size: 12px;     /* Smaller text */
+  border-radius: 3px; /* Slightly smaller rounded corners */
   cursor: pointer;
   display: inline-block;
-  margin-top: 15px;
+  margin-top: 8px;    /* Slightly reduced margin */
   transition: background 0.3s;
+
 }
 
 .details-section .back-list-button:hover {
-  background: #15204a;
+  background: #374c9f;
 }
 
 /* Responsive Design */
@@ -256,4 +257,20 @@ body {
 /* Hover effect */
 #freelancerImage:hover {
   transform: scale(1.05); /* Slight zoom on hover */
+}
+.back-button{
+  background: #1f2d5a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.back-button:hover {
+  background: #95379f;
 }

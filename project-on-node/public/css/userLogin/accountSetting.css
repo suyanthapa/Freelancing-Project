@@ -122,3 +122,20 @@ form input:focus {
     margin-left: 0;
   }
 }
+
+.back-button{
+  background: #1f2d5a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.back-button:hover {
+  background: #95379f;
+}
