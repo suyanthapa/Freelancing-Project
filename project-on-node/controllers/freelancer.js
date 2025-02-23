@@ -29,7 +29,7 @@ const accountSetting = catchAsync(async function (req, res) {
       showSetupMessage: !professionalInfo // true if professional info is not found
     });
   } else {
-    res.render('userLogin/accountSetting', { 
+    res.render('userLogin/profile/accountSetting', { 
       user, 
       message: "" 
     });
@@ -69,16 +69,41 @@ const editProfessionalInfo =  catchAsync (async  function (req, res) {
 // GET handler to render the professional info setup page
 const getSetProfessionalInfo = async (req, res) => {
   const loggedInUser = req.user;  // Get logged-in user
-  res.render('freelancerLogin/setProfessionalInfo', { user: loggedInUser, message: "" });
+
+  
+
+  const userId = loggedInUser._id; // Get logged-in user's ID
+  const user = await User.findById(userId);
+
+ 
+  // Find the user's professional info in the database
+  const professionalInfo = await ProfessionalInfo.findOne({ userId: userId });
+
+  // Check if the user is a freelancer
+  if (user.profile === "freelancer") {
+    // If professional info exists, pass it to the view, otherwise, set showSetupMessage to true
+    res.render('freelancerLogin/accountSetting', { 
+      user, 
+      professionalInfo: professionalInfo || null, 
+      showSetupMessage: !professionalInfo // true if professional info is not found
+    });
+  } else {
+    res.render('userLogin/profile/accountSetting', { 
+      user, 
+      message: "" 
+    });
+  }
 };
 
 
 // POST handler to save professional info to the database
- const postSetProfessionalInfo = async (req, res) => {
+const postSetProfessionalInfo = async (req, res) => {
   const loggedInUser = req.user;  // Get logged-in user
   const userId = loggedInUser._id;  // Get logged-in user's ID
   const { skills,language, education, certifications, portfolio, website, linkedIn } = req.body;
-console.log(req.body)
+
+
+   const user = await User.findById(userId);
   try {
     // Check if professional info already exists for this user
     let professionalInfo = await ProfessionalInfo.findOne({ userId });
@@ -103,19 +128,21 @@ console.log(req.body)
       professionalInfo.certifications = certifications;
       professionalInfo.portfolio = portfolio;
       professionalInfo.website = website;
-      professionalInfo.linkedIn = linkedin;
+      professionalInfo.linkedIn = linkedIn;
     }
 
     // Save the professional info
     await professionalInfo.save();
 
     // Redirect to account setting page after saving
-    res.redirect('/accountSetting');
+    // res.redirect('/accountSetting');
+    res.render('freelancerLogin/accountSetting', {user, message: "" }); 
   } catch (error) {
     console.error("Error saving professional info:", error);
     res.status(500).send("Something went wrong!");
   }
 };
+
 
 //render change password
 const changePassword = catchAsync( async function (req,res) {
@@ -126,7 +153,7 @@ const changePassword = catchAsync( async function (req,res) {
           res.render('freelancerLogin/changePassword', {user, message: "" }); 
         }
         else{
-          res.render('userLogin/changePassword', {user, message: "" }); 
+          res.render('userLogin/profile/changePassword', {user, message: "" }); 
         }
  
 });
@@ -145,7 +172,7 @@ const forgotPassword = catchAsync(async function (req,res) {
    }
    if(newPassword != confirmNewPassword){
    
-     return res.render('userLogin/changePassword', { user: existingUser, message: 'Passwords do not match.' });
+     return res.render('userLogin/profile/changePassword', { user: existingUser, message: 'Passwords do not match.' });
 
    }
    

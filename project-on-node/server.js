@@ -46,7 +46,7 @@ connectToDB()
     app.use(jobRouter);
     app.use(paymentRouter);
     app.use(freelancerRouter)
-    const port = process.env.PORT || 4000;
+    const port = process.env.PORT || 4000;  
     app.listen(port, function () {
       console.log('Server running on PORT no', port);
     });

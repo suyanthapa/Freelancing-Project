@@ -24,8 +24,14 @@ const hiredSchema = new mongoose.Schema({
   },
 
   hiredAt: { type: Date, default: Date.now },
-  paymentStatus: { type: String, default: 'Pending' },
-  message: { type: String, default: '' },
+  
+  paymentStatus: { 
+    type: String, 
+    enum: ["Pending", "Completed", "Failed"],  // Added enum for consistency
+    default: "Pending" 
+  },
+
+     message: { type: String, default: '' },
 }, { timestamps: true }); // Timestamps will allow us to get the latest hire
 
 

@@ -139,7 +139,7 @@ const hiredHistory = catchAsync(async function (req, res) {
 
   console.log(hiredFreelancers);
 
-  res.render("userLogin/hiredHistory", {
+  res.render("userLogin/profile/hiredHistory", {
     user,
     hiredFreelancers,
     message: "",

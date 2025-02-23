@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import Group from "../models/group.js";
+
 
 
 const findUserbyemail = async function (email) {

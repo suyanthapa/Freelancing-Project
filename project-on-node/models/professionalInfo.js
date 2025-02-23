@@ -6,7 +6,7 @@ const professionalInfoSchema = new Schema ({
   skills: { type: String, required: true},
   language: { type: String, required: true},
   education: { type: String, required: true },
-  certifications: { type: String, required: true },
+  certifications: { type: String},
   portfolio: { type: String, required: true, unique: true },
   website: { type: String, required: true },
   linkedIn: { type: String, required: true },

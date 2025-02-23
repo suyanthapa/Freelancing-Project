@@ -32,6 +32,7 @@ top: 8px;
 .nav-links a{
     color:whitesmoke;
     transition: color 0.3s ease;
+    text-decoration: none;
 }
 .nav-links a:hover {
     color:rgb(38, 41, 97);

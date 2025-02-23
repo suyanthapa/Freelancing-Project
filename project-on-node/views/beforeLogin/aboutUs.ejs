@@ -1,10 +1,81 @@
-<link rel="stylesheet" href="css/beforeLogin/aboutUs.css">
-<!-- Header -->
-<%- include('header') %> 
-<section class="hero-section">
-    <div class="container">
-        <h1>About Kaaj</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Kaaj</title>
+  <link rel="stylesheet" href="css/beforeLogin/aboutUs.css"> <!-- Your custom styles -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet"> <!-- Tailwind CSS -->
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <%- include('header') %>
+
+  <!-- Hero Section -->
+  <section class="hero-section bg-custom-blue text-white py-16">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-semibold">About Kaaj</h1>
+      <p class="mt-4 text-lg">Empowering freelancers and clients through a secure, decentralized platform.</p>
     </div>
-</section>
-<!-- Footer -->
-<%- include('footer') %> 
+  </section>
+
+  <!-- Why Choose Kaaj? -->
+  <section class="py-12 px-6 md:px-12 lg:px-24">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-800">Why Choose Kaaj?</h2>
+      <p class="mt-4 text-gray-600 text-lg">
+        Kaaj connects talented freelancers with clients worldwide, providing a secure, efficient, and transparent environment to get work done.
+      </p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white p-6 rounded-2xl shadow-md">
+        <h3 class="text-xl font-semibold text-blue-600">Decentralized & Secure</h3>
+        <p class="mt-2 text-gray-600">Built on blockchain technology for high security and transparency.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-md">
+        <h3 class="text-xl font-semibold text-blue-600">Fast Payments</h3>
+        <p class="mt-2 text-gray-600">Smart contracts ensure quick and automatic payments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Developers & System Designers -->
+  <section class="py-12 px-6 md:px-12 lg:px-24 bg-gray-50">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-800">Meet Our Team</h2>
+      <p class="mt-4 text-gray-600 text-lg">The minds behind Kaaj</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Developer -->
+      <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+        <img src="images/suyan.jfif " alt="Developer" class="w-32 h-32 mx-auto rounded-full">
+        <h3 class="text-xl font-semibold text-blue-600 mt-4">Suyan Thapa</h3>
+        <p class="text-gray-600">Lead Developer</p>
+        <p class="mt-2 text-gray-600">Backend development.</p>
+      </div>
+
+      <!-- System Designer -->
+      <div class="bg-white p-6 rounded-2xl shadow-md text-center">
+        <img src="images/anish.jpg" alt="System Designer" class="w-32 h-32 mx-auto rounded-full">
+        <h3 class="text-xl font-semibold text-blue-600 mt-4">Anish Baniya</h3>
+        <p class="text-gray-600">System Designer</p>
+        <p class="mt-2 text-gray-600">Expert in system architecture and UI/UX design.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <%- include('footer') %>
+
+</body>
+</html>
+
+<style>
+  .bg-custom-blue {
+    background-color: rgb(38, 41, 97);
+  }
+</style>
