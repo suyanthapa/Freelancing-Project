@@ -78,7 +78,6 @@
       </div>
     </div>
   </div>
-
   <script>
     // Handle the View Details button click
     document.querySelectorAll(".view-details-btn").forEach(button => {
@@ -86,22 +85,32 @@
         // Hide the hired list and show the details section
         document.getElementById("hiredList").classList.add("hidden");
         document.getElementById("detailsSection").classList.remove("hidden");
-
+  
         // Populate the details section with freelancer and job information
         document.getElementById("freelancerName").innerText = this.dataset.username;
         document.getElementById("freelancerEmail").innerText = this.dataset.email;
-      
         document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
         document.getElementById("jobDescription").innerText = this.dataset.jobDescription;
-        document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
         document.getElementById("hourlyRate").innerText = this.dataset.hourlyRate;
-        
         document.getElementById("paymentStatus").innerText = this.dataset.paymentStatus;
         document.getElementById("freelancerImage").src = this.dataset.freelancerimage;
-
+  
+        // Set dynamic payment status class
+        const paymentStatusElement = document.getElementById("paymentStatus");
+        const paymentStatus = this.dataset.paymentStatus.toLowerCase(); // Ensure status is in lowercase
+  
+        // Remove both classes before adding the correct one
+        paymentStatusElement.classList.remove('pending', 'completed');
+  
+        // Add the appropriate class based on the payment status
+        if (paymentStatus === 'pending') {
+          paymentStatusElement.classList.add('pending');
+        } else if (paymentStatus === 'completed') {
+          paymentStatusElement.classList.add('completed');
+        }
       });
     });
-
+  
     // Handle the Back to Hired List button click
     document.getElementById("backToListBtn").addEventListener("click", function() {
       // Show the hired list and hide the details section
@@ -109,5 +118,6 @@
       document.getElementById("detailsSection").classList.add("hidden");
     });
   </script>
+  
 </body>
 </html>

@@ -16,7 +16,7 @@ paymentRouter.post("/payment", restrictToLoggedinUserOnly, async (req, res) => {
 
     await Hired.updateOne(
       { _id: hiredId },  // Condition to find the document by _id
-      { $set: { paymentStatus: 'paid' } }  // The field to update
+      { $set: { paymentStatus: 'completed' } }  // The field to update
     );
     
     

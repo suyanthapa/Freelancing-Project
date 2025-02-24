@@ -274,3 +274,19 @@ body {
 .back-button:hover {
   background: #95379f;
 }
+
+#paymentStatus.pending {
+  background-color: #ffcc00;
+  color: #333;
+  border: 1px solid #e6b800;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#paymentStatus.completed {
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #218838;
+  padding: 5px;
+  border-radius: 3px;
+}
