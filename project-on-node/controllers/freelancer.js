@@ -67,41 +67,56 @@ const editProfessionalInfo =  catchAsync (async  function (req, res) {
 
 
 // GET handler to render the professional info setup page
-const getSetProfessionalInfo = async (req, res) => {
-  const loggedInUser = req.user;  // Get logged-in user
+// const getSetProfessionalInfo = async (req, res) => {
+//   const loggedInUser = req.user;  // Get logged-in user
+//   const userId = loggedInUser._id; // Get logged-in user's ID
+//   const user = await User.findById(userId);
 
+//  console.log("Hello suyan")
+//   // Find the user's professional info in the database
+//   const professionalInfo = await ProfessionalInfo.findOne({ userId: userId });
+
+//   userLogin/profile/changePassword
+//     res.render('freelancerLogin/setProfessionalInfo', { 
+//       user, 
+//       message: "" 
+//     });
   
+// };
 
-  const userId = loggedInUser._id; // Get logged-in user's ID
-  const user = await User.findById(userId);
+const getSetProfessionalInfo = async (req, res) => {
+  console.log('hel')
+  try {
+    const loggedInUser = req.user;  // Get logged-in user
+    if (!loggedInUser) {
+      console.log("No user logged in!");
+      return res.redirect("/login");  // Redirect to login if not logged in
+    }
 
- 
-  // Find the user's professional info in the database
-  const professionalInfo = await ProfessionalInfo.findOne({ userId: userId });
+    const userId = loggedInUser._id; // Get logged-in user's ID
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      console.log("User not found in database");
+      return res.status(404).send("User not found");
+    }
 
-  // Check if the user is a freelancer
-  if (user.profile === "freelancer") {
-    // If professional info exists, pass it to the view, otherwise, set showSetupMessage to true
-    res.render('freelancerLogin/accountSetting', { 
-      user, 
-      professionalInfo: professionalInfo || null, 
-      showSetupMessage: !professionalInfo // true if professional info is not found
-    });
-  } else {
-    res.render('userLogin/profile/accountSetting', { 
-      user, 
-      message: "" 
-    });
+    console.log("Rendering setProfessionalInfo page for user:", user.first_name);
+
+    return res.render('freelancerLogin/setProfessionalInfo', { user, message: "" });
+  } catch (error) {
+    console.error("Error in getSetProfessionalInfo:", error);
+    return res.status(500).send("Something went wrong!");
   }
 };
 
-
 // POST handler to save professional info to the database
 const postSetProfessionalInfo = async (req, res) => {
+
   const loggedInUser = req.user;  // Get logged-in user
   const userId = loggedInUser._id;  // Get logged-in user's ID
   const { skills,language, education, certifications, portfolio, website, linkedIn } = req.body;
-
+  console.log("Received data:", req.body);  // Log the received data
 
    const user = await User.findById(userId);
   try {
@@ -136,7 +151,7 @@ const postSetProfessionalInfo = async (req, res) => {
 
     // Redirect to account setting page after saving
     // res.redirect('/accountSetting');
-    res.render('freelancerLogin/accountSetting', {user, message: "" }); 
+    res.render('freelancerLogin/accountSetting', {user, professionalInfo, message: "" }); 
   } catch (error) {
     console.error("Error saving professional info:", error);
     res.status(500).send("Something went wrong!");

@@ -28,9 +28,14 @@ freelancerRouter
   // In freelancerRouter.js
 
 // GET and POST routes for setting professional info
-freelancerRouter.route("/setProfessionalInfo")
-  .get(restrictToLoggedinUserOnly, freelancerController.getSetProfessionalInfo)  // Render the form
-  .post(restrictToLoggedinUserOnly, freelancerController.postSetProfessionalInfo); // Handle form submission
+// freelancerRouter.route("/setProfessionalInfo")
+//   .get(restrictToLoggedinUserOnly, freelancerController.getSetProfessionalInfo)  // Render the form
+//   .post(restrictToLoggedinUserOnly, freelancerController.postSetProfessionalInfo); // Handle form submission
+
+
+freelancerRouter
+  .get("/setProfessionalInfo", restrictToLoggedinUserOnly, (freelancerController.getSetProfessionalInfo))
+  .post("/setProfessionalInfo", restrictToLoggedinUserOnly, (freelancerController.postSetProfessionalInfo))
 
 
 //render graphics feature

@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
       website,
       linkedIn,
     });
-
+    
     // Send the updated data to the server using fetch
     fetch("/accountSetting", {
       method: "POST",

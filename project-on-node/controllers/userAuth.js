@@ -126,7 +126,7 @@ const hiredHistory = catchAsync(async function (req, res) {
 
   // **Restructure the response to flatten freelancer fields**
   const hiredFreelancers = hiredRecords.map(record => ({
-    _id: record._id, 
+    _id: record._id,
     hiredAt: record.hiredAt,
     freelancerId: record.freelancer._id, 
     username: record.freelancer.username,
