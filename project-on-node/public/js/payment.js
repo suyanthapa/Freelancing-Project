@@ -4,6 +4,7 @@ event.preventDefault();
 
 const recipient = document.getElementById('recipient').value;
 const amount = document.getElementById('amount').value;
+const hiredId = document.getElementById('hiredId').value; //********************************* */
 const payButton = document.getElementById('pay-button');
 
 if (window.ethereum) {
@@ -54,7 +55,9 @@ if (window.ethereum) {
       body: JSON.stringify({
         recipient: recipient,
         amount: amount,
-        transactionHash: transaction.transactionHash
+        transactionHash: transaction.transactionHash,
+        hiredId: hiredId 
+        
       })
     });
 

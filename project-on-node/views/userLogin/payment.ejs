@@ -30,6 +30,8 @@
         <label for="amount">Amount (ETH):</label>
         <input type="number" id="amount" name="amount"  value="<%= job.hourlyRate %>" readonly >
 
+        <input type="text" id="hiredId" name="hiredId"  value="<%= hired._id.toString() %>" readonly >
+
         <button type="submit" id="pay-button">Pay</button>
       </form>
     </div>

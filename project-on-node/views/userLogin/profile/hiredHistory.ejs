@@ -44,10 +44,14 @@
                         data-skills="<%= freelancer.skills %>"
                         data-freelancerImage="<%= freelancer.profileImage %>"
                         data-job-title="<%= freelancer.jobTitle %>"
-                        data-job-description="<%= freelancer.jobDescription %>">
+                        data-job-description="<%= freelancer.jobDescription %>"
+                        data-payment-Status="<%= freelancer.paymentStatus %>"
+                        data-hourly-rate="<%= freelancer.hourlyRate %>">
+                
                   View Details
                 </button>
               </span>
+
             </span>
           </div>
         <% }); %>
@@ -66,6 +70,9 @@
         <h2>Job Details</h2>
         <p><strong>Job Title:</strong> <span id="jobTitle"> </span></p>
         <p><strong>Description:</strong> <span id="jobDescription"></span></p>
+        <p><strong>Hourly Rate:</strong> <span id="hourlyRate"></span></p>
+        <p><strong>Payment :</strong> <span id="paymentStatus"></span></p>
+   
 
         
       </div>
@@ -86,6 +93,10 @@
       
         document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
         document.getElementById("jobDescription").innerText = this.dataset.jobDescription;
+        document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
+        document.getElementById("hourlyRate").innerText = this.dataset.hourlyRate;
+        
+        document.getElementById("paymentStatus").innerText = this.dataset.paymentStatus;
         document.getElementById("freelancerImage").src = this.dataset.freelancerimage;
 
       });

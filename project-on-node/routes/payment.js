@@ -2,6 +2,7 @@ import { Router } from "express";
 import metamaskController from "../controllers/metamask.js";
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
 import userAuthController from "../controllers/userAuth.js";
+import Hired from "../models/hired.js";
 
 const paymentRouter = Router();
 
@@ -10,8 +11,15 @@ paymentRouter.get("/payment", restrictToLoggedinUserOnly, userAuthController.pay
 // This is the endpoint to log the payment transaction
 paymentRouter.post("/payment", restrictToLoggedinUserOnly, async (req, res) => {
   try {
-    const { recipient, amount, transactionHash } = req.body;
+    const { recipient, amount, transactionHash  , hiredId} = req.body;
 
+
+    await Hired.updateOne(
+      { _id: hiredId },  // Condition to find the document by _id
+      { $set: { paymentStatus: 'paid' } }  // The field to update
+    );
+    
+    
     // Log the received data for debugging
     console.log('Received payment data:', { recipient, amount, transactionHash });
 

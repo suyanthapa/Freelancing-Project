@@ -15,6 +15,7 @@ const jobSchema = new Schema({
   status: { type: String, default: 'open' }, // 'open', 'hired'
 
 
+
 });
 
 const Job = model( "Job", jobSchema);

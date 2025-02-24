@@ -118,9 +118,10 @@ const hiredHistory = catchAsync(async function (req, res) {
       path: "freelancer",
       select: "email username first_name last_name createdAt skills profileImage",
     })
+   
     .populate({
       path: "job",
-      select: "jobTitle customLabel",
+      select: "jobTitle customLabel hourlyRate",
     })
     .lean(); // Convert Mongoose documents to plain objects
 
@@ -133,8 +134,10 @@ const hiredHistory = catchAsync(async function (req, res) {
     email: record.freelancer.email,
     skills: record.freelancer.skills,
     profileImage: record.freelancer.profileImage,
-    jobTitle: record.job?.jobTitle || "No title", // Handle missing job data
-    jobDescription: record.job?.customLabel || "No description"
+    jobTitle: record.job?.jobTitle ,
+    jobDescription: record.job?.customLabel ,
+    hourlyRate : record.job?.hourlyRate ,
+    paymentStatus: record.paymentStatus, 
   }));
 
   console.log(hiredFreelancers);
@@ -200,6 +203,7 @@ const hireFreelancer = async (req, res) => {
     // Update job status to 'hired' and link the client
     job.status = 'hired';
     job.hiredBy = user._id; // Assuming you store the client/user who hired
+    
     await job.save();
 
      // Create a new Hired record
@@ -213,6 +217,7 @@ const hireFreelancer = async (req, res) => {
     });
      await hired.save();  // Save the new record
 
+    
      // Redirect to the success page with query parameters
      res.redirect("/hired-freelancer")
   } catch (error) {
@@ -259,7 +264,11 @@ const paymentPage = async (req, res) => {
   const job = await Job.findById(jobId);
   const freelancer = await User.findById(freelancerId);
 
-  res.render("userLogin/payment", { job, freelancer });
+  const hired = await Hired.findOne({job : jobId});
+  console.log(hired)
+
+
+  res.render("userLogin/payment", { job, hired, freelancer });
 }
 
 
