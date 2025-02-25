@@ -45,7 +45,7 @@
                         data-freelancerImage="<%= freelancer.profileImage %>"
                         data-job-title="<%= freelancer.jobTitle %>"
                         data-job-description="<%= freelancer.jobDescription %>"
-                        data-payment-Status="<%= freelancer.paymentStatus %>"
+                        data-payment-status="<%= freelancer.paymentStatus %>"
                         data-hourly-rate="<%= freelancer.hourlyRate %>">
                 
                   View Details
@@ -72,52 +72,83 @@
         <p><strong>Description:</strong> <span id="jobDescription"></span></p>
         <p><strong>Hourly Rate:</strong> <span id="hourlyRate"></span></p>
         <p><strong>Payment :</strong> <span id="paymentStatus"></span></p>
-   
-
         
+  
+        
+        
+             <!-- Payment Section (Initially Hidden) -->
+             <div id="paymentContent" class="hidden">
+              <h3>Payment Details</h3>
+              <div class="payment-box">
+                <h2>Payment</h2>
+
+                <p><strong>Paying Amount:</strong> $<span id="paymentHourlyRate"></span></p>
+                <p><em>Please complete payment to proceed with the job.</em></p>
+                <button class="btn-pay" onclick="redirectToPayment()">Proceed to Payment</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <script>
-    // Handle the View Details button click
-    document.querySelectorAll(".view-details-btn").forEach(button => {
-      button.addEventListener("click", function() {
-        // Hide the hired list and show the details section
-        document.getElementById("hiredList").classList.add("hidden");
-        document.getElementById("detailsSection").classList.remove("hidden");
-  
-        // Populate the details section with freelancer and job information
-        document.getElementById("freelancerName").innerText = this.dataset.username;
-        document.getElementById("freelancerEmail").innerText = this.dataset.email;
-        document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
-        document.getElementById("jobDescription").innerText = this.dataset.jobDescription;
-        document.getElementById("hourlyRate").innerText = this.dataset.hourlyRate;
-        document.getElementById("paymentStatus").innerText = this.dataset.paymentStatus;
-        document.getElementById("freelancerImage").src = this.dataset.freelancerimage;
-  
-        // Set dynamic payment status class
-        const paymentStatusElement = document.getElementById("paymentStatus");
-        const paymentStatus = this.dataset.paymentStatus.toLowerCase(); // Ensure status is in lowercase
-  
-        // Remove both classes before adding the correct one
-        paymentStatusElement.classList.remove('pending', 'completed');
-  
-        // Add the appropriate class based on the payment status
-        if (paymentStatus === 'pending') {
-          paymentStatusElement.classList.add('pending');
-        } else if (paymentStatus === 'completed') {
-          paymentStatusElement.classList.add('completed');
+    
+      <script>
+        // Handle the View Details button click
+        document.querySelectorAll(".view-details-btn").forEach(button => {
+          button.addEventListener("click", function() {
+            // Hide the hired list and show the details section
+            document.getElementById("hiredList").classList.add("hidden");
+            document.getElementById("detailsSection").classList.remove("hidden");
+    
+            // Populate the details section with freelancer and job information
+             // Populate the details section with freelancer and job information
+             document.getElementById("freelancerName").innerText = this.dataset.username;
+            document.getElementById("freelancerEmail").innerText = this.dataset.email;
+            document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
+            document.getElementById("jobDescription").innerText = this.dataset.jobDescription;
+            document.getElementById("hourlyRate").innerText = this.dataset.hourlyRate;
+            document.getElementById("paymentStatus").innerText = this.dataset.paymentStatus;
+            document.getElementById("freelancerImage").src = this.dataset.freelancerimage;
+
+              // Set the hourly rate in both sections
+    const hourlyRate = this.dataset.hourlyRate;
+    document.getElementById("hourlyRate").innerText = hourlyRate;  // For Job Details
+    document.getElementById("paymentHourlyRate").innerText = hourlyRate;  // For Payment Section
+    
+            // Set dynamic payment status class
+            const paymentStatusElement = document.getElementById("paymentStatus");
+            const paymentContent = document.getElementById("paymentContent");
+            const paymentStatus = this.dataset.paymentStatus.toLowerCase(); // Ensure status is in lowercase
+    
+            // Reset visibility and styling
+            paymentStatusElement.classList.remove('pending', 'completed');
+            paymentContent.classList.add("hidden");
+    
+            // Show payment section only if status is 'pending'
+            if (paymentStatus === 'pending') {
+              paymentStatusElement.classList.add('pending');
+              paymentContent.classList.remove("hidden");
+            } else if (paymentStatus === 'completed') {
+              paymentStatusElement.classList.add('completed');
+            }
+          });
+        });
+    
+        // Handle the Back to Hired List button click
+        document.getElementById("backToListBtn").addEventListener("click", function() {
+          // Show the hired list and hide the details section
+          document.getElementById("hiredList").classList.remove("hidden");
+          document.getElementById("detailsSection").classList.add("hidden");
+        });
+    
+        // Redirect to payment page
+        function redirectToPayment() {
+          alert("Redirecting to payment gateway...");
+          // Replace with actual payment redirection logic
+          window.location.href = "/payment";
         }
-      });
-    });
-  
-    // Handle the Back to Hired List button click
-    document.getElementById("backToListBtn").addEventListener("click", function() {
-      // Show the hired list and hide the details section
-      document.getElementById("hiredList").classList.remove("hidden");
-      document.getElementById("detailsSection").classList.add("hidden");
-    });
-  </script>
+      </script>
+    
+    
   
 </body>
 </html>
