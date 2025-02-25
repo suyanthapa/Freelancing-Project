@@ -13,7 +13,7 @@ paymentRouter.post("/payment", restrictToLoggedinUserOnly, async (req, res) => {
   try {
     const { recipient, amount, transactionHash  , hiredId} = req.body;
 
-
+    
     await Hired.updateOne(
       { _id: hiredId },  // Condition to find the document by _id
       { $set: { paymentStatus: 'completed' } }  // The field to update

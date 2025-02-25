@@ -121,7 +121,7 @@ const hiredHistory = catchAsync(async function (req, res) {
    
     .populate({
       path: "job",
-      select: "jobTitle customLabel hourlyRate",
+      select: "_id jobTitle customLabel hourlyRate",
     })
     .lean(); // Convert Mongoose documents to plain objects
 
@@ -129,12 +129,13 @@ const hiredHistory = catchAsync(async function (req, res) {
   const hiredFreelancers = hiredRecords.map(record => ({
     _id: record._id,
     hiredAt: record.hiredAt,
-    freelancerId: record.freelancer._id, 
+    freelancerId: record.freelancer._id.toString(), 
     username: record.freelancer.username,
     email: record.freelancer.email,
     skills: record.freelancer.skills,
     profileImage: record.freelancer.profileImage,
     jobTitle: record.job?.jobTitle ,
+    jobId: record.job?._id.toString(),  // Add the jobId to the response
     jobDescription: record.job?.customLabel ,
     hourlyRate : record.job?.hourlyRate ,
     paymentStatus: record.paymentStatus, 

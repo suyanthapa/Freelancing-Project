@@ -56,7 +56,9 @@ if (window.ethereum) {
         recipient: recipient,
         amount: amount,
         transactionHash: transaction.transactionHash,
-        hiredId: hiredId 
+        hiredId: hiredId ,
+        // jobId: jobId.toString(), // Convert ObjectId to string
+        // freelancerId: freelancerId.toString()
         
       })
     });
