@@ -2,9 +2,18 @@
  document.getElementById('payment-form').addEventListener('submit', async function (event) {
 event.preventDefault();
 
+const hiredId = document.getElementById('hiredId').value; 
+    console.log("Hired ID from input:", hiredId); // Debugging output
+
+    // Check if hiredId is empty or undefined
+    if (!hiredId) {
+        console.error("Error: Hired ID is missing or undefined.");
+        alert("Hired ID is not available!");
+        return;
+    }
 const recipient = document.getElementById('recipient').value;
 const amount = document.getElementById('amount').value;
-const hiredId = document.getElementById('hiredId').value; //********************************* */
+// const hiredId = document.getElementById('hiredId').value; 
 const payButton = document.getElementById('pay-button');
 
 if (window.ethereum) {
@@ -57,12 +66,13 @@ if (window.ethereum) {
         amount: amount,
         transactionHash: transaction.transactionHash,
         hiredId: hiredId ,
-        // jobId: jobId.toString(), // Convert ObjectId to string
-        // freelancerId: freelancerId.toString()
+       
         
       })
-    });
-
+    }).then(response => response.json())
+    .then(data => console.log('Response from server:', data))
+    .catch(err => console.error('Error sending payment data:', err));;
+    
     alert('Payment successful!');
     payButton.textContent = "Paid!";
   } catch (err) {

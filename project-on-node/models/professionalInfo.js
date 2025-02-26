@@ -10,6 +10,7 @@ const professionalInfoSchema = new Schema ({
   portfolio: { type: String, required: true, unique: true },
   website: { type: String, required: true },
   linkedIn: { type: String, required: true },
+  wallet: { type: String, required: true },
  
 }, { timestamps: true })
 

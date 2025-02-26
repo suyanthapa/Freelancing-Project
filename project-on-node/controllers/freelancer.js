@@ -45,15 +45,15 @@ const editProfessionalInfo =  catchAsync (async  function (req, res) {
     }
 
     const userId = loggedInUser._id;
-    const { skills,language, education, certifications, portfolio, website, linkedIn } = req.body;
+    const { skills,language, education, certifications, portfolio, website, linkedIn , wallet} = req.body;
 
     // Update or insert professional info in one step
     const updatedProfessionalInfo = await ProfessionalInfo.findOneAndUpdate(
       { userId }, // Search by userId
-      { $set: { skills,language, education, certifications, portfolio, website, linkedIn } }, // Update fields
+      { $set: { skills,language, education, certifications, portfolio, website, linkedIn , wallet} }, // Update fields
       { new: true, upsert: true } // Return updated document, create if doesn't exist
     );
-
+    
     console.log('Updated professional info:', updatedProfessionalInfo); // Debugging  
 
     return res.json({ success: true, message: "Professional info updated successfully!", data: updatedProfessionalInfo });
@@ -115,7 +115,7 @@ const postSetProfessionalInfo = async (req, res) => {
 
   const loggedInUser = req.user;  // Get logged-in user
   const userId = loggedInUser._id;  // Get logged-in user's ID
-  const { skills,language, education, certifications, portfolio, website, linkedIn } = req.body;
+  const { skills,language, education, certifications, portfolio, website, linkedIn, wallet } = req.body;
   console.log("Received data:", req.body);  // Log the received data
 
    const user = await User.findById(userId);
@@ -133,7 +133,8 @@ const postSetProfessionalInfo = async (req, res) => {
         certifications : certifications,
         portfolio : portfolio,
         website : website,
-        linkedIn : linkedIn
+        linkedIn : linkedIn,
+        wallet : wallet
       });
     } else {
       // If professional info exists, update it
@@ -144,6 +145,8 @@ const postSetProfessionalInfo = async (req, res) => {
       professionalInfo.portfolio = portfolio;
       professionalInfo.website = website;
       professionalInfo.linkedIn = linkedIn;
+      wallet.website = wallet;
+
     }
 
     // Save the professional info

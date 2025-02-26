@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("portfolio").disabled = false;
     document.getElementById("website").disabled = false;
     document.getElementById("linkedIn").disabled = false;
+    document.getElementById("wallet").disabled = false;
 
     // Show save and cancel buttons, hide edit button
     document.getElementById("saveBtn").classList.remove("hidden");
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("portfolio").disabled = true;
     document.getElementById("website").disabled = true;
     document.getElementById("linkedIn").disabled = true;
+    document.getElementById("wallet").disabled = true;
 
     document.getElementById("saveBtn").classList.add("hidden");
     document.getElementById("cancelBtn").classList.add("hidden");
@@ -59,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const linkedIn = document.getElementById("linkedIn").value;
 
+    const wallet = document.getElementById("wallet").value;
+
     // Log data to check if values are retrieved correctly
     console.log("Saving data:", {
       skills,
@@ -68,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       portfolio,
       website,
       linkedIn,
+      wallet,
     });
     
     // Send the updated data to the server using fetch
@@ -84,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
         portfolio,
         website,
         linkedIn,
+        wallet,
       }),
     })
       .then((response) => response.json())

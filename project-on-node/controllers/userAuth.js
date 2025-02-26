@@ -265,11 +265,17 @@ const paymentPage = async (req, res) => {
   const job = await Job.findById(jobId);
   const freelancer = await User.findById(freelancerId);
 
+  console.log(" SUyan ko job"+ job)
+    
+    const professionalInfo = await  ProfessionalInfo.findOne({userId : freelancerId});
+
   const hired = await Hired.findOne({job : jobId});
+
   console.log(hired)
+  console.log(professionalInfo)
 
 
-  res.render("userLogin/payment", { job, hired, freelancer });
+  res.render("userLogin/payment", { job, hired, freelancer , professionalInfo });
 }
 
 

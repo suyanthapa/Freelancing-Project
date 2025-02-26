@@ -3,6 +3,7 @@ import metamaskController from "../controllers/metamask.js";
 import { restrictToLoggedinUserOnly } from "../middlewares/auth.js";
 import userAuthController from "../controllers/userAuth.js";
 import Hired from "../models/hired.js";
+import ProfessionalInfo from "../models/professionalInfo.js";
 
 const paymentRouter = Router();
 
@@ -12,8 +13,10 @@ paymentRouter.get("/payment", restrictToLoggedinUserOnly, userAuthController.pay
 paymentRouter.post("/payment", restrictToLoggedinUserOnly, async (req, res) => {
   try {
     const { recipient, amount, transactionHash  , hiredId} = req.body;
-
+    console.log(" The hired id is "+hiredId.toString());
+    console.log(req.body)
     
+
     await Hired.updateOne(
       { _id: hiredId },  // Condition to find the document by _id
       { $set: { paymentStatus: 'completed' } }  // The field to update

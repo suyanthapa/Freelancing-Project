@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hired History</title>
+  <link rel="stylesheet" href="css/freelancerLogin/accountSetting.css">
+  <style>
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="profile-pic">
+        <img src="<%= freelancer.profileImage %>" alt="Profile Picture">
+      </div>
+      <ul>
+        <li><a href="accountSetting">Account Details</a></li>
+        <li><a href="hiredHistory" class="active">Hired History</a></li>
+        <li><a href="changePassword">Change Password</a></li>
+        <li><a href="logout">Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <a href="freelancerDashboard"><button id="backToIndex" class="back-button">← Back to Dashboard</button></a><br>
+      <h1>Hired History</h1>
+
+      <!-- List of Clients Who Hired the Freelancer -->
+      <div class="hired-list" id="hiredList">
+        <% hiredClients.forEach(function(client) { %>
+          <div class="hired-item">
+            <span>You have been hired by "<%= client.username %>" 
+              <span style="color:rgb(222, 96, 136);">(<%= client.email %>)</span> on
+              <span><%= client.hiredAt.toISOString().split('T')[0] %> </span><br>
+              <span>
+                <button class="view-details-btn" 
+                        data-client-id="<%= client.clientId %>"
+                        data-job-id="<%= client.jobId %>"
+                        data-username="<%= client.username %>"
+                        data-email="<%= client.email %>"
+                        data-job-title="<%= client.jobTitle %>"
+                        data-job-description="<%= client.jobDescription %>"
+                        data-payment-status="<%= client.paymentStatus %>"
+                        data-hourly-rate="<%= client.hourlyRate %>">
+                  View Details
+                </button>
+              </span>
+            </span>
+          </div>
+        <% }); %>
+      </div>
+
+      <!-- Client & Job Details Section (Initially Hidden) -->
+      <div class="details-section hidden" id="detailsSection">
+        <button id="backToListBtn" class="back-list-button">← Hired List</button>
+        <h2>Client Details</h2>
+        <p><strong>Name:</strong> <span id="clientName"></span></p>
+        <p><strong>Email:</strong> <span id="clientEmail"></span></p>
+
+        <h2>Job Details</h2>
+        <p><strong>Job Title:</strong> <span id="jobTitle"></span></p>
+        <p><strong>Description:</strong> <span id="jobDescription"></span></p>
+        <p><strong>Hourly Rate:</strong> <span id="hourlyRate"></span></p>
+        <p><strong>Payment Status:</strong> <span id="paymentStatus"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Handle the "View Details" button click
+    document.querySelectorAll(".view-details-btn").forEach(button => {
+      button.addEventListener("click", function() {
+        // Get client and job details from button data attributes
+        document.getElementById("clientName").innerText = this.dataset.username;
+        document.getElementById("clientEmail").innerText = this.dataset.email;
+        document.getElementById("jobTitle").innerText = this.dataset.jobTitle;
+        document.getElementById("jobDescription").innerText = this.dataset.jobDescription;
+        document.getElementById("hourlyRate").innerText = this.dataset.hourlyRate;
+        document.getElementById("paymentStatus").innerText = this.dataset.paymentStatus;
+
+        // Hide the hired list and show the details section
+        document.getElementById("hiredList").classList.add("hidden");
+        document.getElementById("detailsSection").classList.remove("hidden");
+      });
+    });
+
+    // Handle the "Back to Hired List" button click
+    document.getElementById("backToListBtn").addEventListener("click", function() {
+      // Show the hired list and hide the details section
+      document.getElementById("hiredList").classList.remove("hidden");
+      document.getElementById("detailsSection").classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
